@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  # Service name
+  node:
+    volumes:
+      - nodeVolume:/server
+      - .:/server:ro
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        # External port:Internal port
+      - 5000:5000
+
+volumes:
+  nodeVolume:
