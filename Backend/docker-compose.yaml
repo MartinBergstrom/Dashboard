@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  # Service name
+
   node:
     volumes:
       - nodeVolume:/server
@@ -11,6 +11,25 @@ services:
     ports:
         # External port:Internal port
       - 5000:5000
+    environment:
+      - PORT=5000
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_DB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DB_PASSWORD}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_DB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DB_PASSWORD}
+    volumes:
+      - mongoDB:/data/db
+
+
+  redis:
+    image: redis
 
 volumes:
   nodeVolume:
+  mongoDB:
