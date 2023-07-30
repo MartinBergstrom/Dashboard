@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { useQuery } from "react-query";
 import Card from "@mui/material/Card";
-import { getDefault } from "../../api/LinkService";
+import { getDefault } from "../api/LinkService";
 
 interface UrlProps {
   title: string;
