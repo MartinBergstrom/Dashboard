@@ -5,7 +5,9 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { useQuery } from "react-query";
 import Card from "@mui/material/Card";
+import { getDefault } from "../../api/LinkService";
 
 interface UrlProps {
   title: string;
@@ -14,6 +16,8 @@ interface UrlProps {
 }
 
 const UrlCard = (props: UrlProps) => {
+  const query = useQuery("users", getDefault);
+
   return (
     <Grid item xs={6}>
       <Card
@@ -34,6 +38,7 @@ const UrlCard = (props: UrlProps) => {
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {props.title}
+              {/*{query.data}*/}
             </Typography>
           </CardContent>
         </CardActionArea>

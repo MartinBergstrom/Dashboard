@@ -1,7 +1,6 @@
 import {
   DialogTitle,
   DialogContent,
-  DialogContentText,
   TextField,
   DialogActions,
   Button,
@@ -18,27 +17,45 @@ const UrlCardDialog = ({ open, onClose }: UrlCardDialogProps) => {
     onClose();
   };
 
+  const handleCloseAndAdd = () => {
+    // send to database also here
+    handleClose();
+  };
+
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Subscribe</DialogTitle>
+      <DialogTitle>Add new URL card</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          To subscribe to this website, please enter your email address here. We
-          will send updates occasionally.
-        </DialogContentText>
+        <TextField
+          required
+          autoFocus
+          margin="dense"
+          id="full-url"
+          label="Full URL"
+          fullWidth
+          variant="standard"
+        />
+        <TextField
+          required
+          autoFocus
+          margin="dense"
+          id="text-to-view"
+          label="Text to view"
+          fullWidth
+          variant="standard"
+        />
         <TextField
           autoFocus
           margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
+          id="picture-url"
+          label="Picture URL"
           fullWidth
           variant="standard"
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleClose}>Subscribe</Button>
+        <Button onClick={handleCloseAndAdd}>Add</Button>
       </DialogActions>
     </Dialog>
   );

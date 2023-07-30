@@ -1,10 +1,10 @@
 import { useState } from "react";
 import TestCard from "../apps/testCard/TestCard";
-import UrlCard from "../apps/url/UrlCard";
-import UrlCardButton from "../apps/url/add/AddUrlCardButton";
+import UrlCard from "../links/url/UrlCard";
+import UrlCardButton from "../links/url/add/AddUrlCardButton";
 import WatchesCard from "../apps/watches/WatchesCard";
 import { Grid } from "@mui/material";
-import UrlCardDialog from "../apps/url/add/AddUrlCardDialog";
+import UrlCardDialog from "../links/url/add/AddUrlCardDialog";
 
 interface CardData {
   id: number;
