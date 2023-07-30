@@ -1,7 +1,10 @@
+import { useState } from "react";
 import TestCard from "../apps/testCard/TestCard";
-import UrlCard from "../apps/urlCard/UrlCard";
+import UrlCard from "../apps/url/UrlCard";
+import UrlCardButton from "../apps/url/add/AddUrlCardButton";
 import WatchesCard from "../apps/watches/WatchesCard";
 import { Grid } from "@mui/material";
+import UrlCardDialog from "../apps/url/add/AddUrlCardDialog";
 
 interface CardData {
   id: number;
@@ -15,6 +18,16 @@ interface DashboardProps {
 }
 
 const Dashboard = (props: DashboardProps) => {
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
   const cards: CardData[] = [
     {
       id: 1,
@@ -53,6 +66,8 @@ const Dashboard = (props: DashboardProps) => {
         ))}
       </Grid>
       {props.searchQuery}
+      <UrlCardButton onDialogOpen={handleDialogOpen} />
+      <UrlCardDialog open={dialogOpen} onClose={handleDialogClose} />
     </>
   );
 };
