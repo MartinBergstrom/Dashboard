@@ -8,7 +8,7 @@ const TestCard = () => {
   const title = "Test card";
 
   return (
-    <Grid item xs={6}>
+    <Grid item xs={12}>
       <Card>
         <CardActionArea>
           <div style={{ display: "flex", justifyContent: "center" }}>

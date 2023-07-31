@@ -9,7 +9,7 @@ const WatchesCard = () => {
   const title = "Klockor";
 
   return (
-    <Grid item xs={6}>
+    <Grid item xs={12}>
       <Link to="watches">
         <Card style={{ backgroundColor: "#0c1c12" }}>
           <CardActionArea>
