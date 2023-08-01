@@ -7,18 +7,13 @@ import { Grid } from "@mui/material";
 import UrlCardDialog from "../links/add/AddUrlCardDialog";
 import { getAllUrlCards } from "../api/LinkService";
 import { useQuery } from "react-query";
+import { UrlCardData } from "../links/UrlCardData";
 
 interface CardData {
   id: number;
   title: string;
   component: any;
   data?: any;
-}
-
-interface UrlCardData {
-  title: string;
-  fullUrl: string;
-  pictureUrl: string;
 }
 
 interface DashboardProps {
@@ -32,6 +27,7 @@ const Dashboard = (props: DashboardProps) => {
     data: fetchedUrlCards,
     isLoading,
     error,
+    refetch,
   } = useQuery<UrlCardData[]>("urlCards", getAllUrlCards);
 
   const handleDialogOpen = () => {
@@ -40,6 +36,7 @@ const Dashboard = (props: DashboardProps) => {
 
   const handleDialogClose = () => {
     setDialogOpen(false);
+    refetch();
   };
 
   const predefinedCards: CardData[] = [
@@ -63,7 +60,13 @@ const Dashboard = (props: DashboardProps) => {
     });
   };
 
-  const filteredPredefinedCards = filterCards(predefinedCards);
+  const filterUrlCards = (cardArr: UrlCardData[]) => {
+    return cardArr.filter((card) => {
+      return props.searchQuery
+        ? card.title.toLowerCase().includes(props.searchQuery.toLowerCase())
+        : true;
+    });
+  };
 
   const renderUrlCards = () => {
     if (isLoading) {
@@ -81,8 +84,9 @@ const Dashboard = (props: DashboardProps) => {
     return (
       <Grid item xs={6}>
         <Grid container spacing={3}>
-          {fetchedUrlCards.map((fetchedData) => (
+          {filterUrlCards(fetchedUrlCards).map((fetchedData) => (
             <UrlCard
+              key={fetchedData.title}
               title={fetchedData.title}
               url={fetchedData.fullUrl}
               imageUrl={fetchedData.pictureUrl}
@@ -98,7 +102,7 @@ const Dashboard = (props: DashboardProps) => {
       <Grid container spacing={3} p={2}>
         <Grid item xs={6}>
           <Grid container spacing={3}>
-            {filteredPredefinedCards.map((card) => (
+            {filterCards(predefinedCards).map((card) => (
               <Grid item key={card.id} xs={12}>
                 <card.component key={card.id} {...card.data} />
               </Grid>
@@ -107,7 +111,6 @@ const Dashboard = (props: DashboardProps) => {
         </Grid>
         {renderUrlCards()}
       </Grid>
-      {props.searchQuery}
       <UrlCardButton onDialogOpen={handleDialogOpen} />
       <UrlCardDialog open={dialogOpen} onClose={handleDialogClose} />
     </>

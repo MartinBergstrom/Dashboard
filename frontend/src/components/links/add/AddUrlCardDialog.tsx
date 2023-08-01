@@ -4,8 +4,13 @@ import {
   TextField,
   DialogActions,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
+import { useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
+import { postNewUrlCard } from "../../api/LinkService";
+import { UrlCardData } from "../UrlCardData";
 
 interface UrlCardDialogProps {
   open: boolean;
@@ -13,13 +18,44 @@ interface UrlCardDialogProps {
 }
 
 const UrlCardDialog = ({ open, onClose }: UrlCardDialogProps) => {
+  const [fullUrl, setFullUrl] = useState("");
+  const [title, setTitle] = useState("");
+  const [picUrl, setPictureUrl] = useState("");
+  const queryClient = useQueryClient();
+
   const handleClose = () => {
     onClose();
   };
 
+  const { mutate, isLoading } = useMutation(postNewUrlCard, {
+    onSuccess: (data) => {
+      console.log("Success! data: " + data);
+      resetTextFieldStates();
+      handleClose();
+    },
+    onError: () => {
+      alert("there was an error");
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries("create");
+    },
+  });
+
+  const resetTextFieldStates = () => {
+    setFullUrl("");
+    setTitle("");
+    setPictureUrl("");
+  };
+
   const handleCloseAndAdd = () => {
-    // send to database also here
-    handleClose();
+    console.log(`fullURL: ${fullUrl}, title: ${title}, picUrl: ${picUrl}`);
+
+    const newUrlCard: UrlCardData = {
+      title,
+      fullUrl,
+      pictureUrl: picUrl,
+    };
+    mutate(newUrlCard);
   };
 
   return (
@@ -32,30 +68,47 @@ const UrlCardDialog = ({ open, onClose }: UrlCardDialogProps) => {
           margin="dense"
           id="full-url"
           label="Full URL"
+          value={fullUrl}
           fullWidth
           variant="standard"
+          onChange={(e) => setFullUrl(e.target.value)}
         />
         <TextField
           required
           autoFocus
           margin="dense"
-          id="text-to-view"
-          label="Text to view"
+          id="title"
+          label="Title"
+          value={title}
           fullWidth
           variant="standard"
+          onChange={(e) => setTitle(e.target.value)}
         />
         <TextField
           autoFocus
           margin="dense"
           id="picture-url"
           label="Picture URL"
+          value={picUrl}
           fullWidth
           variant="standard"
+          onChange={(e) => setPictureUrl(e.target.value)}
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleCloseAndAdd}>Add</Button>
+        <Button variant="outlined" onClick={handleClose}>
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          disabled={isLoading}
+          startIcon={
+            isLoading ? <CircularProgress color="inherit" size={25} /> : null
+          }
+          onClick={handleCloseAndAdd}
+        >
+          Add
+        </Button>
       </DialogActions>
     </Dialog>
   );
