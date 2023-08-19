@@ -1,5 +1,4 @@
-export interface UrlCardData {
-  _id: string;
+export interface NewUrlCardData {
   title: string;
   fullUrl: string;
   pictureUrl: string;

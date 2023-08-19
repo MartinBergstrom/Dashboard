@@ -27,7 +27,6 @@ const Dashboard = (props: DashboardProps) => {
     data: fetchedUrlCards,
     isLoading,
     error,
-    refetch,
   } = useQuery<UrlCardData[]>("urlCards", getAllUrlCards);
 
   const handleDialogOpen = () => {
@@ -36,7 +35,6 @@ const Dashboard = (props: DashboardProps) => {
 
   const handleDialogClose = () => {
     setDialogOpen(false);
-    refetch();
   };
 
   const predefinedCards: CardData[] = [
@@ -87,6 +85,7 @@ const Dashboard = (props: DashboardProps) => {
           {filterUrlCards(fetchedUrlCards).map((fetchedData) => (
             <UrlCard
               key={fetchedData.title}
+              id={fetchedData._id}
               title={fetchedData.title}
               url={fetchedData.fullUrl}
               imageUrl={fetchedData.pictureUrl}

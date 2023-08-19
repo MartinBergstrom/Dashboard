@@ -10,7 +10,7 @@ import Dialog from "@mui/material/Dialog";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { postNewUrlCard } from "../../api/LinkService";
-import { UrlCardData } from "../UrlCardData";
+import { NewUrlCardData } from "./NewUrlCardData";
 
 interface UrlCardDialogProps {
   open: boolean;
@@ -37,7 +37,7 @@ const UrlCardDialog = ({ open, onClose }: UrlCardDialogProps) => {
       alert("there was an error");
     },
     onSettled: () => {
-      queryClient.invalidateQueries("create");
+      queryClient.invalidateQueries("urlCards");
     },
   });
 
@@ -50,7 +50,7 @@ const UrlCardDialog = ({ open, onClose }: UrlCardDialogProps) => {
   const handleCloseAndAdd = () => {
     console.log(`fullURL: ${fullUrl}, title: ${title}, picUrl: ${picUrl}`);
 
-    const newUrlCard: UrlCardData = {
+    const newUrlCard: NewUrlCardData = {
       title,
       fullUrl,
       pictureUrl: picUrl,
