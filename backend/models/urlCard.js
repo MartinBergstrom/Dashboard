@@ -11,7 +11,7 @@ const UrlCardSchema = new mongoose.Schema({
   },
   pictureUrl: {
     type: String,
-    required: true,
+    required: false,
   },
   updated_date: {
     type: Date,
