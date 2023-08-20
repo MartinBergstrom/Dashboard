@@ -3,11 +3,13 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  CircularProgress,
   Grid,
   IconButton,
   Menu,
   MenuItem,
   Typography,
+  Zoom,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Card from "@mui/material/Card";
@@ -24,8 +26,7 @@ interface UrlProps {
 
 const UrlCard = (props: UrlProps) => {
   const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
-  const defaultBgColor = "#0c1a1c";
-  const [bgColor, setBgColor] = useState(defaultBgColor);
+  const [isDeleting, setIsDeleting] = useState(false);
   const open = Boolean(anchorElement);
   const queryClient = useQueryClient();
 
@@ -34,13 +35,10 @@ const UrlCard = (props: UrlProps) => {
       queryClient.invalidateQueries("urlCards");
       console.log(data);
     },
-    onError: () => {
-      setBgColor(defaultBgColor);
-    },
   });
 
   const handleDelete = (id: string) => {
-    setBgColor("#a2a5a6");
+    setIsDeleting(true);
     deleteMutation.mutate(id);
     handleMenuClose();
   };
@@ -54,49 +52,73 @@ const UrlCard = (props: UrlProps) => {
 
   return (
     <Grid item xs={6}>
-      <Card style={{ backgroundColor: bgColor, position: "relative" }}>
-        <div>
-          <CardHeader
-            style={{
-              position: "absolute",
-              top: 0,
-              right: 0,
-              zIndex: 1,
-            }}
-            action={
-              <IconButton
-                aria-label="settings"
-                onClick={handeMenuItemClick}
-                style={{
-                  padding: "0px",
-                }}
-              >
-                <MoreVertIcon style={{ fontSize: "22px" }} />
-              </IconButton>
-            }
-          />
-          <Menu open={open} anchorEl={anchorElement} onClose={handleMenuClose}>
-            <MenuItem onClick={() => handleDelete(props.id)}>Remove</MenuItem>
-          </Menu>
-        </div>
-        <CardActionArea onClick={() => (window.location.href = props.url)}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <div style={{ paddingTop: "5px" }}>
-              <CardMedia
-                component="img"
-                height="100"
-                src={props.imageUrl}
-                alt="green iguana"
-              />
-            </div>
+      <Zoom in timeout={600}>
+        <Card style={{ backgroundColor: "#0c1a1c", position: "relative" }}>
+          <div>
+            <CardHeader
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                zIndex: 1,
+              }}
+              action={
+                <IconButton
+                  aria-label="settings"
+                  onClick={handeMenuItemClick}
+                  style={{
+                    padding: "0px",
+                  }}
+                >
+                  <MoreVertIcon style={{ fontSize: "22px" }} />
+                </IconButton>
+              }
+            />
+            <Menu
+              open={open}
+              anchorEl={anchorElement}
+              onClose={handleMenuClose}
+            >
+              <MenuItem onClick={() => handleDelete(props.id)}>Remove</MenuItem>
+            </Menu>
           </div>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {props.title}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+
+          {isDeleting ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(255, 255, 255, 0.2)",
+                zIndex: 2,
+              }}
+            >
+              <CircularProgress size={"4rem"} color="error" thickness={6} />
+            </div>
+          ) : null}
+
+          <CardActionArea onClick={() => (window.location.href = props.url)}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <div style={{ paddingTop: "5px" }}>
+                <CardMedia
+                  component="img"
+                  height="100"
+                  src={props.imageUrl}
+                  alt="green iguana"
+                />
+              </div>
+            </div>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {props.title}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Zoom>
     </Grid>
   );
 };

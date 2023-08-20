@@ -8,8 +8,7 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Header.css";
-import { ChangeEvent, useState } from "react";
-import React from "react";
+import { ChangeEvent } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,7 +66,8 @@ const Header = ({ searchQuery, onSearchQueryChange }: HeaderProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar sx={{ justifyContent: "center", alignItems: "center" }}>
+          {" "}
           <IconButton
             size="large"
             edge="start"
@@ -83,10 +83,13 @@ const Header = ({ searchQuery, onSearchQueryChange }: HeaderProps) => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+            sx={{
+              display: { xs: "none", sm: "block" },
+            }}
           >
             Martins Dashboard
           </Typography>
+          <div style={{ flexGrow: 1 }}></div> {/* Empty div to fill space */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

@@ -3,7 +3,7 @@ import TestCard from "../apps/testCard/TestCard";
 import UrlCard from "../links/UrlCard";
 import UrlCardButton from "../links/add/AddUrlCardButton";
 import WatchesCard from "../apps/watches/WatchesCard";
-import { Grid } from "@mui/material";
+import { CircularProgress, Fade, Grid } from "@mui/material";
 import UrlCardDialog from "../links/add/AddUrlCardDialog";
 import { getAllUrlCards } from "../api/LinkService";
 import { useQuery } from "react-query";
@@ -68,7 +68,15 @@ const Dashboard = (props: DashboardProps) => {
 
   const renderUrlCards = () => {
     if (isLoading) {
-      return <div style={{ padding: "2em" }}>Loading...</div>;
+      return (
+        <div
+          style={{
+            margin: "auto",
+          }}
+        >
+          <CircularProgress size={"6rem"} color="primary" />
+        </div>
+      );
     }
 
     if (error) {
@@ -80,19 +88,21 @@ const Dashboard = (props: DashboardProps) => {
     }
 
     return (
-      <Grid item xs={6}>
-        <Grid container spacing={3}>
-          {filterUrlCards(fetchedUrlCards).map((fetchedData) => (
-            <UrlCard
-              key={fetchedData.title}
-              id={fetchedData._id}
-              title={fetchedData.title}
-              url={fetchedData.fullUrl}
-              imageUrl={fetchedData.pictureUrl}
-            />
-          ))}
+      <Fade in timeout={1000}>
+        <Grid item xs={6}>
+          <Grid container spacing={3}>
+            {filterUrlCards(fetchedUrlCards).map((fetchedData) => (
+              <UrlCard
+                key={fetchedData.title}
+                id={fetchedData._id}
+                title={fetchedData.title}
+                url={fetchedData.fullUrl}
+                imageUrl={fetchedData.pictureUrl}
+              />
+            ))}
+          </Grid>
         </Grid>
-      </Grid>
+      </Fade>
     );
   };
 
@@ -108,6 +118,7 @@ const Dashboard = (props: DashboardProps) => {
             ))}
           </Grid>
         </Grid>
+
         {renderUrlCards()}
       </Grid>
       <UrlCardButton onDialogOpen={handleDialogOpen} />
