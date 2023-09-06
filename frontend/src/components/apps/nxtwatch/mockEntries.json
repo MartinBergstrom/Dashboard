@@ -1,0 +1,133 @@
+[
+  {
+    "id": "testID_A",
+    "name": "Seiko SPB143",
+    "brand": "Seiko",
+    "priority": "1",
+    "notes": "blablalblablal test test",
+    "model_numbers": ["SPB143", "SBDC101"],
+    "price": {
+      "msrp": "12000",
+      "authorized_dealer": "11000",
+      "grey_market": "9000",
+      "used": "8000"
+    },
+    "main_color": "grey",
+    "secondary_colors": ["black", "white"],
+    "watch_style": "diver",
+    "water_resistance": "200",
+    "rotating_bezel": "Yes",
+    "material": "Steel",
+    "material_bezel_insert": "Brushed Steel",
+    "crystal": "Sapphire",
+    "movement": {
+      "type": "Automatic",
+      "name": "Seiko 6r35",
+      "power_reserve": "72 h",
+      "frequency": "21600 bph",
+      "jewels": "24"
+    },
+    "bracelet_strap": {
+      "type": "bracelet",
+      "material": "Steel",
+      "color": "Steel",
+      "clasp_quality": "Milled",
+      "clasp_type": "Double-locking foldover",
+      "dive_extension": "Yes"
+    },
+    "date_window": "Yes",
+    "day_window": "no",
+    "dimensions": {
+      "diameter": "40.5",
+      "lug_to_lug": "48",
+      "thickness": "13"
+    },
+    "links": {
+      "brand": "https://www.seikowatches.com/us-en/products/prospex/spb143j1",
+      "authorized_dealers": [
+        "https://www.fredmansur.se/en/prospex/seiko-prospex-island-green-limited-edition-1968-recreation-spb207j1",
+        "some_other_authorized_dealer_sweden.se/spb143"
+      ],
+      "grey_market": [
+        "https://www.sakurawatches.com/seiko-prospex-sbdc101",
+        "https://www.gnomonwatches.com/products/prospex-62mas-200m-automatic-black-ref-sbdc101?_pos=1&_sid=65db2bd4a&_ss=r"
+      ],
+      "used": [
+        "https://www.chrono24.se/search/index.htm?query=spb143&dosearch=true&searchexplain=1&watchTypes=&accessoryTypes="
+      ]
+    }
+  },
+  {
+    "id": "testID_B",
+    "name": "Henry Archer Nordsø",
+    "brand": "Henry Archer",
+    "priority": "2",
+    "notes": "blablalblablal test test",
+    "model_numbers": ["Horizon Blue"],
+    "price": {
+      "msrp": "7000"
+    },
+    "main_color": "blue",
+    "secondary_colors": ["black", "teal"],
+    "watch_style": "diver",
+    "water_resistance": "200",
+    "rotating_bezel": "Yes",
+    "material": "Steel",
+    "material_bezel_insert": "Ceramic",
+    "crystal": "Sapphire",
+    "movement": {
+      "type": "Automatic",
+      "name": "Miyota 9039",
+      "power_reserve": "42 h",
+      "frequency": "28800 A/h",
+      "jewels": "24"
+    },
+    "bracelet_strap": {
+      "type": "bracelet",
+      "material": "Steel",
+      "color": "Steel",
+      "clasp_quality": "Milled",
+      "clasp_type": "Double-locking foldover",
+      "dive_extension": "Yes"
+    },
+    "date_window": "Yes",
+    "day_window": "no",
+    "dimensions": {
+      "diameter": "40.5",
+      "lug_to_lug": "48",
+      "thickness": "13"
+    },
+    "links": {
+      "brand": "https://www.seikowatches.com/us-en/products/prospex/spb143j1",
+      "authorized_dealers": [
+        "https://www.fredmansur.se/en/prospex/seiko-prospex-island-green-limited-edition-1968-recreation-spb207j1",
+        "some_other_authorized_dealer_sweden.se/spb143"
+      ],
+      "grey_market": [
+        "https://www.sakurawatches.com/seiko-prospex-sbdc101",
+        "https://www.gnomonwatches.com/products/prospex-62mas-200m-automatic-black-ref-sbdc101?_pos=1&_sid=65db2bd4a&_ss=r"
+      ],
+      "used": [
+        "https://www.chrono24.se/search/index.htm?query=spb143&dosearch=true&searchexplain=1&watchTypes=&accessoryTypes="
+      ]
+    }
+  },
+  {
+    "brand": "Sinn"
+  },
+  {
+    "brand": "Rolex"
+  },
+  {
+    "brand": "Omega"
+  },
+  {
+    "brand": "Patek"
+  },
+  {
+    "brand": "NTH"
+  },
+  {
+    "brand": "Islander"
+  }
+]

@@ -2,12 +2,12 @@ import { useState } from "react";
 import TestCard from "../apps/testCard/TestCard";
 import UrlCard from "../links/UrlCard";
 import UrlCardButton from "../links/add/AddUrlCardButton";
-import WatchesCard from "../apps/watches/WatchesCard";
 import { CircularProgress, Fade, Grid } from "@mui/material";
 import UrlCardDialog from "../links/add/AddUrlCardDialog";
 import { getAllUrlCards } from "../api/LinkService";
 import { useQuery } from "react-query";
 import { UrlCardData } from "../links/UrlCardData";
+import NxtwatchCard from "../apps/nxtwatch/NxtwatchCard";
 
 interface CardData {
   id: number;
@@ -41,7 +41,7 @@ const Dashboard = (props: DashboardProps) => {
     {
       id: 1,
       title: "Klockor",
-      component: WatchesCard,
+      component: NxtwatchCard,
     },
     {
       id: 3,

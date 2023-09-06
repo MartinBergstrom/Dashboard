@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/header/Header";
 import Dashboard from "./components/home/dashboard";
-import Watches from "./components/apps/watches/Watches";
+import Nxtwatch from "./components/apps/nxtwatch/Nxtwatch";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -26,8 +26,8 @@ function App() {
       element: <Dashboard searchQuery={searchQuery} />,
     },
     {
-      path: "watches",
-      element: <Watches />,
+      path: "nxtwatch",
+      element: <Nxtwatch />,
     },
   ]);
 
