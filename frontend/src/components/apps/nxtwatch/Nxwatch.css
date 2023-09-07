@@ -1,3 +1,19 @@
 .watch-logo {
   padding: 5px;
 }
+
+.largeView {
+  background-color: #0004ff;
+}
+
+.smallView {
+  background-color: #ff0000;
+}
+
+.listView {
+  /* List view styles */
+}
+
+.main {
+  margin: 2%;
+}
