@@ -2,3 +2,11 @@
   margin: 2%;
   margin-bottom: 0%;
 }
+
+.advanced-div {
+  width: 60%;
+  margin: auto;
+  align-content: center;
+  background-color: blueviolet;
+  z-index: -1;
+}
