@@ -10,3 +10,17 @@
   background-color: blueviolet;
   z-index: -1;
 }
+
+.icon-button {
+  background-color: transparent;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(103, 156, 203, 0.4);
+  }
+}
+
+.icon-container {
+  height: 30px;
+  width: 30px;
+}

@@ -1,12 +1,28 @@
-import { TextField, InputAdornment, IconButton, Button } from "@mui/material";
+import {
+  TextField,
+  InputAdornment,
+  IconButton,
+  Button,
+  Icon,
+} from "@mui/material";
 import { ChangeEvent, useState, KeyboardEvent } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
+import TableRowsIcon from "@mui/icons-material/TableRows";
+import ViewModuleIcon from "@mui/icons-material/ViewModule";
+import ViewCompactIcon from "@mui/icons-material/ViewCompact";
 import "./Filter.css";
+
+export enum ViewModeType {
+  LARGE = "largeViewMode",
+  SMALL = "smallViewMode",
+  LIST = "listViewMode",
+}
 
 interface Filterprops {
   onSearch: (searchTerm: string) => void;
+  onViewChange: (vewChange: ViewModeType) => void;
 }
 
 const Filter = (props: Filterprops) => {
@@ -57,30 +73,81 @@ const Filter = (props: Filterprops) => {
           }}
         />
       </div>
-      <Button
-        variant="text"
-        size="small"
-        onClick={toggleAdvanced}
+      <div
         style={{
-          marginTop: "5px",
-          zIndex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
         }}
       >
-        Advanced filters{" "}
-        {!isAdvancedOpen ? (
-          <KeyboardDoubleArrowDownIcon
+        <div style={{ flex: 1, marginLeft: "8%" }}>
+          <Button
+            variant="text"
+            size="small"
+            onClick={toggleAdvanced}
             style={{
-              marginBottom: "2px",
+              marginTop: "5px",
+              zIndex: 1,
             }}
-          />
-        ) : (
-          <KeyboardDoubleArrowUpIcon
+          >
+            Advanced filters{" "}
+            {!isAdvancedOpen ? (
+              <KeyboardDoubleArrowDownIcon
+                style={{
+                  marginBottom: "2px",
+                }}
+              />
+            ) : (
+              <KeyboardDoubleArrowUpIcon
+                style={{
+                  marginBottom: "2px",
+                }}
+              />
+            )}{" "}
+          </Button>
+        </div>
+        <div style={{ marginRight: "2%" }}>
+          <Icon
+            color="primary"
+            className="icon-button"
             style={{
-              marginBottom: "2px",
+              verticalAlign: "middle",
+              cursor: "pointer",
+              width: "30px",
+              height: "30px",
             }}
-          />
-        )}{" "}
-      </Button>
+            onClick={() => props.onViewChange(ViewModeType.LIST)}
+          >
+            <TableRowsIcon sx={{ fontSize: "24px" }} />
+          </Icon>
+          <Icon
+            color="primary"
+            className="icon-button"
+            style={{
+              verticalAlign: "middle",
+              cursor: "pointer",
+              width: "30px",
+              height: "30px",
+            }}
+            onClick={() => props.onViewChange(ViewModeType.LARGE)}
+          >
+            <ViewModuleIcon sx={{ fontSize: "28px" }} />
+          </Icon>
+          <Icon
+            color="primary"
+            className="icon-button"
+            style={{
+              verticalAlign: "middle",
+              cursor: "pointer",
+              width: "30px",
+              height: "30px",
+            }}
+            onClick={() => props.onViewChange(ViewModeType.SMALL)}
+          >
+            <ViewCompactIcon sx={{ fontSize: "29px" }} />
+          </Icon>
+        </div>
+      </div>
       {isAdvancedOpen ? (
         <div className={`advanced-div`}>
           <h1>OPEN</h1>

@@ -2,16 +2,16 @@
   padding: 5px;
 }
 
-.largeView {
+.largeViewMode {
   background-color: #0004ff;
 }
 
-.smallView {
+.smallViewMode {
   background-color: #ff0000;
 }
 
-.listView {
-  /* List view styles */
+.listViewMode {
+  background-color: #59ff00;
 }
 
 .main {

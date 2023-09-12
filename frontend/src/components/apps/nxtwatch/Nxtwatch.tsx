@@ -2,18 +2,18 @@ import { Fade, Grid } from "@mui/material";
 import "./Nxwatch.css";
 import mockEntries from "./mockEntries.json";
 import { useState } from "react";
-import Filter from "./filter/Filter";
+import Filter, { ViewModeType } from "./filter/Filter";
 
 const Nxtwatch = () => {
-  const [viewMode, setViewMode] = useState("largeView");
+  const [viewMode, setViewMode] = useState(ViewModeType.LARGE);
 
   const setColumnWidth = () => {
     switch (viewMode) {
-      case "listView":
+      case ViewModeType.LIST:
         return 1;
-      case "largeView":
+      case ViewModeType.LARGE:
         return 4;
-      case "smallView":
+      case ViewModeType.SMALL:
         return 2;
     }
   };
@@ -22,9 +22,13 @@ const Nxtwatch = () => {
     console.log("search: " + searchTerm);
   };
 
+  const whenChangeViewMode = (newViewMode: ViewModeType) => {
+    setViewMode(newViewMode);
+  };
+
   return (
     <>
-      <Filter onSearch={whenSearch} />
+      <Filter onSearch={whenSearch} onViewChange={whenChangeViewMode} />
       <div className="main">
         <Fade in timeout={1000}>
           <Grid container spacing={1}>
