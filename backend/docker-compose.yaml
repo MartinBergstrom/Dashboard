@@ -17,6 +17,16 @@ services:
     depends_on:
       - mongo
 
+  python_nxtwatch:
+    build:
+      context: ./python/nxtwatch
+      dockerfile: Dockerfile
+    ports:
+      # External port:Internal port
+      - 4000:5000
+    depends_on:
+      - mongo
+
   mongo:
     image: mongo
     environment:
