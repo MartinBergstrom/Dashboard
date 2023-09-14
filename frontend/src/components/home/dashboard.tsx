@@ -8,6 +8,7 @@ import { getAllUrlCards } from "../api/LinkService";
 import { useQuery } from "react-query";
 import { UrlCardData } from "../links/UrlCardData";
 import NxtwatchCard from "../apps/nxtwatch/NxtwatchCard";
+import Header from "../header/Header";
 
 interface CardData {
   id: number;
@@ -16,12 +17,13 @@ interface CardData {
   data?: any;
 }
 
-interface DashboardProps {
-  searchQuery: string;
-}
-
-const Dashboard = (props: DashboardProps) => {
+const Dashboard = () => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleSearchQueryChange = (query: string) => {
+    setSearchQuery(query);
+  };
 
   const {
     data: fetchedUrlCards,
@@ -52,16 +54,16 @@ const Dashboard = (props: DashboardProps) => {
 
   const filterCards = (cardArray: CardData[]) => {
     return cardArray.filter((card) => {
-      return props.searchQuery
-        ? card.title.toLowerCase().includes(props.searchQuery.toLowerCase())
+      return searchQuery
+        ? card.title.toLowerCase().includes(searchQuery.toLowerCase())
         : true;
     });
   };
 
   const filterUrlCards = (cardArr: UrlCardData[]) => {
     return cardArr.filter((card) => {
-      return props.searchQuery
-        ? card.title.toLowerCase().includes(props.searchQuery.toLowerCase())
+      return searchQuery
+        ? card.title.toLowerCase().includes(searchQuery.toLowerCase())
         : true;
     });
   };
@@ -108,6 +110,10 @@ const Dashboard = (props: DashboardProps) => {
 
   return (
     <>
+      <Header
+        searchQuery={searchQuery}
+        onSearchQueryChange={handleSearchQueryChange}
+      />
       <Grid container spacing={3} p={2}>
         <Grid item xs={6}>
           <Grid container spacing={3}>

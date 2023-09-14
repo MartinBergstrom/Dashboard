@@ -15,7 +15,6 @@ const darkTheme = createTheme({
 
 function App() {
   const [searchQuery, setSearchQuery] = useState<string>("");
-
   const handleSearchQueryChange = (query: string) => {
     setSearchQuery(query);
   };
@@ -34,10 +33,6 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Header
-        searchQuery={searchQuery}
-        onSearchQueryChange={handleSearchQueryChange}
-      />
       <RouterProvider router={router} />
     </ThemeProvider>
   );
