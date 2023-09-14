@@ -13,7 +13,7 @@ const Nxtwatch = () => {
   const setColumnWidth = () => {
     switch (viewMode) {
       case ViewModeType.LIST:
-        return 1;
+        return 12;
       case ViewModeType.LARGE:
         return 4;
       case ViewModeType.SMALL:
