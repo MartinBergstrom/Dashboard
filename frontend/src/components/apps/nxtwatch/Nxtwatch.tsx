@@ -1,11 +1,14 @@
-import { Fade, Grid } from "@mui/material";
+import { Fade, Grid, IconButton } from "@mui/material";
 import "./Nxwatch.css";
 import mockEntries from "./mockEntries.json";
 import { useState } from "react";
 import Filter, { ViewModeType } from "./filter/Filter";
+import { useNavigate } from "react-router-dom";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 const Nxtwatch = () => {
   const [viewMode, setViewMode] = useState(ViewModeType.LARGE);
+  const navigate = useNavigate();
 
   const setColumnWidth = () => {
     switch (viewMode) {
@@ -28,6 +31,19 @@ const Nxtwatch = () => {
 
   return (
     <>
+      <IconButton
+        color="primary"
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "5px",
+        }}
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        <KeyboardBackspaceIcon />
+      </IconButton>
       <Filter onSearch={whenSearch} onViewChange={whenChangeViewMode} />
       <div className="main">
         <Fade in timeout={1000}>
