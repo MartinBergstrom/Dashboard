@@ -8,7 +8,6 @@ interface UrlCardButtonProps {
 
 const UrlCardButton = ({ onDialogOpen }: UrlCardButtonProps) => {
   const onClick = () => {
-    console.log(" I am click");
     onDialogOpen();
   };
 
