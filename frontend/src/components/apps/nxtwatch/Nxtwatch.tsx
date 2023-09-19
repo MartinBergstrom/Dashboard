@@ -6,10 +6,13 @@ import Filter, { ViewModeType } from "./filter/Filter";
 import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import NxtwatchModal from "./modal/nxtwatchModal";
+import AddNewWatchButton from "./add/AddNewWatchButton";
+import AddNewWatchDialog from "./add/AddNewWatchDialog";
 
 const Nxtwatch = () => {
   const [viewMode, setViewMode] = useState(ViewModeType.LARGE);
   const [openModalId, setOpenModalId] = useState<string>("");
+  const [dialogOpen, setDialogOpen] = useState(false);
   const navigate = useNavigate();
 
   const setColumnWidthLarge = () => {
@@ -40,6 +43,10 @@ const Nxtwatch = () => {
 
   const whenChangeViewMode = (newViewMode: ViewModeType) => {
     setViewMode(newViewMode);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
   };
 
   return (
@@ -91,6 +98,8 @@ const Nxtwatch = () => {
           </Grid>
         </Fade>
       </div>
+      <AddNewWatchButton onDialogOpen={() => setDialogOpen(true)} />
+      <AddNewWatchDialog open={dialogOpen} onClose={handleDialogClose} />
     </>
   );
 };
