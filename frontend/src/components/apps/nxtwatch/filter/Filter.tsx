@@ -15,9 +15,9 @@ import ViewCompactIcon from "@mui/icons-material/ViewCompact";
 import "./Filter.css";
 
 export enum ViewModeType {
-  LARGE = "largeViewMode",
-  SMALL = "smallViewMode",
-  LIST = "listViewMode",
+  LARGE = "large-view-mode",
+  SMALL = "small-view-mode",
+  LIST = "list-view-mode",
 }
 
 interface Filterprops {

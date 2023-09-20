@@ -114,11 +114,13 @@
   },
   {
     "id": "testID_C",
-    "brand": "Sinn"
+    "brand": "Sinn",
+    "name": "Sinn 556i"
   },
   {
     "id": "testID_D",
-    "brand": "Rolex"
+    "brand": "Rolex",
+    "name": "Rolex submariner 16610LN"
   },
   {
     "id": "testID_E",

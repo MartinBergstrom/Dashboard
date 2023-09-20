@@ -47,24 +47,28 @@ const AddNewWatchDialog = (props: AddNewWatchDialogProps) => {
       <DialogTitle>Add new watch</DialogTitle>
       <DialogContent>
         <TextField
+          sx={{
+            margin: "5px",
+          }}
           required
           autoFocus
           margin="dense"
           id="watch-anme"
           label="Watch name"
           value={watch.name}
-          fullWidth
           variant="standard"
           onChange={(e) => handleChange("name", e.target.value)}
         />
         <TextField
+          sx={{
+            margin: "5px",
+          }}
           required
           autoFocus
           margin="dense"
           id="watch-brand"
           label="Watch brand name"
           value={watch.brand}
-          fullWidth
           variant="standard"
           onChange={(e) => handleChange("brand", e.target.value)}
         />

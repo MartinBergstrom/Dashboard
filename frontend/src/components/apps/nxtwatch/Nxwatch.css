@@ -2,18 +2,45 @@
   padding: 5px;
 }
 
-.largeViewMode {
-  background-color: #222377;
+.common-view-mode {
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  padding: 2px;
+  padding-bottom: 15px;
+  margin: 2px 7px 2px 7px;
 }
 
-.smallViewMode {
-  background-color: #820d0d;
+.large-view-mode {
+  background-color: #0b494e;
+}
+.large-view-mode:hover {
+  transform: scale(1.03, 1.01);
 }
 
-.listViewMode {
-  background-color: #335521;
+.small-view-mode {
+  background-color: #0b4e2e;
+}
+.small-view-mode:hover {
+  transform: scale(1.06, 1.03);
+}
+
+.list-view-mode {
+  background-color: #0b374e;
+}
+.list-view-mode:hover {
+  transform: scale(1.02, 1.02);
 }
 
 .main {
   margin: 2%;
+}
+
+.card-header-h3 {
+  margin: 15px 0px;
+}
+.key-value-span {
+  margin: 0px 0px 5px 5px;
+}
+.key-span {
+  color: rgb(213, 213, 213);
 }

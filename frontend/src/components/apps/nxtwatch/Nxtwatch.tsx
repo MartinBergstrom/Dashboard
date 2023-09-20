@@ -76,23 +76,61 @@ const Nxtwatch = () => {
                 md={setColumnWidthMid()}
                 lg={setColumnWidthLarge()}
               >
-                <div className={viewMode}>
-                  <p>Brand: {entry.brand}</p>
-                  <Button
-                    color="primary"
-                    variant="outlined"
-                    onClick={() => setOpenModalId(entry.id)}
-                  >
-                    Launch modal
-                  </Button>
-                  {openModalId == entry.id && (
-                    <NxtwatchModal
-                      open={true}
-                      onClose={() => setOpenModalId("")}
-                      name={entry.name ? entry.name : "no-name"}
-                    />
-                  )}
+                <div
+                  className={viewMode + " common-view-mode"}
+                  onClick={() => setOpenModalId(entry.id)}
+                >
+                  <div>
+                    <h3 className="card-header-h3">
+                      {entry.name ? entry.name : "Watch name"}
+                    </h3>
+                    <span className="key-value-span">
+                      <span className="key-span">
+                        <b>Brand: </b>
+                      </span>
+                      {entry.brand}
+                    </span>
+                    <span className="key-value-span">
+                      <span className="key-span">
+                        <b>Diameter: </b>
+                      </span>
+                      {entry.dimensions?.diameter}mm
+                    </span>
+                    <span className="key-value-span">
+                      <span className="key-span">
+                        <b>Lug-to-lug: </b>
+                      </span>
+                      {entry.dimensions?.lug_to_lug}mm
+                    </span>
+                  </div>
+                  <div>
+                    <span className="key-value-span">
+                      <span className="key-span">
+                        <b>WR: </b>
+                      </span>
+                      {entry.water_resistance}
+                    </span>
+                    <span className="key-value-span">
+                      <span className="key-span">
+                        <b>Crystal: </b>
+                      </span>
+                      {entry.crystal}
+                    </span>
+                    <span className="key-value-span">
+                      <span className="key-span">
+                        <b>Movement: </b>
+                      </span>
+                      {entry.movement?.name}
+                    </span>
+                  </div>
                 </div>
+                {openModalId == entry.id && (
+                  <NxtwatchModal
+                    open={true}
+                    onClose={() => setOpenModalId("")}
+                    name={entry.name ? entry.name : "no-name"}
+                  />
+                )}
               </Grid>
             ))}
           </Grid>
