@@ -1,0 +1,6 @@
+.large-view-mode {
+  background-color: #0b494e;
+}
+.large-view-mode:hover {
+  transform: scale(1.03, 1.01);
+}

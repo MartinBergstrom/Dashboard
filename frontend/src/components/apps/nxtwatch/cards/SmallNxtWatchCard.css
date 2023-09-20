@@ -1,0 +1,6 @@
+.small-view-mode {
+  background-color: #0b4e2e;
+}
+.small-view-mode:hover {
+  transform: scale(1.06, 1.03);
+}

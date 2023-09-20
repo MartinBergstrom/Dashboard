@@ -10,27 +10,6 @@
   margin: 2px 7px 2px 7px;
 }
 
-.large-view-mode {
-  background-color: #0b494e;
-}
-.large-view-mode:hover {
-  transform: scale(1.03, 1.01);
-}
-
-.small-view-mode {
-  background-color: #0b4e2e;
-}
-.small-view-mode:hover {
-  transform: scale(1.06, 1.03);
-}
-
-.list-view-mode {
-  background-color: #0b374e;
-}
-.list-view-mode:hover {
-  transform: scale(1.02, 1.02);
-}
-
 .main {
   margin: 2%;
 }

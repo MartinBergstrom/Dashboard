@@ -1,4 +1,4 @@
-import { Button, Fade, Grid, IconButton } from "@mui/material";
+import { Fade, Grid, IconButton } from "@mui/material";
 import "./Nxwatch.css";
 import mockEntries from "./mockEntries.json";
 import { useState } from "react";
@@ -8,6 +8,9 @@ import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import NxtwatchModal from "./modal/nxtwatchModal";
 import AddNewWatchButton from "./add/AddNewWatchButton";
 import AddNewWatchDialog from "./add/AddNewWatchDialog";
+import LargeNxtWatchCard from "./cards/LargeNxtWatchCard";
+import ListNxtWatchCard from "./cards/ListNxtWatchCard";
+import SmallNxtWatchCard from "./cards/SmallNxtWatchCard";
 
 const Nxtwatch = () => {
   const [viewMode, setViewMode] = useState(ViewModeType.LARGE);
@@ -49,6 +52,22 @@ const Nxtwatch = () => {
     setDialogOpen(false);
   };
 
+  const setModaltest = (id: string) => {
+    console.log("SETTING ID: " + id);
+    setOpenModalId(id);
+  };
+
+  const renderCard = (entry: any) => {
+    switch (viewMode) {
+      case ViewModeType.LIST:
+        return <ListNxtWatchCard entry={entry} openModal={setModaltest} />;
+      case ViewModeType.LARGE:
+        return <LargeNxtWatchCard entry={entry} openModal={setModaltest} />;
+      case ViewModeType.SMALL:
+        return <SmallNxtWatchCard entry={entry} openModal={setModaltest} />;
+    }
+  };
+
   return (
     <>
       <IconButton
@@ -76,54 +95,7 @@ const Nxtwatch = () => {
                 md={setColumnWidthMid()}
                 lg={setColumnWidthLarge()}
               >
-                <div
-                  className={viewMode + " common-view-mode"}
-                  onClick={() => setOpenModalId(entry.id)}
-                >
-                  <div>
-                    <h3 className="card-header-h3">
-                      {entry.name ? entry.name : "Watch name"}
-                    </h3>
-                    <span className="key-value-span">
-                      <span className="key-span">
-                        <b>Brand: </b>
-                      </span>
-                      {entry.brand}
-                    </span>
-                    <span className="key-value-span">
-                      <span className="key-span">
-                        <b>Diameter: </b>
-                      </span>
-                      {entry.dimensions?.diameter}mm
-                    </span>
-                    <span className="key-value-span">
-                      <span className="key-span">
-                        <b>Lug-to-lug: </b>
-                      </span>
-                      {entry.dimensions?.lug_to_lug}mm
-                    </span>
-                  </div>
-                  <div>
-                    <span className="key-value-span">
-                      <span className="key-span">
-                        <b>WR: </b>
-                      </span>
-                      {entry.water_resistance}
-                    </span>
-                    <span className="key-value-span">
-                      <span className="key-span">
-                        <b>Crystal: </b>
-                      </span>
-                      {entry.crystal}
-                    </span>
-                    <span className="key-value-span">
-                      <span className="key-span">
-                        <b>Movement: </b>
-                      </span>
-                      {entry.movement?.name}
-                    </span>
-                  </div>
-                </div>
+                {renderCard(entry)}
                 {openModalId == entry.id && (
                   <NxtwatchModal
                     open={true}
