@@ -1,7 +1,8 @@
+import WatchInfo from "../model/WatchInfoModel";
 import "./SmallNxtWatchCard.css";
 
 interface SmallNxtWatchCardProps {
-  entry: any;
+  entry: WatchInfo;
   openModal: (id: string) => void;
 }
 

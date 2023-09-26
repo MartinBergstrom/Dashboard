@@ -1,7 +1,8 @@
+import WatchInfo from "../model/WatchInfoModel";
 import "./LargeNxtWatchCard.css";
 
 interface LargeNxtWatchCardProps {
-  entry: any;
+  entry: WatchInfo;
   openModal: (id: string) => void;
 }
 

@@ -1,9 +1,11 @@
 import { Modal, Box, Typography } from "@mui/material";
+import WatchInfo from "../model/WatchInfoModel";
+import "./NxtWatchmodal.css";
 
 interface ModalProps {
   open: boolean;
   onClose: () => void;
-  name: string;
+  entry: WatchInfo;
 }
 
 const NxtwatchModal = (props: ModalProps) => {
@@ -30,8 +32,19 @@ const NxtwatchModal = (props: ModalProps) => {
           Text in a modal
         </Typography>
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          NAME OF WATCH IS : {props.name}{" "}
+          NAME OF WATCH IS : {props.entry.name ? props.entry.name : "no-name"}
         </Typography>
+        <table className="watch-info-table">
+          <tbody>
+            {Object.entries(props.entry).map(([key, value], index) => (
+              <tr key={index}>
+                <td className="property-key">{key}</td>
+                <td>:</td>
+                <td className="property-value">{JSON.stringify(value)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </Box>
     </Modal>
   );

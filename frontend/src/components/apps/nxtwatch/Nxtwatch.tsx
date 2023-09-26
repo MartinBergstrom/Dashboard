@@ -1,22 +1,30 @@
-import { Fade, Grid, IconButton } from "@mui/material";
+import { CircularProgress, Fade, Grid, IconButton } from "@mui/material";
 import "./Nxwatch.css";
-import mockEntries from "./mockEntries.json";
 import { useState } from "react";
 import Filter, { ViewModeType } from "./filter/Filter";
 import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import NxtwatchModal from "./modal/nxtwatchModal";
+import NxtwatchModal from "./modal/NxtwatchModal";
 import AddNewWatchButton from "./add/AddNewWatchButton";
 import AddNewWatchDialog from "./add/AddNewWatchDialog";
 import LargeNxtWatchCard from "./cards/LargeNxtWatchCard";
 import ListNxtWatchCard from "./cards/ListNxtWatchCard";
 import SmallNxtWatchCard from "./cards/SmallNxtWatchCard";
+import { getAllWatchInfo } from "./service/WatchInfoService";
+import { useQuery } from "react-query";
+import WatchInfo from "./model/WatchInfoModel";
 
 const Nxtwatch = () => {
   const [viewMode, setViewMode] = useState(ViewModeType.LARGE);
   const [openModalId, setOpenModalId] = useState<string>("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const navigate = useNavigate();
+
+  const {
+    data: fetchedData,
+    isLoading,
+    isError,
+  } = useQuery<WatchInfo[]>("watches", getAllWatchInfo);
 
   const setColumnWidthLarge = () => {
     switch (viewMode) {
@@ -53,11 +61,10 @@ const Nxtwatch = () => {
   };
 
   const setModaltest = (id: string) => {
-    console.log("SETTING ID: " + id);
     setOpenModalId(id);
   };
 
-  const renderCard = (entry: any) => {
+  const renderCard = (entry: WatchInfo) => {
     switch (viewMode) {
       case ViewModeType.LIST:
         return <ListNxtWatchCard entry={entry} openModal={setModaltest} />;
@@ -68,26 +75,40 @@ const Nxtwatch = () => {
     }
   };
 
-  return (
-    <>
-      <IconButton
-        color="primary"
-        style={{
-          position: "absolute",
-          top: "10px",
-          left: "5px",
-        }}
-        onClick={() => {
-          navigate(-1);
-        }}
-      >
-        <KeyboardBackspaceIcon />
-      </IconButton>
-      <Filter onSearch={whenSearch} onViewChange={whenChangeViewMode} />
+  const renderMainArea = () => {
+    if (isLoading) {
+      return (
+        <div
+          style={{
+            margin: "10%",
+          }}
+        >
+          <CircularProgress size={"6rem"} color="primary" />
+        </div>
+      );
+    }
+
+    if (isError) {
+      return (
+        <div
+          style={{
+            margin: "10%",
+          }}
+        >
+          Error fetching data
+        </div>
+      );
+    }
+
+    if (!fetchedData) {
+      return null;
+    }
+
+    return (
       <div className="main">
         <Fade in timeout={1000}>
           <Grid container spacing={1}>
-            {mockEntries.map((entry) => (
+            {fetchedData.map((entry) => (
               <Grid
                 key={entry.id}
                 item
@@ -100,7 +121,7 @@ const Nxtwatch = () => {
                   <NxtwatchModal
                     open={true}
                     onClose={() => setOpenModalId("")}
-                    name={entry.name ? entry.name : "no-name"}
+                    entry={entry}
                   />
                 )}
               </Grid>
@@ -108,6 +129,24 @@ const Nxtwatch = () => {
           </Grid>
         </Fade>
       </div>
+    );
+  };
+
+  return (
+    <>
+      <IconButton
+        color="primary"
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "5px",
+        }}
+        onClick={() => navigate(-1)}
+      >
+        <KeyboardBackspaceIcon />
+      </IconButton>
+      <Filter onSearch={whenSearch} onViewChange={whenChangeViewMode} />
+      {renderMainArea()}
       <AddNewWatchButton onDialogOpen={() => setDialogOpen(true)} />
       <AddNewWatchDialog open={dialogOpen} onClose={handleDialogClose} />
     </>
