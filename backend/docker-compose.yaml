@@ -24,6 +24,8 @@ services:
     ports:
       # External port:Internal port
       - 4000:5000
+    volumes:
+      - ./python/nxtwatch:/app
     depends_on:
       - mongo
 
