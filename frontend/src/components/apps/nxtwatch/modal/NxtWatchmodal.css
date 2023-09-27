@@ -1,0 +1,15 @@
+.nxtwatch-modal-table {
+  max-width: 100%;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.nxtwatch-modal-td-cell {
+  border: 1px solid;
+  max-width: 300px;
+  max-height: 200px;
+  width: 300px;
+  white-space: normal;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}

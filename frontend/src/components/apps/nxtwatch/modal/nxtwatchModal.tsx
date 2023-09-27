@@ -1,6 +1,8 @@
-import { Modal, Box, Typography } from "@mui/material";
+import { Modal, Box } from "@mui/material";
 import WatchInfo from "../model/WatchInfoModel";
 import "./NxtWatchmodal.css";
+import { useState } from "react";
+import EditableTextView from "./EditableText";
 
 interface ModalProps {
   open: boolean;
@@ -9,6 +11,17 @@ interface ModalProps {
 }
 
 const NxtwatchModal = (props: ModalProps) => {
+  const [watchInfoModel, setWatchInfoModel] = useState<WatchInfo>({
+    ...props.entry,
+  });
+
+  const handleFieldChangeString = (field: string, newValue: string) => {
+    setWatchInfoModel((previous) => ({
+      ...previous,
+      [field]: newValue,
+    }));
+  };
+
   return (
     <Modal
       open={props.open}
@@ -28,23 +41,48 @@ const NxtwatchModal = (props: ModalProps) => {
           boxShadow: "24",
         }}
       >
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          NAME OF WATCH IS : {props.entry.name ? props.entry.name : "no-name"}
-        </Typography>
-        <table className="watch-info-table">
-          <tbody>
-            {Object.entries(props.entry).map(([key, value], index) => (
-              <tr key={index}>
-                <td className="property-key">{key}</td>
-                <td>:</td>
-                <td className="property-value">{JSON.stringify(value)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <fieldset style={{ margin: "5px" }}>
+          <legend>Details</legend>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            <EditableTextView
+              title="Name"
+              value={props.entry.name}
+              setValue={(newValue) => handleFieldChangeString("name", newValue)}
+            />
+            <EditableTextView
+              title="Brand"
+              value={props.entry.brand}
+              setValue={(newValue) =>
+                handleFieldChangeString("brand", newValue)
+              }
+            />
+            <EditableTextView
+              title="Color"
+              value={props.entry.main_color}
+              setValue={(newValue) =>
+                handleFieldChangeString("Comain_colorlor", newValue)
+              }
+            />
+            <EditableTextView
+              title="Water Resistance"
+              value={props.entry.water_resistance}
+              setValue={(newValue) =>
+                handleFieldChangeString("water_resistance", newValue)
+              }
+            />
+            <EditableTextView
+              title="Rotating Bezel"
+              value={props.entry.rotating_bezel}
+              setValue={(newValue) =>
+                handleFieldChangeString("rotating_bezel", newValue)
+              }
+            />
+          </div>
+        </fieldset>
       </Box>
     </Modal>
   );
