@@ -37,7 +37,7 @@ const EditableTextView = (props: EditableTextProps) => {
           size="small"
           margin="dense"
           id="watch-anme"
-          label="Watch name"
+          label={props.title}
           value={props.value}
           variant="standard"
           onBlur={handleBlur}

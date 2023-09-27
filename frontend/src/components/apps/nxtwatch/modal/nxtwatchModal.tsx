@@ -2,7 +2,7 @@ import { Modal, Box } from "@mui/material";
 import WatchInfo from "../model/WatchInfoModel";
 import "./NxtWatchmodal.css";
 import { useState } from "react";
-import EditableTextView from "./EditableText";
+import EditableTextView from "./EditableTextView";
 
 interface ModalProps {
   open: boolean;
