@@ -12,6 +12,7 @@ import {
   Zoom,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import LinkIcon from "@mui/icons-material/Link";
 import Card from "@mui/material/Card";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
@@ -103,12 +104,15 @@ const UrlCard = (props: UrlProps) => {
           <CardActionArea onClick={() => (window.location.href = props.url)}>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div style={{ paddingTop: "5px" }}>
-                <CardMedia
-                  component="img"
-                  height="100"
-                  src={props.imageUrl}
-                  alt="green iguana"
-                />
+                {props.imageUrl ? (
+                  <CardMedia
+                    component="img"
+                    height="100"
+                    src={props.imageUrl}
+                  />
+                ) : (
+                  <LinkIcon style={{ fontSize: "50px", color: "lightgray" }} />
+                )}
               </div>
             </div>
             <CardContent>
