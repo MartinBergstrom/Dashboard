@@ -12,7 +12,7 @@ import ListNxtWatchCard from "./cards/ListNxtWatchCard";
 import SmallNxtWatchCard from "./cards/SmallNxtWatchCard";
 import { getAllWatchInfo } from "./service/WatchInfoService";
 import { useQuery } from "react-query";
-import WatchInfo from "./model/WatchInfoModel";
+import { WatchInfo } from "./model/WatchInfoModel";
 
 const Nxtwatch = () => {
   const [viewMode, setViewMode] = useState(ViewModeType.LARGE);
@@ -29,22 +29,22 @@ const Nxtwatch = () => {
   const setColumnWidthLarge = () => {
     switch (viewMode) {
       case ViewModeType.LIST:
-        return 12;
+        return 3;
       case ViewModeType.LARGE:
-        return 4;
-      case ViewModeType.SMALL:
         return 2;
+      case ViewModeType.SMALL:
+        return 1;
     }
   };
 
   const setColumnWidthMid = () => {
     switch (viewMode) {
       case ViewModeType.LIST:
-        return 12;
-      case ViewModeType.LARGE:
-        return 6;
-      case ViewModeType.SMALL:
         return 4;
+      case ViewModeType.LARGE:
+        return 4;
+      case ViewModeType.SMALL:
+        return 3;
     }
   };
 

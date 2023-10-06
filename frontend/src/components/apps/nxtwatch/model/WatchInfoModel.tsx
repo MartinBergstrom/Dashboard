@@ -1,11 +1,11 @@
-interface Price {
+export interface Price {
   msrp: string;
   authorized_dealer: string;
   grey_market: string;
   used: string;
 }
 
-interface Movement {
+export interface Movement {
   type: string;
   name: string;
   power_reserve: string;
@@ -13,7 +13,7 @@ interface Movement {
   jewels: string;
 }
 
-interface BraceletStrap {
+export interface BraceletStrap {
   type: string;
   material: string;
   color: string;
@@ -22,20 +22,21 @@ interface BraceletStrap {
   dive_extension: string;
 }
 
-interface Dimensions {
+export interface Dimensions {
   diameter: string;
   lug_to_lug: string;
   thickness: string;
+  lug_width: string;
 }
 
-interface Links {
+export interface Links {
   brand: string;
   authorized_dealers: string[];
   grey_market: string[];
   used: string[];
 }
 
-interface WatchInfo {
+export interface WatchInfo {
   id: string;
   name: string;
   brand: string;
@@ -59,5 +60,3 @@ interface WatchInfo {
   dimensions: Dimensions;
   links: Links;
 }
-
-export default WatchInfo;

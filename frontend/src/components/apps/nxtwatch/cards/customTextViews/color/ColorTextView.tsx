@@ -14,13 +14,15 @@ const ColorTextView = ({ displayName, color }: ColorTextViewProps) => {
   };
 
   return (
-    <span className="key-value-span">
+    <>
       <span className="key-span">
-        <b>{displayName}: </b>
+        <b>{displayName}</b>
       </span>
-      {color}
-      <span className="box" style={{ backgroundColor: adjustColor() }}></span>
-    </span>
+      <span className="value-span">
+        {color}
+        <span className="box" style={{ backgroundColor: adjustColor() }}></span>
+      </span>
+    </>
   );
 };
 

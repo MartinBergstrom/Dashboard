@@ -1,5 +1,6 @@
-import WatchInfo from "../model/WatchInfoModel";
+import { WatchInfo } from "../model/WatchInfoModel";
 import "./SmallNxtWatchCard.css";
+import { PriceTextView } from "./customTextViews/price/PriceTextView";
 
 interface SmallNxtWatchCardProps {
   entry: WatchInfo;
@@ -26,13 +27,13 @@ const SmallNxtWatchCard = ({ entry, openModal }: SmallNxtWatchCardProps) => {
           <span className="key-span">
             <b>Diameter: </b>
           </span>
-          {entry.dimensions?.diameter}mm
+          {entry.dimensions?.diameter}
         </span>
         <span className="key-value-span">
           <span className="key-span">
             <b>Lug-to-lug: </b>
           </span>
-          {entry.dimensions?.lug_to_lug}mm
+          {entry.dimensions?.lug_to_lug}
         </span>
       </div>
       <div>
@@ -54,6 +55,7 @@ const SmallNxtWatchCard = ({ entry, openModal }: SmallNxtWatchCardProps) => {
           </span>
           {entry.movement?.name}
         </span>
+        <PriceTextView price={entry.price?.msrp} />
       </div>
     </div>
   );

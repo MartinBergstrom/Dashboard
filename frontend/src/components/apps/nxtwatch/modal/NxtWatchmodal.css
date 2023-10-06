@@ -13,3 +13,9 @@
   box-sizing: border-box;
   word-wrap: break-word;
 }
+
+.grid-container-modal {
+  text-align: left;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}

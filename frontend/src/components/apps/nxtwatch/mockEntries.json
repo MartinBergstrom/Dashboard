@@ -41,7 +41,8 @@
     "dimensions": {
       "diameter": "40.5mm",
       "lug_to_lug": "48mm",
-      "thickness": "13mm"
+      "thickness": "13mm",
+      "lug_width": "20mm"
     },
     "links": {
       "brand": "https://www.seikowatches.com/us-en/products/prospex/spb143j1",
@@ -76,7 +77,7 @@
     "material": "Steel",
     "bezel_insert_material": "Ceramic",
     "bezel_insert_color": "Black",
-    "crystal": "Sapphire",
+    "crystal": "Hardlex",
     "movement": {
       "type": "Automatic",
       "name": "Miyota 9039",
@@ -97,7 +98,8 @@
     "dimensions": {
       "diameter": "40.5mm",
       "lug_to_lug": "48mm",
-      "thickness": "13mm"
+      "thickness": "13mm",
+      "lug_width": "20mm"
     },
     "links": {
       "brand": "https://www.seikowatches.com/us-en/products/prospex/spb143j1",

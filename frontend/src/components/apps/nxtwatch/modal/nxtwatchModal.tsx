@@ -1,8 +1,12 @@
 import { Modal, Box } from "@mui/material";
-import WatchInfo from "../model/WatchInfoModel";
+import { WatchInfo } from "../model/WatchInfoModel";
 import "./NxtWatchmodal.css";
 import { useState } from "react";
-import EditableTextView from "./EditableTextView";
+import NxtwatchDetailsModal from "./details/NxtwatchDetailsModal";
+import NxtwatchMovementModal from "./movement/NxtwatchMovementModal";
+import NxtwatchPriceModal from "./price/NxtwatchPriceModal";
+import NxtwatchDimensionsModal from "./dimensions/NxtwatchDimensionsModal";
+import NxtwatchLinksModal from "./links/NxtwatchLinksModal";
 
 interface ModalProps {
   open: boolean;
@@ -15,10 +19,50 @@ const NxtwatchModal = (props: ModalProps) => {
     ...props.entry,
   });
 
-  const handleFieldChangeString = (field: string, newValue: string) => {
+  const handleFieldChangeDetails = (field: string, newValue: string) => {
     setWatchInfoModel((previous) => ({
       ...previous,
       [field]: newValue,
+    }));
+  };
+
+  const handleFieldChangePrice = (field: string, newValue: string) => {
+    setWatchInfoModel((previous) => ({
+      ...previous,
+      price: {
+        ...previous.price,
+        [field]: newValue,
+      },
+    }));
+  };
+
+  const handleFieldChangeMovement = (field: string, newValue: string) => {
+    setWatchInfoModel((previous) => ({
+      ...previous,
+      movement: {
+        ...previous.movement,
+        [field]: newValue,
+      },
+    }));
+  };
+
+  const handleFieldChangeDimensions = (field: string, newValue: string) => {
+    setWatchInfoModel((previous) => ({
+      ...previous,
+      dimensions: {
+        ...previous.dimensions,
+        [field]: newValue,
+      },
+    }));
+  };
+
+  const handleFieldChangeLinks = (field: string, newValue: string) => {
+    setWatchInfoModel((previous) => ({
+      ...previous,
+      links: {
+        ...previous.links,
+        [field]: newValue,
+      },
     }));
   };
 
@@ -41,48 +85,28 @@ const NxtwatchModal = (props: ModalProps) => {
           boxShadow: "24",
         }}
       >
-        <fieldset style={{ margin: "5px" }}>
-          <legend>Details</legend>
-          <div
-            style={{
-              display: "flex",
-            }}
-          >
-            <EditableTextView
-              title="Name"
-              value={props.entry.name}
-              setValue={(newValue) => handleFieldChangeString("name", newValue)}
-            />
-            <EditableTextView
-              title="Brand"
-              value={props.entry.brand}
-              setValue={(newValue) =>
-                handleFieldChangeString("brand", newValue)
-              }
-            />
-            <EditableTextView
-              title="Color"
-              value={props.entry.main_color}
-              setValue={(newValue) =>
-                handleFieldChangeString("Comain_colorlor", newValue)
-              }
-            />
-            <EditableTextView
-              title="Water Resistance"
-              value={props.entry.water_resistance}
-              setValue={(newValue) =>
-                handleFieldChangeString("water_resistance", newValue)
-              }
-            />
-            <EditableTextView
-              title="Rotating Bezel"
-              value={props.entry.rotating_bezel}
-              setValue={(newValue) =>
-                handleFieldChangeString("rotating_bezel", newValue)
-              }
-            />
-          </div>
-        </fieldset>
+        <NxtwatchDetailsModal
+          model={watchInfoModel}
+          setDetailsOnModel={handleFieldChangeDetails}
+        />{" "}
+        <div className="grid-container-modal">
+          <NxtwatchPriceModal
+            priceModel={watchInfoModel.price}
+            setDetailsOnPriceModel={handleFieldChangePrice}
+          />
+          <NxtwatchMovementModal
+            movementModel={watchInfoModel.movement}
+            setDetailsOnMovementModel={handleFieldChangeMovement}
+          />
+          <NxtwatchDimensionsModal
+            dimensionsModel={watchInfoModel.dimensions}
+            setDetailsOnDimensionsModel={handleFieldChangeDimensions}
+          />
+        </div>
+        <NxtwatchLinksModal
+          linksModel={watchInfoModel.links}
+          setDetailsOnLinksModel={handleFieldChangeLinks}
+        />
       </Box>
     </Modal>
   );

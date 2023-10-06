@@ -12,7 +12,7 @@ const NxtwatchCard = () => {
       <Link to="nxtwatch" style={{ textDecoration: "inherit" }}>
         <Card
           style={{
-            backgroundColor: "#0c1c12",
+            backgroundColor: "#183D27",
           }}
         >
           <CardActionArea>

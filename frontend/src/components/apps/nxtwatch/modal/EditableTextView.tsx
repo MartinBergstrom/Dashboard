@@ -46,6 +46,7 @@ const EditableTextView = (props: EditableTextProps) => {
       ) : (
         <div
           style={{
+            color: "#cfcfcf",
             padding: "8px",
             borderRadius: "4px",
           }}
