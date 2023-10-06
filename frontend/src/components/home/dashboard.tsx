@@ -1,5 +1,4 @@
 import { useState } from "react";
-import TestCard from "../apps/testCard/TestCard";
 import UrlCard from "../links/UrlCard";
 import UrlCardButton from "../links/add/AddUrlCardButton";
 import { CircularProgress, Fade, Grid } from "@mui/material";
@@ -44,11 +43,6 @@ const Dashboard = () => {
       id: 1,
       title: "Klockor",
       component: NxtwatchCard,
-    },
-    {
-      id: 3,
-      title: "test 2",
-      component: TestCard,
     },
   ];
 
