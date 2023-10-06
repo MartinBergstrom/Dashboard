@@ -147,7 +147,10 @@ const Nxtwatch = () => {
       </IconButton>
       <Filter onSearch={whenSearch} onViewChange={whenChangeViewMode} />
       {renderMainArea()}
-      <AddNewWatchButton onDialogOpen={() => setDialogOpen(true)} />
+      <AddNewWatchButton
+        onDialogOpen={() => setDialogOpen(true)}
+        viewMode={viewMode}
+      />
       <AddNewWatchDialog open={dialogOpen} onClose={handleDialogClose} />
     </>
   );

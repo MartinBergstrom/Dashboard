@@ -7,10 +7,10 @@
     "notes": "blablalblablal test test",
     "model_numbers": ["SPB143", "SBDC101"],
     "price": {
-      "msrp": "12000",
-      "authorized_dealer": "11000",
-      "grey_market": "9000",
-      "used": "8000"
+      "msrp": "12000sek",
+      "authorized_dealer": "11000sek",
+      "grey_market": "9000sek",
+      "used": "8000sek"
     },
     "main_color": "grey",
     "secondary_colors": ["black", "white"],
@@ -18,7 +18,8 @@
     "water_resistance": "200",
     "rotating_bezel": "Yes",
     "material": "Steel",
-    "material_bezel_insert": "Brushed Steel",
+    "bezel_insert_material": "Brushed Steel",
+    "bezel_insert_color": "Black",
     "crystal": "Sapphire",
     "movement": {
       "type": "Automatic",
@@ -38,9 +39,9 @@
     "date_window": "Yes",
     "day_window": "no",
     "dimensions": {
-      "diameter": "40.5",
-      "lug_to_lug": "48",
-      "thickness": "13"
+      "diameter": "40.5mm",
+      "lug_to_lug": "48mm",
+      "thickness": "13mm"
     },
     "links": {
       "brand": "https://www.seikowatches.com/us-en/products/prospex/spb143j1",
@@ -65,15 +66,16 @@
     "notes": "blablalblablal test test",
     "model_numbers": ["Horizon Blue"],
     "price": {
-      "msrp": "7000"
+      "msrp": "7000sek"
     },
-    "main_color": "blue",
+    "main_color": "#3d00a6",
     "secondary_colors": ["black", "teal"],
     "watch_style": "diver",
     "water_resistance": "200",
     "rotating_bezel": "Yes",
     "material": "Steel",
-    "material_bezel_insert": "Ceramic",
+    "bezel_insert_material": "Ceramic",
+    "bezel_insert_color": "Black",
     "crystal": "Sapphire",
     "movement": {
       "type": "Automatic",
@@ -93,9 +95,9 @@
     "date_window": "Yes",
     "day_window": "no",
     "dimensions": {
-      "diameter": "40.5",
-      "lug_to_lug": "48",
-      "thickness": "13"
+      "diameter": "40.5mm",
+      "lug_to_lug": "48mm",
+      "thickness": "13mm"
     },
     "links": {
       "brand": "https://www.seikowatches.com/us-en/products/prospex/spb143j1",

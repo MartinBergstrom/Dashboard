@@ -37,7 +37,7 @@ const NxtwatchModal = (props: ModalProps) => {
           width: "70%",
           height: "70%",
           transform: "translate(-50%, -50%)",
-          backgroundColor: "grey",
+          backgroundColor: "#252525",
           boxShadow: "24",
         }}
       >

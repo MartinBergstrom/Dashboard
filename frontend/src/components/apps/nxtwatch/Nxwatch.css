@@ -17,9 +17,12 @@
 .card-header-h3 {
   margin: 15px 0px;
 }
+.card-content-div {
+  margin-top: 5px;
+}
 .key-value-span {
-  margin: 0px 0px 5px 5px;
+  margin: 10px 10px 10px 10px;
 }
 .key-span {
-  color: rgb(178, 178, 178);
+  color: rgb(218, 218, 218);
 }

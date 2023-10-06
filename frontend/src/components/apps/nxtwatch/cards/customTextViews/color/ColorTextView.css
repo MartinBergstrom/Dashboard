@@ -1,0 +1,11 @@
+.box {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border: 1px solid black;
+  vertical-align: sub;
+  margin-left: 3px;
+}
+.box:hover {
+  transform: scale(3);
+}

@@ -12,7 +12,7 @@ const LargeNxtWatchCard = ({ entry, openModal }: LargeNxtWatchCardProps) => {
       className={"large-view-mode common-view-mode"}
       onClick={() => openModal(entry.id)}
     >
-      <div>
+      <div className="card-content-div">
         <h3 className="card-header-h3">
           {entry.name ? entry.name : "Watch name"}
         </h3>
@@ -53,6 +53,12 @@ const LargeNxtWatchCard = ({ entry, openModal }: LargeNxtWatchCardProps) => {
             <b>Movement: </b>
           </span>
           {entry.movement?.name}
+        </span>
+        <span className="key-value-span">
+          <span className="key-span">
+            <b>Price: </b>
+          </span>
+          {entry.price?.msrp}
         </span>
       </div>
     </div>

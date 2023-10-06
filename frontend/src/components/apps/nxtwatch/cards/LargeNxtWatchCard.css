@@ -4,3 +4,6 @@
 .large-view-mode:hover {
   transform: scale(1.03, 1.01);
 }
+.large-card-content-div {
+  margin-top: 5px;
+}

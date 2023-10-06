@@ -49,7 +49,8 @@ interface WatchInfo {
   water_resistance: string;
   rotating_bezel: string;
   material: string;
-  material_bezel_insert: string;
+  bezel_insert_material: string;
+  bezel_insert_color: string;
   crystal: string;
   movement: Movement;
   bracelet_strap: BraceletStrap;
