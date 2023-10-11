@@ -8,7 +8,7 @@ interface NxtwatchDetailsModalProps {
 
 const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
   return (
-    <fieldset style={{ margin: "5px" }}>
+    <div style={{ margin: "10px", backgroundColor: "#0C1F14"}}>
       <legend>Details</legend>
       <div
         style={{
@@ -47,7 +47,7 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
           }
         />
       </div>
-    </fieldset>
+    </div>
   );
 };
 

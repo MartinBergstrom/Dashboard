@@ -25,18 +25,24 @@ const EditableTextView = (props: EditableTextProps) => {
           sx={{
             "& .MuiInputLabel-root": {
               padding: "0px 5px",
-              margin: "-15px 0px 0px 0px",
+              margin: "-12px 0px 0px 0px",
             },
             "& .MuiInputBase-input": {
-              padding: "0px 5px",
-              margin: "-15px 0px 0px 0px",
+              padding: "1px 5px",
+              margin: "-13px 0px 0px px",
             },
+            ".MuiInput-underline": {
+              width: "90%",
+              margin: "0px 10px 0px 10px",
+              padding: "0px 10px 0px 0px",
+            }
           }}
           required
           autoFocus
           size="small"
           margin="dense"
           id="watch-anme"
+          fullWidth
           label={props.title}
           value={props.value}
           variant="standard"

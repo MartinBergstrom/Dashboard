@@ -11,7 +11,7 @@ const NxtwatchMovementModal = (props: NxtwatchMovementModalProps) => {
     return;
   }
   return (
-    <fieldset style={{ margin: "5px" }}>
+    <div style={{ margin: "10px" , backgroundColor: "#161F0C"}}>
       <legend>Movement</legend>
       <div
         style={{
@@ -55,7 +55,7 @@ const NxtwatchMovementModal = (props: NxtwatchMovementModalProps) => {
           }
         />
       </div>
-    </fieldset>
+    </div>
   );
 };
 

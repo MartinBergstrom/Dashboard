@@ -11,7 +11,7 @@ const NxtwatchPriceModal = (props: NxtwatchPriceModalProps) => {
     return;
   }
   return (
-    <fieldset style={{ margin: "5px" }}>
+    <div style={{ margin: "10px" , backgroundColor: "#191F0C"}}>
       <legend>Price</legend>
       <div
         style={{
@@ -48,7 +48,7 @@ const NxtwatchPriceModal = (props: NxtwatchPriceModalProps) => {
           }
         />
       </div>
-    </fieldset>
+    </div>
   );
 };
 

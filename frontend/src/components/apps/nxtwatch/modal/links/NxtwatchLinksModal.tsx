@@ -11,7 +11,7 @@ const NxtwatchLinksModal = (props: NxtwatchLinksModalProps) => {
     return;
   }
   return (
-    <fieldset style={{ margin: "5px" }}>
+    <div style={{ margin: "10px", backgroundColor: "#0C1F1E" }}>
       <legend>Links</legend>
       <div
         style={{
@@ -48,7 +48,7 @@ const NxtwatchLinksModal = (props: NxtwatchLinksModalProps) => {
           }
         />
       </div>
-    </fieldset>
+    </div>
   );
 };
 

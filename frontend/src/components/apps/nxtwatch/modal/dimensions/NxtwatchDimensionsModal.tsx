@@ -11,8 +11,8 @@ const NxtwatchDimensionsModal = (props: NxtwatchDimensionsModalProps) => {
     return;
   }
   return (
-    <fieldset style={{ margin: "5px" }}>
-      <legend>Movement TODO pic</legend>
+    <div style={{ margin: "10px", backgroundColor: "#0F1F0C" }}>
+      <div>Dimensions TODO pic</div>
       <div
         style={{
           display: "flex",
@@ -48,7 +48,7 @@ const NxtwatchDimensionsModal = (props: NxtwatchDimensionsModalProps) => {
           }
         />
       </div>
-    </fieldset>
+    </div>
   );
 };
 

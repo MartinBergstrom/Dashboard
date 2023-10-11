@@ -4,7 +4,6 @@ import { useState } from "react";
 import Filter, { ViewModeType } from "./filter/Filter";
 import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import NxtwatchModal from "./modal/NxtwatchModal";
 import AddNewWatchButton from "./add/AddNewWatchButton";
 import AddNewWatchDialog from "./add/AddNewWatchDialog";
 import LargeNxtWatchCard from "./cards/LargeNxtWatchCard";
@@ -13,6 +12,7 @@ import SmallNxtWatchCard from "./cards/SmallNxtWatchCard";
 import { getAllWatchInfo } from "./service/WatchInfoService";
 import { useQuery } from "react-query";
 import { WatchInfo } from "./model/WatchInfoModel";
+import NxtwatchModal from "./modal/NxtwatchModal";
 
 const Nxtwatch = () => {
   const [viewMode, setViewMode] = useState(ViewModeType.LARGE);
