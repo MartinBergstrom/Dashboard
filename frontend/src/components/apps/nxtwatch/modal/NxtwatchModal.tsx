@@ -1,4 +1,4 @@
-import { Modal, Box } from "@mui/material";
+import { Modal, Box, Backdrop } from "@mui/material";
 import { WatchInfo } from "../model/WatchInfoModel";
 import "./NxtWatchmodal.css";
 import { useState } from "react";
@@ -67,11 +67,24 @@ const NxtwatchModal = (props: ModalProps) => {
   };
 
   return (
+
     <Modal
       open={props.open}
       onClose={props.onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      style={{
+      }}
+      slots={{ backdrop: Backdrop }}
+      slotProps={{
+        backdrop: {
+          timeout: 200,
+          style: {
+            backgroundColor: "rgba(219,219,219,0.2)",
+            backdropFilter: "blur(3px)",
+          }
+        },
+      }}
     >
       <Box
         sx={{
@@ -79,12 +92,14 @@ const NxtwatchModal = (props: ModalProps) => {
           top: "50%",
           left: "50%",
           width: "70%",
-          height: "70%",
+          height: "auto",
           transform: "translate(-50%, -50%)",
-          backgroundColor: "#0F0F0F",
+          backgroundColor: "#000000",
           boxShadow: "24",
+          borderRadius: "3px",
         }}
       >
+        <h3 style={{ marginLeft: "10px", color: "gray"}}>{watchInfoModel.name}</h3>
         <NxtwatchDetailsModal
           model={watchInfoModel}
           setDetailsOnModel={handleFieldChangeDetails}
