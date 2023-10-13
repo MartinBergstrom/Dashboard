@@ -1,5 +1,6 @@
 import { Price } from "../../model/WatchInfoModel";
-import EditableTextView from "../EditableTextView";
+import EditableTextGridView from "../editableText/EditableTextGridView";
+import "./NxtwatchPriceModal.css";
 
 interface NxtwatchPriceModalProps {
   priceModel: Price;
@@ -11,7 +12,7 @@ const NxtwatchPriceModal = (props: NxtwatchPriceModalProps) => {
     return;
   }
   return (
-    <div style={{ margin: "10px" , backgroundColor: "#191F0C"}}>
+    <div style={{ margin: "10px 10px 10px 15px" }}>
       <legend>Price</legend>
       <div
         style={{
@@ -19,34 +20,44 @@ const NxtwatchPriceModal = (props: NxtwatchPriceModalProps) => {
           flexDirection: "column",
         }}
       >
-        <EditableTextView
-          title="Msrp"
-          value={props.priceModel.msrp}
-          setValue={(newValue) =>
-            props.setDetailsOnPriceModel("msrp", newValue)
-          }
-        />
-        <EditableTextView
-          title="Authorized Dealer"
-          value={props.priceModel.authorized_dealer}
-          setValue={(newValue) =>
-            props.setDetailsOnPriceModel("authorized_dealer", newValue)
-          }
-        />
-        <EditableTextView
-          title="Grey Market"
-          value={props.priceModel.grey_market}
-          setValue={(newValue) =>
-            props.setDetailsOnPriceModel("grey_market", newValue)
-          }
-        />
-        <EditableTextView
-          title="Used Market"
-          value={props.priceModel.used}
-          setValue={(newValue) =>
-            props.setDetailsOnPriceModel("used", newValue)
-          }
-        />
+        <div className="modal-price-property-div">
+          <EditableTextGridView
+            title="Msrp"
+            value={props.priceModel.msrp}
+            setValue={(newValue) =>
+              props.setDetailsOnPriceModel("msrp", newValue)
+            }
+          />
+        </div>
+        <div className="modal-price-property-div">
+          <EditableTextGridView
+            title="Authorized Dealer"
+            value={props.priceModel.authorized_dealer}
+            setValue={(newValue) =>
+              props.setDetailsOnPriceModel("authorized_dealer", newValue)
+            }
+          />{" "}
+        </div>
+
+        <div className="modal-price-property-div">
+          <EditableTextGridView
+            title="Grey Market"
+            value={props.priceModel.grey_market}
+            setValue={(newValue) =>
+              props.setDetailsOnPriceModel("grey_market", newValue)
+            }
+          />{" "}
+        </div>
+
+        <div className="modal-price-property-div">
+          <EditableTextGridView
+            title="Used Market"
+            value={props.priceModel.used}
+            setValue={(newValue) =>
+              props.setDetailsOnPriceModel("used", newValue)
+            }
+          />
+        </div>
       </div>
     </div>
   );

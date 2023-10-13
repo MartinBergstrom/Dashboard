@@ -1,5 +1,5 @@
-import EditableTextView from "../EditableTextView";
 import { WatchInfo } from "../../model/WatchInfoModel";
+import EditableTextSingleView from "../editableText/EditableTextSingleView";
 import "./NxtwatchDetailsModals.css";
 
 interface NxtwatchDetailsModalProps {
@@ -9,8 +9,8 @@ interface NxtwatchDetailsModalProps {
 
 const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
   return (
-    <div style={{ margin: "0px 5px" }}>
-      <div style={{ margin: "0px 5px" }}>Details</div>
+    <div className="modal-area">
+      <div>Details</div>
       <div
         style={{
           display: "flex",
@@ -18,21 +18,21 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
         }}
       >
         <div className="modal-details-grey-div">
-          <EditableTextView
+          <EditableTextSingleView
             title="Name"
             value={props.model.name}
             setValue={(newValue) => props.setDetailsOnModel("name", newValue)}
           />
         </div>
         <div className="modal-details-grey-div">
-          <EditableTextView
+          <EditableTextSingleView
             title="Brand"
             value={props.model.brand}
             setValue={(newValue) => props.setDetailsOnModel("brand", newValue)}
           />
         </div>
         <div className="modal-details-grey-div">
-          <EditableTextView
+          <EditableTextSingleView
             title="Color"
             value={props.model.main_color}
             setValue={(newValue) =>
@@ -41,7 +41,7 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
           />
         </div>
         <div className="modal-details-grey-div">
-          <EditableTextView
+          <EditableTextSingleView
             title="Water Resistance"
             value={props.model.water_resistance}
             setValue={(newValue) =>
@@ -50,7 +50,7 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
           />
         </div>
         <div className="modal-details-grey-div">
-          <EditableTextView
+          <EditableTextSingleView
             title="Rotating Bezel"
             value={props.model.rotating_bezel}
             setValue={(newValue) =>

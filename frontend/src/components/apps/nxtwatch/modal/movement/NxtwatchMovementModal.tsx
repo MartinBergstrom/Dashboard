@@ -1,5 +1,5 @@
 import { Movement } from "../../model/WatchInfoModel";
-import EditableTextView from "../EditableTextView";
+import EditableTextGridView from "../editableText/EditableTextGridView";
 
 interface NxtwatchMovementModalProps {
   movementModel: Movement;
@@ -11,7 +11,7 @@ const NxtwatchMovementModal = (props: NxtwatchMovementModalProps) => {
     return;
   }
   return (
-    <div style={{ margin: "10px" , backgroundColor: "#161F0C"}}>
+    <div style={{ margin: "10px" }}>
       <legend>Movement</legend>
       <div
         style={{
@@ -19,41 +19,51 @@ const NxtwatchMovementModal = (props: NxtwatchMovementModalProps) => {
           flexDirection: "column",
         }}
       >
-        <EditableTextView
-          title="Type"
-          value={props.movementModel.type}
-          setValue={(newValue) =>
-            props.setDetailsOnMovementModel("type", newValue)
-          }
-        />
-        <EditableTextView
-          title="name"
-          value={props.movementModel.name}
-          setValue={(newValue) =>
-            props.setDetailsOnMovementModel("name", newValue)
-          }
-        />
-        <EditableTextView
-          title="Power Reserve"
-          value={props.movementModel.power_reserve}
-          setValue={(newValue) =>
-            props.setDetailsOnMovementModel("power_reserve", newValue)
-          }
-        />
-        <EditableTextView
-          title="Frequency"
-          value={props.movementModel.frequency}
-          setValue={(newValue) =>
-            props.setDetailsOnMovementModel("frequency", newValue)
-          }
-        />
-        <EditableTextView
-          title="Jewels"
-          value={props.movementModel.jewels}
-          setValue={(newValue) =>
-            props.setDetailsOnMovementModel("jewels", newValue)
-          }
-        />
+        <div className="modal-property-grey-div">
+          <EditableTextGridView
+            title="Type"
+            value={props.movementModel.type}
+            setValue={(newValue) =>
+              props.setDetailsOnMovementModel("type", newValue)
+            }
+          />
+        </div>
+        <div className="modal-property-grey-div">
+          <EditableTextGridView
+            title="name"
+            value={props.movementModel.name}
+            setValue={(newValue) =>
+              props.setDetailsOnMovementModel("name", newValue)
+            }
+          />
+        </div>
+        <div className="modal-property-grey-div">
+          <EditableTextGridView
+            title="Power Reserve"
+            value={props.movementModel.power_reserve}
+            setValue={(newValue) =>
+              props.setDetailsOnMovementModel("power_reserve", newValue)
+            }
+          />
+        </div>{" "}
+        <div className="modal-property-grey-div">
+          <EditableTextGridView
+            title="Frequency"
+            value={props.movementModel.frequency}
+            setValue={(newValue) =>
+              props.setDetailsOnMovementModel("frequency", newValue)
+            }
+          />
+        </div>{" "}
+        <div className="modal-property-grey-div">
+          <EditableTextGridView
+            title="Jewels"
+            value={props.movementModel.jewels}
+            setValue={(newValue) =>
+              props.setDetailsOnMovementModel("jewels", newValue)
+            }
+          />
+        </div>
       </div>
     </div>
   );

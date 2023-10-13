@@ -1,5 +1,5 @@
 import { Dimensions } from "../../model/WatchInfoModel";
-import EditableTextView from "../EditableTextView";
+import EditableTextView from "../editableText/EditableTextGridView";
 
 interface NxtwatchDimensionsModalProps {
   dimensionsModel: Dimensions;

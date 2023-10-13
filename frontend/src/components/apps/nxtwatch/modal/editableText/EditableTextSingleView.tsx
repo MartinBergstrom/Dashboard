@@ -1,13 +1,13 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
 
-interface EditableTextProps {
+interface EditableTextSingleViewProps {
   title: string;
   value: string;
   setValue: (newValue: string) => void;
 }
 
-const EditableTextView = (props: EditableTextProps) => {
+const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleClick = () => {
@@ -35,7 +35,7 @@ const EditableTextView = (props: EditableTextProps) => {
               width: "90%",
               margin: "0px 10px 0px 10px",
               padding: "0px 10px 0px 0px",
-            }
+            },
           }}
           required
           autoFocus
@@ -57,11 +57,14 @@ const EditableTextView = (props: EditableTextProps) => {
             borderRadius: "4px",
           }}
         >
-          <strong>{props.title}</strong>: {props.value}
+          <span style={{ marginRight: "20px" }}>
+            <strong>{props.title}:</strong>
+          </span>
+          {props.value}
         </div>
       )}
     </div>
   );
 };
 
-export default EditableTextView;
+export default EditableTextSingleView;

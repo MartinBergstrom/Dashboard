@@ -67,14 +67,12 @@ const NxtwatchModal = (props: ModalProps) => {
   };
 
   return (
-
     <Modal
       open={props.open}
       onClose={props.onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      style={{
-      }}
+      style={{}}
       slots={{ backdrop: Backdrop }}
       slotProps={{
         backdrop: {
@@ -82,7 +80,7 @@ const NxtwatchModal = (props: ModalProps) => {
           style: {
             backgroundColor: "rgba(219,219,219,0.2)",
             backdropFilter: "blur(3px)",
-          }
+          },
         },
       }}
     >
@@ -99,7 +97,9 @@ const NxtwatchModal = (props: ModalProps) => {
           borderRadius: "3px",
         }}
       >
-        <h3 style={{ marginLeft: "10px", color: "gray"}}>{watchInfoModel.name}</h3>
+        <h3 style={{ marginLeft: "20px", color: "gray" }}>
+          {watchInfoModel.name}
+        </h3>
         <NxtwatchDetailsModal
           model={watchInfoModel}
           setDetailsOnModel={handleFieldChangeDetails}
