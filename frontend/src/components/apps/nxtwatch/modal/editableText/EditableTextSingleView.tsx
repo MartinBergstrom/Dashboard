@@ -25,7 +25,8 @@ const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
           sx={{
             "& .MuiInputLabel-root": {
               padding: "0px 5px",
-              margin: "-12px 0px 0px 0px",
+              scale: "0.8",
+              margin: "-8px 0px 0px 0px",
             },
             "& .MuiInputBase-input": {
               padding: "1px 5px",
