@@ -11,7 +11,7 @@ const NxtwatchDimensionsModal = (props: NxtwatchDimensionsModalProps) => {
     return;
   }
   return (
-    <div style={{ margin: "10px", backgroundColor: "#0F1F0C" }}>
+    <div style={{ margin: "10px 15px 10px 10px" }}>
       <div>Dimensions TODO pic</div>
       <div
         style={{
@@ -19,34 +19,42 @@ const NxtwatchDimensionsModal = (props: NxtwatchDimensionsModalProps) => {
           flexDirection: "column",
         }}
       >
-        <EditableTextView
-          title="Diameter"
-          value={props.dimensionsModel.diameter}
-          setValue={(newValue) =>
-            props.setDetailsOnDimensionsModel("diameter", newValue)
-          }
-        />
-        <EditableTextView
-          title="Lug to Lug"
-          value={props.dimensionsModel.lug_to_lug}
-          setValue={(newValue) =>
-            props.setDetailsOnDimensionsModel("lug_to_lug", newValue)
-          }
-        />
-        <EditableTextView
-          title="Thickness"
-          value={props.dimensionsModel.thickness}
-          setValue={(newValue) =>
-            props.setDetailsOnDimensionsModel("thickness", newValue)
-          }
-        />
-        <EditableTextView
-          title="Lug Width"
-          value={props.dimensionsModel.lug_width}
-          setValue={(newValue) =>
-            props.setDetailsOnDimensionsModel("lug_width", newValue)
-          }
-        />
+        <div className="modal-property-grey-div">
+          <EditableTextView
+            title="Diameter"
+            value={props.dimensionsModel.diameter}
+            setValue={(newValue) =>
+              props.setDetailsOnDimensionsModel("diameter", newValue)
+            }
+          />
+        </div>
+        <div className="modal-property-grey-div">
+          <EditableTextView
+            title="Lug to Lug"
+            value={props.dimensionsModel.lug_to_lug}
+            setValue={(newValue) =>
+              props.setDetailsOnDimensionsModel("lug_to_lug", newValue)
+            }
+          />
+        </div>{" "}
+        <div className="modal-property-grey-div">
+          <EditableTextView
+            title="Thickness"
+            value={props.dimensionsModel.thickness}
+            setValue={(newValue) =>
+              props.setDetailsOnDimensionsModel("thickness", newValue)
+            }
+          />
+        </div>{" "}
+        <div className="modal-property-grey-div">
+          <EditableTextView
+            title="Lug Width"
+            value={props.dimensionsModel.lug_width}
+            setValue={(newValue) =>
+              props.setDetailsOnDimensionsModel("lug_width", newValue)
+            }
+          />
+        </div>
       </div>
     </div>
   );
