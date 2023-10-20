@@ -12,7 +12,7 @@ const NxtwatchDimensionsModal = (props: NxtwatchDimensionsModalProps) => {
   }
   return (
     <div style={{ margin: "10px 15px 10px 10px" }}>
-      <div>Dimensions TODO pic</div>
+      <div>Dimensions</div>
       <div
         style={{
           display: "flex",

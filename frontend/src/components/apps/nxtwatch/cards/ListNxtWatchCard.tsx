@@ -13,7 +13,7 @@ const ListNxtWatchCard = ({ entry, openModal }: ListNxtWatchCardProps) => {
   return (
     <div
       className={"list-view-mode common-view-mode"}
-      onClick={() => openModal(entry.id)}
+      onClick={() => openModal(entry._id)}
     >
       <h3 className="card-header-h3">
         {entry.name ? entry.name : "Watch name"}

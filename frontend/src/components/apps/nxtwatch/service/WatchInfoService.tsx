@@ -1,6 +1,6 @@
 import axios from "axios";
 import mockEntries from "./../mockEntries.json";
-import WatchInfo from "../model/WatchInfoModel";
+import { WatchInfo } from "../model/WatchInfoModel";
 
 const BASE_URL = "http://localhost:4000";
 
@@ -16,4 +16,9 @@ export const getAllWatchInfo = async () => {
   //return mockEntriesObj;
   //const response = await axios.get(BASE_URL + "/api/watches");
   //return response.data;
+};
+
+export const postNewWatchInfo = async (data: WatchInfo) => {
+  const response = await axios.post(BASE_URL + "/watch/new", data);
+  return response.data;
 };

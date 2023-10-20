@@ -11,7 +11,7 @@ const SmallNxtWatchCard = ({ entry, openModal }: SmallNxtWatchCardProps) => {
   return (
     <div
       className={"small-view-mode common-view-mode"}
-      onClick={() => openModal(entry.id)}
+      onClick={() => openModal(entry._id)}
     >
       <div>
         <h3 className="card-header-h3">

@@ -42,7 +42,7 @@ const EditableTextGridView = (props: EditableTextGridViewProps) => {
               ".MuiInput-underline": {
                 width: "90%",
               },
-              margin: "0px",
+              margin: "-1px 0px 0px 0px",
             }}
             required
             autoFocus

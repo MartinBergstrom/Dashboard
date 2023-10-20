@@ -5,7 +5,6 @@ import Filter, { ViewModeType } from "./filter/Filter";
 import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import AddNewWatchButton from "./add/AddNewWatchButton";
-import AddNewWatchDialog from "./add/AddNewWatchDialog";
 import LargeNxtWatchCard from "./cards/LargeNxtWatchCard";
 import ListNxtWatchCard from "./cards/ListNxtWatchCard";
 import SmallNxtWatchCard from "./cards/SmallNxtWatchCard";
@@ -110,18 +109,18 @@ const Nxtwatch = () => {
           <Grid container spacing={1}>
             {fetchedData.map((entry) => (
               <Grid
-                key={entry.id}
+                key={entry._id}
                 item
                 xs={12}
                 md={setColumnWidthMid()}
                 lg={setColumnWidthLarge()}
               >
                 {renderCard(entry)}
-                {openModalId == entry.id && (
+                {openModalId == entry._id && (
                   <NxtwatchModal
                     open={true}
                     onClose={() => setOpenModalId("")}
-                    entry={entry}
+                    existingEntry={entry}
                   />
                 )}
               </Grid>
@@ -151,7 +150,7 @@ const Nxtwatch = () => {
         onDialogOpen={() => setDialogOpen(true)}
         viewMode={viewMode}
       />
-      <AddNewWatchDialog open={dialogOpen} onClose={handleDialogClose} />
+      <NxtwatchModal open={dialogOpen} onClose={handleDialogClose} />
     </>
   );
 };

@@ -37,7 +37,7 @@ export interface Links {
 }
 
 export interface WatchInfo {
-  id: string;
+  _id: string;
   name: string;
   brand: string;
   priority: string;

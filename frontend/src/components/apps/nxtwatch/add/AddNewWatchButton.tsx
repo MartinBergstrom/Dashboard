@@ -28,10 +28,11 @@ const AddNewWatchButton = (props: AddNewWatchButtonProps) => {
         sx={{
           width: "40px",
           height: "40px",
+          margin: "0px 0px 50px 0px",
           backgroundColor: getColor(),
           "&:hover": {
             backgroundColor: "lightblue",
-            transform: "scale(1.2)",
+            transform: "scale(1.4)",
           },
         }}
         aria-label="add"

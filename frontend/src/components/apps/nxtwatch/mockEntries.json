@@ -1,6 +1,6 @@
 [
   {
-    "id": "testID_A",
+    "_id": "testID_A",
     "name": "Seiko SPB143",
     "brand": "Seiko",
     "priority": "1",
@@ -60,7 +60,7 @@
     }
   },
   {
-    "id": "testID_B",
+    "_id": "testID_B",
     "name": "Henry Archer Nordsø",
     "brand": "Henry Archer",
     "priority": "2",
@@ -117,29 +117,29 @@
     }
   },
   {
-    "id": "testID_C",
+    "_id": "testID_C",
     "brand": "Sinn",
     "name": "Sinn 556i"
   },
   {
-    "id": "testID_D",
+    "_id": "testID_D",
     "brand": "Rolex",
     "name": "Rolex submariner 16610LN"
   },
   {
-    "id": "testID_E",
+    "_id": "testID_E",
     "brand": "Omega"
   },
   {
-    "id": "testID_F",
+    "_id": "testID_F",
     "brand": "Patek"
   },
   {
-    "id": "testID_G",
+    "_id": "testID_G",
     "brand": "NTH"
   },
   {
-    "id": "testID_H",
+    "_id": "testID_H",
     "brand": "Islander"
   }
 ]
