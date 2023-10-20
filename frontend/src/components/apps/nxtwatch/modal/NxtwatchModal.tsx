@@ -189,6 +189,7 @@ const NxtwatchModal = (props: ModalProps) => {
                   color="error"
                   onClick={() => {
                     console.log("clicked cancel");
+                    setWatchInfoModel(SkeletonWatchInfo);
                     props.onClose();
                   }}
                 >
