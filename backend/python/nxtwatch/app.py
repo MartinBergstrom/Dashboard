@@ -1,11 +1,13 @@
+from flask_cors import CORS
 from pymongo import MongoClient
 import urllib.parse
-from flask import Flask, g
+from flask import Flask, g, request, jsonify
 import json
 import os
 from bson import json_util
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 username = urllib.parse.quote_plus(os.getenv('MONGO_NXTWATCH_USERNAME'))
 password = urllib.parse.quote_plus(os.environ.get('MONGO_NXTWATCH_PASSWORD'))
@@ -34,6 +36,20 @@ def get_watches():
     collection = db_nxtwatch.get_collection('watches')
     data = list(collection.find({}))
     return parse_json(data)
+
+
+@app.route("/watch/new", methods=['POST'])
+def new_watch():
+    try:
+        data = request.json
+        data.pop('_id', None)  # remove _id field if it exists
+        client = get_db_client()
+        db_nxtwatch = client['nxtwatch']
+        collection = db_nxtwatch.get_collection('watches')
+        inserted_id = collection.insert_one(data).inserted_id
+        return jsonify({"message": "Watch created", "id": str(inserted_id)})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.teardown_appcontext
