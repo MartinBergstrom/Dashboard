@@ -43,15 +43,7 @@ const EditableTextMultiLinksView = (props: EditableTextMultiLinksViewProps) => {
       onMouseLeave={() => setIsHovering(false)}
     >
       <div style={{ cursor: "pointer" }}>
-        <div
-          style={{
-            color: "#cfcfcf",
-            padding: "8px",
-            borderRadius: "4px",
-            display: "grid",
-            gridTemplateColumns: "1fr 2fr",
-          }}
-        >
+        <div className="multi-links-base-grid-div">
           <div>
             <strong>{props.title}</strong>:
           </div>
@@ -86,22 +78,26 @@ const EditableTextMultiLinksView = (props: EditableTextMultiLinksViewProps) => {
                       />
                     ) : (
                       <>
-                        {value}
-                        <span onClick={() => openInNewTab(value)}>
-                          <LaunchIcon
-                            sx={{
-                              marginLeft: "5px",
-                              verticalAlign: "-4px",
-                              fontSize: "1.2rem",
-                              color: "white",
-                              "&:hover": {
-                                color: "lightblue",
-                                cursor: "pointer",
-                                scale: "1.2",
-                              },
-                            }}
-                          />
-                        </span>
+                        <div>
+                          <div className="multi-links-content-url-textfield">
+                            {value}
+                          </div>
+                          <span onClick={() => openInNewTab(value)}>
+                            <LaunchIcon
+                              sx={{
+                                marginLeft: "5px",
+                                verticalAlign: "3px",
+                                fontSize: "1.2rem",
+                                color: "white",
+                                "&:hover": {
+                                  color: "lightblue",
+                                  cursor: "pointer",
+                                  scale: "1.2",
+                                },
+                              }}
+                            />
+                          </span>
+                        </div>
                       </>
                     )}
                   </div>
@@ -136,27 +132,32 @@ const EditableTextMultiLinksView = (props: EditableTextMultiLinksViewProps) => {
                   </div>
                 </>
               )}
-            </div>
 
-            <div
-              className={
-                isHovering
-                  ? "editable-text-multi-links-add-symbol-div"
-                  : "editable-text-multi-links-add-symbol-div-hidden"
-              }
-            >
-              <span onClick={() => setIsNewRow(true)}>
-                <AddIcon
-                  sx={{
-                    fontSize: "1.2rem",
-                    "&:hover": {
-                      color: "white",
-                      cursor: "pointer",
-                      scale: "1.2",
-                    },
+              <div
+                className={
+                  isHovering
+                    ? "editable-text-multi-links-add-symbol-div"
+                    : "editable-text-multi-links-add-symbol-div-hidden"
+                }
+              >
+                <span
+                  onClick={() => {
+                    setIsNewRow(true);
+                    setIsHovering(false);
                   }}
-                />
-              </span>
+                >
+                  <AddIcon
+                    sx={{
+                      fontSize: "1.2rem",
+                      "&:hover": {
+                        color: "white",
+                        cursor: "pointer",
+                        scale: "1.2",
+                      },
+                    }}
+                  />
+                </span>
+              </div>
             </div>
           </div>
         </div>

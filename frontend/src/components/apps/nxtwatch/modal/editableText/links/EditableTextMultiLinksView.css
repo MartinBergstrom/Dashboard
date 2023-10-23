@@ -11,9 +11,27 @@
   display: none;
 }
 
+.multi-links-base-grid-div {
+  color: #cfcfcf;
+  padding: 8px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+}
+
+.multi-links-container {
+  max-width: 100%;
+  display: flex;
+}
 .multi-links-content {
   max-width: 100%;
-  white-space: pre-wrap;
+}
+.multi-links-content-url-textfield {
+  display: inline-block;
+  max-width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @keyframes expand {
