@@ -1,0 +1,26 @@
+.editable-text-multi-links-add-symbol-div {
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  color: grey;
+  overflow: hidden;
+  animation: expand 0.3s ease;
+}
+.editable-text-multi-links-add-symbol-div-hidden {
+  height: 0;
+  display: none;
+}
+
+.multi-links-content {
+  max-width: 100%;
+  white-space: pre-wrap;
+}
+
+@keyframes expand {
+  from {
+    height: 0;
+  }
+  to {
+    height: 15px;
+  }
+}

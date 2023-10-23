@@ -78,7 +78,10 @@ const NxtwatchModal = (props: ModalProps) => {
     }));
   };
 
-  const handleFieldChangeLinks = (field: string, newValue: string) => {
+  const handleFieldChangeLinks = (
+    field: string,
+    newValue: string | string[]
+  ) => {
     setWatchInfoModel((previous) => ({
       ...previous,
       links: {

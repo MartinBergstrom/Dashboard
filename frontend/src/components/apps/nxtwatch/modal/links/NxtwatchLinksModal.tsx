@@ -1,9 +1,10 @@
 import { Links } from "../../model/WatchInfoModel";
 import EditableTextGridView from "../editableText/EditableTextGridView";
+import EditableTextMultiLinksView from "../editableText/links/EditableTextMultiLinksView";
 
 interface NxtwatchLinksModalProps {
   linksModel: Links;
-  setDetailsOnLinksModel: (field: string, newValue: string) => void;
+  setDetailsOnLinksModel: (field: string, newValue: string | string[]) => void;
 }
 
 const NxtwatchLinksModal = (props: NxtwatchLinksModalProps) => {
@@ -26,30 +27,31 @@ const NxtwatchLinksModal = (props: NxtwatchLinksModalProps) => {
             setValue={(newValue) =>
               props.setDetailsOnLinksModel("brand", newValue)
             }
+            gridTemplateColumns="1fr 2fr"
           />
         </div>
         <div className="modal-property-grey-div">
-          <EditableTextGridView
-            title="Authorized Dealer"
-            value={props.linksModel.authorized_dealers.join(",")}
+          <EditableTextMultiLinksView
+            title="Authorized dealers"
+            links={props.linksModel.authorized_dealers}
             setValue={(newValue) =>
               props.setDetailsOnLinksModel("authorized_dealers", newValue)
             }
-          />{" "}
-        </div>{" "}
+          />
+        </div>
         <div className="modal-property-grey-div">
-          <EditableTextGridView
+          <EditableTextMultiLinksView
             title="Grey Market"
-            value={props.linksModel.grey_market.join(",")}
+            links={props.linksModel.grey_market}
             setValue={(newValue) =>
               props.setDetailsOnLinksModel("grey_market", newValue)
             }
           />{" "}
         </div>{" "}
         <div className="modal-property-grey-div">
-          <EditableTextGridView
+          <EditableTextMultiLinksView
             title="Used Market"
-            value={props.linksModel.used.join(",")}
+            links={props.linksModel.used}
             setValue={(newValue) =>
               props.setDetailsOnLinksModel("used", newValue)
             }

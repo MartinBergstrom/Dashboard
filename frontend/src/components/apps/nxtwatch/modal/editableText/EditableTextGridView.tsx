@@ -5,6 +5,7 @@ interface EditableTextGridViewProps {
   title: string;
   value: string;
   setValue: (newValue: string) => void;
+  gridTemplateColumns?: string;
 }
 
 const EditableTextGridView = (props: EditableTextGridViewProps) => {
@@ -26,7 +27,7 @@ const EditableTextGridView = (props: EditableTextGridViewProps) => {
           padding: "8px",
           borderRadius: "4px",
           display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
+          gridTemplateColumns: props.gridTemplateColumns ?? "repeat(2, 1fr)",
         }}
       >
         <div>
