@@ -12,7 +12,7 @@ const NxtwatchPriceModal = (props: NxtwatchPriceModalProps) => {
     return;
   }
   return (
-    <div style={{ margin: "10px 10px 10px 15px" }}>
+    <div style={{ margin: "10px 5px 10px 5px" }}>
       <legend>Price</legend>
       <div
         style={{

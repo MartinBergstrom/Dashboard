@@ -11,7 +11,7 @@ const NxtwatchMovementModal = (props: NxtwatchMovementModalProps) => {
     return;
   }
   return (
-    <div style={{ margin: "10px" }}>
+    <div style={{ margin: "10px 5px 10px 15px" }}>
       <legend>Movement</legend>
       <div
         style={{

@@ -38,7 +38,7 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
             title="Color"
             value={props.model.main_color}
             setValue={(newValue) =>
-              props.setDetailsOnModel("Comain_colorlor", newValue)
+              props.setDetailsOnModel("main_color", newValue)
             }
             customValueViewElement={
               <ColorValueView color={props.model.main_color} />
@@ -68,10 +68,67 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
         </div>
         <div className="modal-details-grey-div">
           <EditableTextSingleView
+            title="Style"
+            value={props.model.watch_style}
+            setValue={(newValue) =>
+              props.setDetailsOnModel("watch_style", newValue)
+            }
+          />
+        </div>
+        <div className="modal-details-grey-div">
+          <EditableTextSingleView
+            title="Material"
+            value={props.model.material}
+            setValue={(newValue) =>
+              props.setDetailsOnModel("material", newValue)
+            }
+          />
+        </div>
+        <div className="modal-details-grey-div">
+          <EditableTextSingleView
+            title="Bezel Insert Material"
+            value={props.model.bezel_insert_material}
+            setValue={(newValue) =>
+              props.setDetailsOnModel("bezel_insert_material", newValue)
+            }
+          />
+        </div>
+        <div className="modal-details-grey-div">
+          <EditableTextSingleView
+            title="Bezel Insert Color"
+            value={props.model.bezel_insert_color}
+            setValue={(newValue) =>
+              props.setDetailsOnModel("bezel_insert_color", newValue)
+            }
+            customValueViewElement={
+              <ColorValueView color={props.model.bezel_insert_color} />
+            }
+          />
+        </div>
+        <div className="modal-details-grey-div">
+          <EditableTextSingleView
             title="Rotating Bezel"
             value={props.model.rotating_bezel}
             setValue={(newValue) =>
               props.setDetailsOnModel("rotating_bezel", newValue)
+            }
+          />
+        </div>
+        <div className="modal-details-grey-div">
+          <EditableTextSingleView
+            title="Date Window"
+            value={props.model.date_window}
+            setValue={(newValue) =>
+              props.setDetailsOnModel("date_window", newValue)
+            }
+          />
+        </div>
+        <div className="modal-details-grey-div">
+          <EditableTextSingleView
+            title="Day Window"
+            value={props.model.day_window}
+            setValue={(newValue) =>
+              props.setDetailsOnModel("day_window", newValue)
             }
           />
         </div>

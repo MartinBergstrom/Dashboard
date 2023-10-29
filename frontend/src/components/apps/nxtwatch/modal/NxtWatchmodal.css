@@ -20,6 +20,12 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+.grid-container-modal-2-column {
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
 .modal-area {
   margin: 0px 15px;
 }

@@ -12,7 +12,7 @@ const NxtwatchLinksModal = (props: NxtwatchLinksModalProps) => {
     return;
   }
   return (
-    <div style={{ margin: "-25px 15px 15px 15px" }}>
+    <div style={{ margin: "-10px 15px 10px 5px" }}>
       <legend>Links</legend>
       <div
         style={{

@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 interface EditableTextSingleViewProps {
   title: string;
@@ -10,6 +10,7 @@ interface EditableTextSingleViewProps {
 
 const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [currValue, setCurrValue] = useState(props.value);
 
   const handleClick = () => {
     setIsEditing(true);
@@ -17,6 +18,11 @@ const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
 
   const handleBlur = () => {
     setIsEditing(false);
+  };
+
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    props.setValue(e.target.value);
+    setCurrValue(e.target.value);
   };
 
   return (
@@ -46,10 +52,10 @@ const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
           id="watch-anme"
           fullWidth
           label={props.title}
-          value={props.value}
+          value={currValue}
           variant="standard"
           onBlur={handleBlur}
-          onChange={(e) => props.setValue(e.target.value)}
+          onChange={(e) => onChange(e)}
         />
       ) : (
         <div
@@ -64,7 +70,7 @@ const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
           </span>
           {props.customValueViewElement
             ? props.customValueViewElement
-            : props.value}
+            : currValue}
         </div>
       )}
     </div>

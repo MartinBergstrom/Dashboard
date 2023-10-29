@@ -1,6 +1,11 @@
 .small-view-mode {
   background-color: #0b4e2e;
+  font-size: 0.85rem;
 }
 .small-view-mode:hover {
   transform: scale(1.06, 1.03);
+}
+.card-header-h3-small {
+  margin: 15px 0px;
+  height: 40px;
 }

@@ -1,6 +1,5 @@
 import { WatchInfo } from "../model/WatchInfoModel";
 import "./SmallNxtWatchCard.css";
-import { CrystalValueView } from "./customTextViews/crystal/CrystalValueView";
 import { PriceTextView } from "./customTextViews/price/PriceTextView";
 
 interface SmallNxtWatchCardProps {
@@ -15,48 +14,44 @@ const SmallNxtWatchCard = ({ entry, openModal }: SmallNxtWatchCardProps) => {
       onClick={() => openModal(entry._id)}
     >
       <div>
-        <h3 className="card-header-h3">
+        <h3 className="card-header-h3-small">
           {entry.name ? entry.name : "Watch name"}
         </h3>
-        <span className="key-value-span">
-          <span className="key-span">
+        <div>
+          <div className="key-span">
             <b>Brand: </b>
-          </span>
+          </div>
           {entry.brand}
-        </span>
-        <span className="key-value-span">
-          <span className="key-span">
-            <b>Diameter: </b>
-          </span>
-          {entry.dimensions?.diameter}
-        </span>
-        <span className="key-value-span">
-          <span className="key-span">
-            <b>Lug-to-lug: </b>
-          </span>
-          {entry.dimensions?.lug_to_lug}
-        </span>
-      </div>
-      <div>
-        <span className="key-value-span">
-          <span className="key-span">
-            <b>WR: </b>
-          </span>
-          {entry.water_resistance}
-        </span>
-        <div className="card-content-div">
-          <span className="key-span">
-            <b>Crystal </b>
-          </span>
-          <CrystalValueView crystal={entry.crystal} />
         </div>
-        <span className="key-value-span">
-          <span className="key-span">
+        <div>
+          <div className="key-span">
+            <b>Diameter: </b>
+          </div>
+          {entry.dimensions?.diameter}
+        </div>
+        <div>
+          <div className="key-span">
+            <b>Lug-to-lug: </b>
+          </div>
+          {entry.dimensions?.lug_to_lug}
+        </div>
+        <div>
+          <div>
+            <div className="key-span">
+              <b>WR: </b>
+            </div>
+            {entry.water_resistance}
+          </div>
+        </div>
+        <div>
+          <div className="key-span">
             <b>Movement: </b>
-          </span>
+          </div>
           {entry.movement?.name}
-        </span>
-        <PriceTextView price={entry.price?.msrp} />
+        </div>
+        <div className="card-content-div-centered">
+          <PriceTextView price={entry.price?.msrp} />
+        </div>
       </div>
     </div>
   );

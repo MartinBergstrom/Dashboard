@@ -10,6 +10,7 @@ import NxtwatchLinksModal from "./links/NxtwatchLinksModal";
 import { SkeletonWatchInfo } from "../model/WatchInfoSkeleton";
 import { useMutation, useQueryClient } from "react-query";
 import { postNewWatchInfo } from "../service/WatchInfoService";
+import NxtwatchBraceletModal from "./bracelet/NxtwatchBraceletModal";
 
 interface ModalProps {
   open: boolean;
@@ -53,6 +54,16 @@ const NxtwatchModal = (props: ModalProps) => {
       ...previous,
       price: {
         ...previous.price,
+        [field]: newValue,
+      },
+    }));
+  };
+
+  const handleFieldChangeBraceletStrap = (field: string, newValue: string) => {
+    setWatchInfoModel((previous) => ({
+      ...previous,
+      bracelet_strap: {
+        ...previous.bracelet_strap,
         [field]: newValue,
       },
     }));
@@ -134,25 +145,33 @@ const NxtwatchModal = (props: ModalProps) => {
         <NxtwatchDetailsModal
           model={watchInfoModel}
           setDetailsOnModel={handleFieldChangeDetails}
-        />{" "}
+        />
         <div className="grid-container-modal">
-          <NxtwatchPriceModal
-            priceModel={watchInfoModel.price}
-            setDetailsOnPriceModel={handleFieldChangePrice}
-          />
           <NxtwatchMovementModal
             movementModel={watchInfoModel.movement}
             setDetailsOnMovementModel={handleFieldChangeMovement}
           />
+          <NxtwatchPriceModal
+            priceModel={watchInfoModel.price}
+            setDetailsOnPriceModel={handleFieldChangePrice}
+          />
+
           <NxtwatchDimensionsModal
             dimensionsModel={watchInfoModel.dimensions}
             setDetailsOnDimensionsModel={handleFieldChangeDimensions}
           />
         </div>
-        <NxtwatchLinksModal
-          linksModel={watchInfoModel.links}
-          setDetailsOnLinksModel={handleFieldChangeLinks}
-        />
+        <div className="grid-container-modal-2-column">
+          <NxtwatchBraceletModal
+            braceletModel={watchInfoModel.bracelet_strap}
+            setDetailsOnBraceletModel={handleFieldChangeBraceletStrap}
+          />
+          <NxtwatchLinksModal
+            linksModel={watchInfoModel.links}
+            setDetailsOnLinksModel={handleFieldChangeLinks}
+          />
+        </div>
+
         {props.existingEntry ? null : (
           <>
             <div

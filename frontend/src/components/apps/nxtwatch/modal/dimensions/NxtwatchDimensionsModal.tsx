@@ -11,7 +11,7 @@ const NxtwatchDimensionsModal = (props: NxtwatchDimensionsModalProps) => {
     return;
   }
   return (
-    <div style={{ margin: "10px 15px 10px 10px" }}>
+    <div style={{ margin: "10px 15px 10px 5px" }}>
       <div>Dimensions</div>
       <div
         style={{
