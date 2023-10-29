@@ -1,5 +1,6 @@
 import { WatchInfo } from "../model/WatchInfoModel";
 import "./SmallNxtWatchCard.css";
+import { CrystalValueView } from "./customTextViews/crystal/CrystalValueView";
 import { PriceTextView } from "./customTextViews/price/PriceTextView";
 
 interface SmallNxtWatchCardProps {
@@ -43,12 +44,12 @@ const SmallNxtWatchCard = ({ entry, openModal }: SmallNxtWatchCardProps) => {
           </span>
           {entry.water_resistance}
         </span>
-        <span className="key-value-span">
+        <div className="card-content-div">
           <span className="key-span">
-            <b>Crystal: </b>
+            <b>Crystal </b>
           </span>
-          {entry.crystal}
-        </span>
+          <CrystalValueView crystal={entry.crystal} />
+        </div>
         <span className="key-value-span">
           <span className="key-span">
             <b>Movement: </b>

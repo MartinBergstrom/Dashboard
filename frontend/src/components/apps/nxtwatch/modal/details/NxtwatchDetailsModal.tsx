@@ -1,3 +1,5 @@
+import ColorValueView from "../../cards/customTextViews/color/ColorValueView";
+import { CrystalValueView } from "../../cards/customTextViews/crystal/CrystalValueView";
 import { WatchInfo } from "../../model/WatchInfoModel";
 import EditableTextSingleView from "../editableText/EditableTextSingleView";
 import "./NxtwatchDetailsModals.css";
@@ -38,6 +40,9 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
             setValue={(newValue) =>
               props.setDetailsOnModel("Comain_colorlor", newValue)
             }
+            customValueViewElement={
+              <ColorValueView color={props.model.main_color} />
+            }
           />
         </div>
         <div className="modal-details-grey-div">
@@ -46,6 +51,18 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
             value={props.model.water_resistance}
             setValue={(newValue) =>
               props.setDetailsOnModel("water_resistance", newValue)
+            }
+          />
+        </div>
+        <div className="modal-details-grey-div">
+          <EditableTextSingleView
+            title="Crystal"
+            value={props.model.crystal}
+            setValue={(newValue) =>
+              props.setDetailsOnModel("crystal", newValue)
+            }
+            customValueViewElement={
+              <CrystalValueView crystal={props.model.crystal} />
             }
           />
         </div>

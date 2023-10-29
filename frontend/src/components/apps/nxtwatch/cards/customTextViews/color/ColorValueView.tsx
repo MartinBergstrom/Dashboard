@@ -1,11 +1,10 @@
-import "./ColorTextView.css";
+import "./ColorValueView.css";
 
-interface ColorTextViewProps {
-  displayName: string;
+interface ColorValueViewProps {
   color: string;
 }
 
-const ColorTextView = ({ displayName, color }: ColorTextViewProps) => {
+const ColorValueView = ({ color }: ColorValueViewProps) => {
   const adjustColor = () => {
     if (color && color.toLowerCase() === "steel") {
       return "#D1D2D2";
@@ -15,9 +14,6 @@ const ColorTextView = ({ displayName, color }: ColorTextViewProps) => {
 
   return (
     <>
-      <span className="key-span">
-        <b>{displayName}</b>
-      </span>
       <span className="value-span">
         {color}
         <span className="box" style={{ backgroundColor: adjustColor() }}></span>
@@ -26,4 +22,4 @@ const ColorTextView = ({ displayName, color }: ColorTextViewProps) => {
   );
 };
 
-export default ColorTextView;
+export default ColorValueView;

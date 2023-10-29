@@ -1,7 +1,7 @@
 import { WatchInfo } from "../model/WatchInfoModel";
 import "./ListNxtWatchCard.css";
-import ColorTextView from "./customTextViews/color/ColorTextView";
-import { CrystalTextView } from "./customTextViews/crystal/CrystalTextView";
+import ColorValueView from "./customTextViews/color/ColorValueView";
+import { CrystalValueView } from "./customTextViews/crystal/CrystalValueView";
 import { PriceTextView } from "./customTextViews/price/PriceTextView";
 
 interface ListNxtWatchCardProps {
@@ -34,7 +34,10 @@ const ListNxtWatchCard = ({ entry, openModal }: ListNxtWatchCardProps) => {
           </span>
         </div>
         <div className="card-content-div">
-          <ColorTextView displayName="Dial color" color={entry.main_color} />
+          <span className="key-span">
+            <b>Dial color </b>
+          </span>
+          <ColorValueView color={entry.main_color} />
         </div>
         <div className="card-content-div">
           <span className="key-span">
@@ -79,7 +82,10 @@ const ListNxtWatchCard = ({ entry, openModal }: ListNxtWatchCardProps) => {
           <span className="value-span">{entry.water_resistance}</span>
         </div>
         <div className="card-content-div">
-          <CrystalTextView crystal={entry.crystal} />
+          <span className="key-span">
+            <b>Crystal </b>
+          </span>
+          <CrystalValueView crystal={entry.crystal} />
         </div>
         <div className="card-content-div">
           <span className="key-span">
@@ -88,10 +94,10 @@ const ListNxtWatchCard = ({ entry, openModal }: ListNxtWatchCardProps) => {
           <span className="value-span"> {entry.bezel_insert_material}</span>
         </div>
         <div className="card-content-div">
-          <ColorTextView
-            displayName="Bezel insert color"
-            color={entry.bezel_insert_color}
-          />
+          <span className="key-span">
+            <b>Bezel insert color</b>
+          </span>
+          <ColorValueView color={entry.bezel_insert_color} />
         </div>
         <div className="card-content-div">
           <span className="key-span">
@@ -118,10 +124,10 @@ const ListNxtWatchCard = ({ entry, openModal }: ListNxtWatchCardProps) => {
           <span className="value-span"> {entry.bracelet_strap?.material}</span>
         </div>
         <div className="card-content-div">
-          <ColorTextView
-            displayName="Band color"
-            color={entry.bracelet_strap?.color}
-          />
+          <span className="key-span">
+            <b>Band color</b>
+          </span>
+          <ColorValueView color={entry.bracelet_strap?.color} />
         </div>
         <div className="card-content-div">
           <span className="key-span">

@@ -1,6 +1,6 @@
 import { WatchInfo } from "../model/WatchInfoModel";
 import "./LargeNxtWatchCard.css";
-import { CrystalTextView } from "./customTextViews/crystal/CrystalTextView";
+import { CrystalValueView } from "./customTextViews/crystal/CrystalValueView";
 import { PriceTextView } from "./customTextViews/price/PriceTextView";
 
 interface LargeNxtWatchCardProps {
@@ -43,7 +43,10 @@ const LargeNxtWatchCard = ({ entry, openModal }: LargeNxtWatchCardProps) => {
           <span className="value-span">{entry.water_resistance}</span>
         </div>
         <div className="card-content-div">
-          <CrystalTextView crystal={entry.crystal} />
+          <span className="key-span">
+            <b>Crystal </b>
+          </span>
+          <CrystalValueView crystal={entry.crystal} />
         </div>
         <div className="card-content-div">
           <span className="key-span">

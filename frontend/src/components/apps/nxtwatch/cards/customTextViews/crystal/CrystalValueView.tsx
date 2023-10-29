@@ -1,14 +1,11 @@
 import DiamondIcon from "@mui/icons-material/Diamond";
 
-interface CrystalTextViewProps {
+interface CrystalValueViewProps {
   crystal: string;
 }
-export const CrystalTextView = ({ crystal }: CrystalTextViewProps) => {
+export const CrystalValueView = ({ crystal }: CrystalValueViewProps) => {
   return (
     <>
-      <span className="key-span">
-        <b>Crystal</b>
-      </span>
       <span className="value-span">
         {crystal}
         {crystal && crystal.toLocaleLowerCase() === "sapphire" ? (

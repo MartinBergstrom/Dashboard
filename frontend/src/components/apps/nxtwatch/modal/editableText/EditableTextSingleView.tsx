@@ -5,6 +5,7 @@ interface EditableTextSingleViewProps {
   title: string;
   value: string;
   setValue: (newValue: string) => void;
+  customValueViewElement?: JSX.Element;
 }
 
 const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
@@ -61,7 +62,9 @@ const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
           <span style={{ marginRight: "20px" }}>
             <strong>{props.title}:</strong>
           </span>
-          {props.value}
+          {props.customValueViewElement
+            ? props.customValueViewElement
+            : props.value}
         </div>
       )}
     </div>
