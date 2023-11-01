@@ -1,10 +1,12 @@
+import sys
+
 from flask_cors import CORS
 from pymongo import MongoClient
 import urllib.parse
 from flask import Flask, g, request, jsonify
 import json
 import os
-from bson import json_util
+from bson import json_util, ObjectId
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -24,6 +26,24 @@ def get_db_client():
     return g.mongo
 
 
+def add_new_to_priority_list(inserted_id):
+    client = get_db_client()
+    db_nxtwatch = client['nxtwatch']
+    collection = db_nxtwatch.get_collection('priority')
+    priority_doc = collection.find_one({})
+    if priority_doc:
+        priority_list_id = priority_doc['_id']
+        update_filter = {'_id': priority_list_id}
+        collection.update_one(update_filter, {
+            '$push': {
+                'priorities': inserted_id
+            }
+        })
+        print("Successfully added a new priority last in list")
+    else:
+        raise Exception("No priority list found")
+
+
 @app.route("/")
 def hello_world():
     return "Hello, World!xd1"
@@ -38,6 +58,18 @@ def get_watches():
     return parse_json(data)
 
 
+@app.route("/watches/priority", methods=['GET'])
+def get_priority():
+    client = get_db_client()
+    db_nxtwatch = client['nxtwatch']
+    collection = db_nxtwatch.get_collection('priority')
+    priority_doc = collection.find_one({})
+    if priority_doc:
+        return parse_json(priority_doc)
+    else:
+        return "Priority list not found", 404
+
+
 @app.route("/watch/new", methods=['POST'])
 def new_watch():
     try:
@@ -47,6 +79,7 @@ def new_watch():
         db_nxtwatch = client['nxtwatch']
         collection = db_nxtwatch.get_collection('watches')
         inserted_id = collection.insert_one(data).inserted_id
+        add_new_to_priority_list(inserted_id)
         return jsonify({"message": "Watch created", "id": str(inserted_id)})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
