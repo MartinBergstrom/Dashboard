@@ -40,7 +40,6 @@ export interface WatchInfo {
   _id: string;
   name: string;
   brand: string;
-  priority: string;
   notes: string;
   model_numbers: string[];
   price: Price;

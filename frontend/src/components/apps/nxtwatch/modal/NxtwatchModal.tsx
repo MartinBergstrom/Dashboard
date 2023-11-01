@@ -9,7 +9,7 @@ import NxtwatchDimensionsModal from "./dimensions/NxtwatchDimensionsModal";
 import NxtwatchLinksModal from "./links/NxtwatchLinksModal";
 import { SkeletonWatchInfo } from "../model/WatchInfoSkeleton";
 import { useMutation, useQueryClient } from "react-query";
-import { postNewWatchInfo } from "../service/WatchInfoService";
+import { postNewWatchInfo } from "../service/NxtwatchService";
 import NxtwatchBraceletModal from "./bracelet/NxtwatchBraceletModal";
 
 interface ModalProps {

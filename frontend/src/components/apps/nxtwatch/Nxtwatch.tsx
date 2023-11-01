@@ -8,7 +8,7 @@ import AddNewWatchButton from "./add/AddNewWatchButton";
 import LargeNxtWatchCard from "./cards/LargeNxtWatchCard";
 import ListNxtWatchCard from "./cards/ListNxtWatchCard";
 import SmallNxtWatchCard from "./cards/SmallNxtWatchCard";
-import { getAllWatchInfo } from "./service/WatchInfoService";
+import { getAllWatchInfo } from "./service/NxtwatchService";
 import { useQuery } from "react-query";
 import { WatchInfo } from "./model/WatchInfoModel";
 import NxtwatchModal from "./modal/NxtwatchModal";

@@ -19,6 +19,11 @@ export const getAllWatchInfo = async () => {
   return response.data;
 };
 
+export const getPriority = async () => {
+  const response = await axios.get(BASE_URL + "/watches/priority");
+  return response.data;
+};
+
 export const postNewWatchInfo = async (data: WatchInfo) => {
   const response = await axios.post(BASE_URL + "/watch/new", data);
   return response.data;
