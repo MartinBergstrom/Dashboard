@@ -55,6 +55,8 @@ def get_watches():
     db_nxtwatch = client['nxtwatch']
     collection = db_nxtwatch.get_collection('watches')
     data = list(collection.find({}))
+    for document in data:
+        document['_id'] = str(document['_id'])  # Convert the Objectid to simple string id
     return parse_json(data)
 
 
@@ -68,6 +70,27 @@ def get_priority():
         return parse_json(priority_doc)
     else:
         return "Priority list not found", 404
+
+
+@app.route("/watch/<watch_id>", methods=['PUT'])
+def update_watch(watch_id):
+    try:
+        data = request.json
+        data["_id"] = ObjectId(watch_id)
+        client = get_db_client()
+        db_nxtwatch = client['nxtwatch']
+        collection = db_nxtwatch.get_collection('watches')
+        existing = collection.find_one({'_id': ObjectId(watch_id)})
+        if existing:
+            update_filter = {'_id': ObjectId(watch_id)}
+            collection.replace_one(update_filter, data)
+        else:
+            error_line = "The watch with provided id: " + watch_id + "does not exist"
+            return jsonify({"error": error_line}), 404
+        return jsonify({"message": "Watch updated", "id": str(watch_id)}), 201
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route("/watch/new", methods=['POST'])
