@@ -19,7 +19,7 @@ interface ModalProps {
 }
 
 const NxtwatchModal = (props: ModalProps) => {
-  const [edited, setIsEdited] = useState(false);
+  const [isEdited, setIsEdited] = useState(false);
   const [watchInfoModel, setWatchInfoModel] = useState<WatchInfo>(
     props.existingEntry ? { ...props.existingEntry } : SkeletonWatchInfo
   );
@@ -146,7 +146,7 @@ const NxtwatchModal = (props: ModalProps) => {
     <Modal
       open={props.open}
       onClose={() => {
-        if (props.existingEntry) {
+        if (props.existingEntry && isEdited) {
           mutatePut(watchInfoModel);
         } else {
           props.onClose();
@@ -215,7 +215,7 @@ const NxtwatchModal = (props: ModalProps) => {
         </div>
 
         {props.existingEntry ? (
-          edited ? (
+          isEdited ? (
             <>
               <div
                 style={{
