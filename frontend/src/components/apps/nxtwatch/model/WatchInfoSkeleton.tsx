@@ -4,7 +4,6 @@ export const SkeletonWatchInfo: WatchInfo = {
   _id: "",
   name: "",
   brand: "",
-  priority: "",
   notes: "",
   model_numbers: [],
   price: {

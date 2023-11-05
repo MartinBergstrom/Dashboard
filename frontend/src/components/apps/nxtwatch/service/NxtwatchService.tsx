@@ -28,3 +28,8 @@ export const postNewWatchInfo = async (data: WatchInfo) => {
   const response = await axios.post(BASE_URL + "/watch/new", data);
   return response.data;
 };
+
+export const putWatchInfo = async (data: WatchInfo) => {
+  const response = await axios.put(BASE_URL + "/watch/" + data._id, data);
+  return response.data;
+};

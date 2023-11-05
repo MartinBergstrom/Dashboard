@@ -9,7 +9,7 @@ import NxtwatchDimensionsModal from "./dimensions/NxtwatchDimensionsModal";
 import NxtwatchLinksModal from "./links/NxtwatchLinksModal";
 import { SkeletonWatchInfo } from "../model/WatchInfoSkeleton";
 import { useMutation, useQueryClient } from "react-query";
-import { postNewWatchInfo } from "../service/NxtwatchService";
+import { postNewWatchInfo, putWatchInfo } from "../service/NxtwatchService";
 import NxtwatchBraceletModal from "./bracelet/NxtwatchBraceletModal";
 
 interface ModalProps {
@@ -19,27 +19,61 @@ interface ModalProps {
 }
 
 const NxtwatchModal = (props: ModalProps) => {
+  const [edited, setIsEdited] = useState(false);
   const [watchInfoModel, setWatchInfoModel] = useState<WatchInfo>(
     props.existingEntry ? { ...props.existingEntry } : SkeletonWatchInfo
   );
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading } = useMutation(postNewWatchInfo, {
-    onSuccess: (data) => {
-      console.log("Success! data: " + data);
-      props.onClose();
-    },
-    onError: () => {
-      alert("there was an error");
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries("watches");
-    },
-  });
+  const { mutate: mutatePost, isLoading: isLoadingPost } = useMutation(
+    postNewWatchInfo,
+    {
+      onSuccess: (data) => {
+        console.log("Success on POST! data: " + data);
+        props.onClose();
+      },
+      onError: () => {
+        alert("there was an error");
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("watches");
+      },
+    }
+  );
+
+  const { mutate: mutatePut, isLoading: isLoadingPut } = useMutation(
+    putWatchInfo,
+    {
+      onSuccess: (data) => {
+        console.log("Success on PUT! data: " + data);
+        props.onClose();
+      },
+      onError: () => {
+        alert("there was an error");
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("watches");
+      },
+    }
+  );
 
   const onSubmitClick = () => {
     console.log("clicked submit");
-    mutate(watchInfoModel);
+    mutatePost(watchInfoModel);
+  };
+
+  const onRestoreClick = () => {
+    console.log("restoring model");
+    setWatchInfoModel(
+      props.existingEntry ? { ...props.existingEntry } : SkeletonWatchInfo
+    );
+    setIsEdited(false);
+  };
+
+  const updateStateIsEdited = () => {
+    if (props.existingEntry) {
+      setIsEdited(true);
+    }
   };
 
   const handleFieldChangeDetails = (field: string, newValue: string) => {
@@ -47,6 +81,7 @@ const NxtwatchModal = (props: ModalProps) => {
       ...previous,
       [field]: newValue,
     }));
+    updateStateIsEdited();
   };
 
   const handleFieldChangePrice = (field: string, newValue: string) => {
@@ -57,6 +92,7 @@ const NxtwatchModal = (props: ModalProps) => {
         [field]: newValue,
       },
     }));
+    updateStateIsEdited();
   };
 
   const handleFieldChangeBraceletStrap = (field: string, newValue: string) => {
@@ -67,6 +103,7 @@ const NxtwatchModal = (props: ModalProps) => {
         [field]: newValue,
       },
     }));
+    updateStateIsEdited();
   };
 
   const handleFieldChangeMovement = (field: string, newValue: string) => {
@@ -77,6 +114,7 @@ const NxtwatchModal = (props: ModalProps) => {
         [field]: newValue,
       },
     }));
+    updateStateIsEdited();
   };
 
   const handleFieldChangeDimensions = (field: string, newValue: string) => {
@@ -87,6 +125,7 @@ const NxtwatchModal = (props: ModalProps) => {
         [field]: newValue,
       },
     }));
+    updateStateIsEdited();
   };
 
   const handleFieldChangeLinks = (
@@ -100,6 +139,7 @@ const NxtwatchModal = (props: ModalProps) => {
         [field]: newValue,
       },
     }));
+    updateStateIsEdited();
   };
 
   return (
@@ -107,6 +147,8 @@ const NxtwatchModal = (props: ModalProps) => {
       open={props.open}
       onClose={() => {
         if (props.existingEntry) {
+          mutatePut(watchInfoModel);
+        } else {
           props.onClose();
         }
       }}
@@ -172,7 +214,34 @@ const NxtwatchModal = (props: ModalProps) => {
           />
         </div>
 
-        {props.existingEntry ? null : (
+        {props.existingEntry ? (
+          edited ? (
+            <>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "0px 5px 15px 5px",
+                }}
+              >
+                <div
+                  style={{
+                    margin: "0px 5px",
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={onRestoreClick}
+                  >
+                    Restore
+                  </Button>
+                </div>
+              </div>
+            </>
+          ) : null
+        ) : (
           <>
             <div
               style={{
@@ -191,9 +260,9 @@ const NxtwatchModal = (props: ModalProps) => {
                   variant="contained"
                   color="primary"
                   onClick={onSubmitClick}
-                  disabled={isLoading}
+                  disabled={isLoadingPost}
                   startIcon={
-                    isLoading ? (
+                    isLoadingPost ? (
                       <CircularProgress color="inherit" size={25} />
                     ) : null
                   }

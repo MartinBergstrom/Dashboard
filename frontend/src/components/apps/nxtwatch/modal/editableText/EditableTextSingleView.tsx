@@ -12,6 +12,8 @@ const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [currValue, setCurrValue] = useState(props.value);
 
+  const renderValue = isEditing ? currValue : props.value;
+
   const handleClick = () => {
     setIsEditing(true);
   };
@@ -70,7 +72,7 @@ const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
           </span>
           {props.customValueViewElement
             ? props.customValueViewElement
-            : currValue}
+            : renderValue}
         </div>
       )}
     </div>
