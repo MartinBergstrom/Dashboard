@@ -1,6 +1,7 @@
 import ColorValueView from "../../cards/customTextViews/color/ColorValueView";
 import { CrystalValueView } from "../../cards/customTextViews/crystal/CrystalValueView";
 import { WatchInfo } from "../../model/WatchInfoModel";
+import EditableBooleanToggleSingleView from "../editableText/EditableBooleanToggleSingleView";
 import EditableColorSingleView from "../editableText/EditableColorSingleView";
 import EditableTextSingleView from "../editableText/EditableTextSingleView";
 import "./NxtwatchDetailsModals.css";
@@ -35,7 +36,7 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
           />
         </div>
         <div className="modal-details-grey-div">
-          <EditableTextSingleView
+          <EditableColorSingleView
             title="Color"
             value={props.model.main_color}
             setValue={(newValue) =>
@@ -107,7 +108,7 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
           />
         </div>
         <div className="modal-details-grey-div">
-          <EditableTextSingleView
+          <EditableBooleanToggleSingleView
             title="Rotating Bezel"
             value={props.model.rotating_bezel}
             setValue={(newValue) =>
