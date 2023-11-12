@@ -1,6 +1,6 @@
 import { BraceletStrap, Price } from "../../model/WatchInfoModel";
+import EditableBooleanToggleGridView from "../editableText/grid/EditableBooleanToggleGridView";
 import EditableTextGridView from "../editableText/grid/EditableTextGridView";
-import EditableBooleanToggleGridView from "../editableText/boolean/EditableBooleanToggleGridView";
 
 interface NxtwatchBraceletModalProps {
   braceletModel: BraceletStrap;

@@ -2,7 +2,6 @@ import { Modal, Box, Backdrop, Button, CircularProgress } from "@mui/material";
 import { WatchInfo } from "../model/WatchInfoModel";
 import "./NxtWatchmodal.css";
 import { useState } from "react";
-import NxtwatchDetailsModal from "./details/NxtwatchDetailsModal";
 import NxtwatchMovementModal from "./movement/NxtwatchMovementModal";
 import NxtwatchPriceModal from "./price/NxtwatchPriceModal";
 import NxtwatchDimensionsModal from "./dimensions/NxtwatchDimensionsModal";
@@ -12,6 +11,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { postNewWatchInfo, putWatchInfo } from "../service/NxtwatchService";
 import NxtwatchBraceletModal from "./bracelet/NxtwatchBraceletModal";
 import { ServiceOperationStatus } from "../Nxtwatch";
+import NxtwatchDetailsModal from "./details/NxtwatchDetailsModal";
 
 interface ModalProps {
   open: boolean;
