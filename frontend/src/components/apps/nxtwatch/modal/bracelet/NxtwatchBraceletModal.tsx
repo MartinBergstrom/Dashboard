@@ -1,5 +1,6 @@
 import { BraceletStrap, Price } from "../../model/WatchInfoModel";
 import EditableTextGridView from "../editableText/EditableTextGridView";
+import EditableBooleanToggleGridView from "../editableText/boolean/EditableBooleanToggleGridView";
 
 interface NxtwatchBraceletModalProps {
   braceletModel: BraceletStrap;
@@ -67,7 +68,7 @@ const NxtwatchBraceletModal = (props: NxtwatchBraceletModalProps) => {
           />
         </div>
         <div className="modal-price-property-div">
-          <EditableTextGridView
+          <EditableBooleanToggleGridView
             title="Dive Exention"
             value={props.braceletModel.dive_extension}
             setValue={(newValue) =>

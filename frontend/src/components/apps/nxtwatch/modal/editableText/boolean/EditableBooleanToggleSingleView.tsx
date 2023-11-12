@@ -9,7 +9,7 @@ interface EditableBooleanToggleSingleViewProps {
 
 function toBoolean(value: string): boolean {
   if (value) {
-    return value.toLowerCase() === "true";
+    return value.toLowerCase() === "true" || value.toLowerCase() === "yes";
   }
   return false;
 }
