@@ -11,10 +11,12 @@ import { SkeletonWatchInfo } from "../model/WatchInfoSkeleton";
 import { useMutation, useQueryClient } from "react-query";
 import { postNewWatchInfo, putWatchInfo } from "../service/NxtwatchService";
 import NxtwatchBraceletModal from "./bracelet/NxtwatchBraceletModal";
+import { ServiceOperationStatus } from "../Nxtwatch";
 
 interface ModalProps {
   open: boolean;
   onClose: () => void;
+  setSnackBar: (message: string, severity: ServiceOperationStatus) => void;
   existingEntry?: WatchInfo;
 }
 
@@ -30,10 +32,18 @@ const NxtwatchModal = (props: ModalProps) => {
     {
       onSuccess: (data) => {
         console.log("Success on POST! data: " + data);
-        props.onClose();
+        cleanUpAndClose();
+        props.setSnackBar(
+          "Successfully created new watch info",
+          ServiceOperationStatus.SUCCESS
+        );
       },
       onError: () => {
         alert("there was an error");
+        props.setSnackBar(
+          "Something went wrong when creating new watch info",
+          ServiceOperationStatus.FAILURE
+        );
       },
       onSettled: () => {
         queryClient.invalidateQueries("watches");
@@ -46,16 +56,30 @@ const NxtwatchModal = (props: ModalProps) => {
     {
       onSuccess: (data) => {
         console.log("Success on PUT! data: " + data);
-        props.onClose();
+        cleanUpAndClose();
+        props.setSnackBar(
+          "Successfully updated watch info for " + watchInfoModel.name,
+          ServiceOperationStatus.SUCCESS
+        );
       },
       onError: () => {
         alert("there was an error");
+        props.setSnackBar(
+          "Something went wrong when creating new watch info for " +
+            watchInfoModel.name,
+          ServiceOperationStatus.FAILURE
+        );
       },
       onSettled: () => {
         queryClient.invalidateQueries("watches");
       },
     }
   );
+
+  const cleanUpAndClose = () => {
+    setWatchInfoModel(SkeletonWatchInfo);
+    props.onClose();
+  };
 
   const onSubmitClick = () => {
     console.log("clicked submit");
@@ -149,7 +173,7 @@ const NxtwatchModal = (props: ModalProps) => {
         if (props.existingEntry && isEdited) {
           mutatePut(watchInfoModel);
         } else {
-          props.onClose();
+          cleanUpAndClose();
         }
       }}
       aria-labelledby="modal-modal-title"
@@ -280,8 +304,7 @@ const NxtwatchModal = (props: ModalProps) => {
                   color="error"
                   onClick={() => {
                     console.log("clicked cancel");
-                    setWatchInfoModel(SkeletonWatchInfo);
-                    props.onClose();
+                    cleanUpAndClose();
                   }}
                 >
                   Cancel

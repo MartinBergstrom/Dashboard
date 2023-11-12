@@ -1,4 +1,4 @@
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import { StyledAttachMoneyIcon } from "../../../customStyles/customIconStyles";
 
 interface PriceTextViewProps {
   price: string;
@@ -7,14 +7,7 @@ export const PriceTextView = ({ price }: PriceTextViewProps) => {
   return (
     <span className="key-value-span">
       <span className="key-span" style={{ color: "#cfc400" }}>
-        <AttachMoneyIcon
-          sx={{
-            marginLeft: "-5px",
-            verticalAlign: "-4px",
-            fontSize: "1.2rem",
-            color: "#cfc400",
-          }}
-        />
+        <StyledAttachMoneyIcon sx={{ marginLeft: "-5px" }} />
         <b>Price: </b>
       </span>
       <span className="value-span">

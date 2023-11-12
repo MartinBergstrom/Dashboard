@@ -1,5 +1,5 @@
 import { Movement } from "../../model/WatchInfoModel";
-import EditableTextGridView from "../editableText/EditableTextGridView";
+import EditableTextGridView from "../editableText/grid/EditableTextGridView";
 
 interface NxtwatchPropertiesProps {
   movementModel: Movement;

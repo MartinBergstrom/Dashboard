@@ -1,5 +1,5 @@
 import { Links } from "../../model/WatchInfoModel";
-import EditableTextGridView from "../editableText/EditableTextGridView";
+import EditableTextGridView from "../editableText/grid/EditableTextGridView";
 import EditableTextMultiLinksView from "../editableText/links/EditableTextMultiLinksView";
 
 interface NxtwatchLinksModalProps {

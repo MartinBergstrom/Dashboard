@@ -1,5 +1,6 @@
 import { Movement } from "../../model/WatchInfoModel";
-import EditableTextGridView from "../editableText/EditableTextGridView";
+import EditableTextGridDropdownView from "../editableText/grid/EditableTextGridDropdownView";
+import EditableTextGridView from "../editableText/grid/EditableTextGridView";
 
 interface NxtwatchMovementModalProps {
   movementModel: Movement;
@@ -20,9 +21,10 @@ const NxtwatchMovementModal = (props: NxtwatchMovementModalProps) => {
         }}
       >
         <div className="modal-property-grey-div">
-          <EditableTextGridView
+          <EditableTextGridDropdownView
             title="Type"
             value={props.movementModel.type}
+            valueSelection={["Automatic", "Manual", "Quartz", "Solar"]}
             setValue={(newValue) =>
               props.setDetailsOnMovementModel("type", newValue)
             }

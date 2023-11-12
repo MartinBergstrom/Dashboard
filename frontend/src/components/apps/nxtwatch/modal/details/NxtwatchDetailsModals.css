@@ -1,11 +1,5 @@
 .modal-details-grey-div {
   background-color: #4a4a4a;
   border-radius: 5px;
-  margin: 5px;
-}
-.modal-details-grey-div:first-child {
-  margin: 5px;
-}
-.modal-details-grey-div:last-child {
-  margin: 5px 0px 5px 5px;
+  margin: 5px 8px 5px 8px;
 }

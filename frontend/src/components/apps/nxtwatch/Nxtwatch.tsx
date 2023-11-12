@@ -1,4 +1,12 @@
-import { CircularProgress, Fade, Grid, IconButton } from "@mui/material";
+import {
+  Alert,
+  AlertColor,
+  CircularProgress,
+  Fade,
+  Grid,
+  IconButton,
+  Snackbar,
+} from "@mui/material";
 import "./Nxwatch.css";
 import { useState } from "react";
 import Filter, { ViewModeType } from "./filter/Filter";
@@ -13,10 +21,18 @@ import { useQuery } from "react-query";
 import { WatchInfo } from "./model/WatchInfoModel";
 import NxtwatchModal from "./modal/NxtwatchModal";
 
+export enum ServiceOperationStatus {
+  SUCCESS,
+  FAILURE,
+}
+
 const Nxtwatch = () => {
   const [viewMode, setViewMode] = useState(ViewModeType.LARGE);
   const [openModalId, setOpenModalId] = useState<string>("");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState<AlertColor>("success");
   const navigate = useNavigate();
 
   const {
@@ -57,6 +73,27 @@ const Nxtwatch = () => {
 
   const handleDialogClose = () => {
     setDialogOpen(false);
+  };
+
+  const handleSnackbarClose = () => {
+    console.log("closing snackbar");
+    setSnackbarOpen(false);
+  };
+
+  const handleSnackBar = (
+    message: string,
+    operation: ServiceOperationStatus
+  ) => {
+    setSnackBarMessage(message);
+    switch (operation) {
+      case ServiceOperationStatus.SUCCESS:
+        setAlertSeverity("success");
+        break;
+      case ServiceOperationStatus.FAILURE:
+        setAlertSeverity("error");
+        break;
+    }
+    setSnackbarOpen(true);
   };
 
   const setModaltest = (id: string) => {
@@ -120,6 +157,7 @@ const Nxtwatch = () => {
                   <NxtwatchModal
                     open={true}
                     onClose={() => setOpenModalId("")}
+                    setSnackBar={handleSnackBar}
                     existingEntry={entry}
                   />
                 )}
@@ -150,7 +188,24 @@ const Nxtwatch = () => {
         onDialogOpen={() => setDialogOpen(true)}
         viewMode={viewMode}
       />
-      <NxtwatchModal open={dialogOpen} onClose={handleDialogClose} />
+      <NxtwatchModal
+        open={dialogOpen}
+        onClose={handleDialogClose}
+        setSnackBar={handleSnackBar}
+      />
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity={alertSeverity}
+          sx={{ width: "100%" }}
+        >
+          {snackBarMessage}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

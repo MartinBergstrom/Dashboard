@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import { ChangeEvent, useState } from "react";
+import "./../EditableTextViews.css";
 
 interface EditableTextSingleViewProps {
   title: string;
@@ -60,13 +61,7 @@ const EditableTextSingleView = (props: EditableTextSingleViewProps) => {
           onChange={(e) => onChange(e)}
         />
       ) : (
-        <div
-          style={{
-            color: "#cfcfcf",
-            padding: "8px",
-            borderRadius: "4px",
-          }}
-        >
+        <div className="editable-text-common-rounded">
           <span style={{ marginRight: "20px" }}>
             <strong>{props.title}:</strong>
           </span>

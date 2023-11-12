@@ -5,13 +5,11 @@ interface ColorValueViewProps {
 }
 
 const ColorValueView = ({ color }: ColorValueViewProps) => {
-  const defaultColor = "#000000";
-
   const adjustColor = () => {
     if (color && color.toLowerCase() === "steel") {
       return "#D1D2D2";
     }
-    return color ? color : defaultColor;
+    return color ? color : undefined;
   };
 
   return (

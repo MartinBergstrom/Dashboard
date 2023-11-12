@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MuiColorInput, MuiColorInputColors } from "mui-color-input";
+import "./../EditableTextViews.css";
 
 interface EditableColorSingleViewProps {
   title: string;
@@ -49,13 +50,7 @@ const EditableColorSingleView = (props: EditableColorSingleViewProps) => {
           onChange={onColorChange}
         />
       ) : (
-        <div
-          style={{
-            color: "#cfcfcf",
-            padding: "8px",
-            borderRadius: "4px",
-          }}
-        >
+        <div className="editable-text-common-rounded">
           <span style={{ marginRight: "20px" }}>
             <strong>{props.title}:</strong>
           </span>

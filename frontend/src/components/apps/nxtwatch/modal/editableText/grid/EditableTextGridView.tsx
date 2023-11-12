@@ -1,5 +1,7 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
+import "./../EditableTextViews.css";
+import { StyledTextFieldForGrid } from "./CustomGridViewStyledComponents";
 
 interface EditableTextGridViewProps {
   title: string;
@@ -22,10 +24,8 @@ const EditableTextGridView = (props: EditableTextGridViewProps) => {
   return (
     <div onClick={handleClick} style={{ cursor: "pointer" }}>
       <div
+        className="editable-text-common-rounded"
         style={{
-          color: "#cfcfcf",
-          padding: "8px",
-          borderRadius: "4px",
           display: "grid",
           gridTemplateColumns: props.gridTemplateColumns ?? "repeat(2, 1fr)",
         }}
@@ -34,17 +34,7 @@ const EditableTextGridView = (props: EditableTextGridViewProps) => {
           <strong>{props.title}</strong>:
         </div>
         {isEditing ? (
-          <TextField
-            sx={{
-              "& .MuiInputBase-input": {
-                padding: "1px 5px",
-                margin: "0px",
-              },
-              ".MuiInput-underline": {
-                width: "90%",
-              },
-              margin: "-1px 0px 0px 0px",
-            }}
+          <StyledTextFieldForGrid
             required
             autoFocus
             fullWidth

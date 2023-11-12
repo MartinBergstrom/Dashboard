@@ -2,8 +2,8 @@ import ColorValueView from "../../cards/customTextViews/color/ColorValueView";
 import { CrystalValueView } from "../../cards/customTextViews/crystal/CrystalValueView";
 import { WatchInfo } from "../../model/WatchInfoModel";
 import EditableBooleanToggleSingleView from "../editableText/boolean/EditableBooleanToggleSingleView";
-import EditableColorSingleView from "../editableText/EditableColorSingleView";
-import EditableTextSingleView from "../editableText/EditableTextSingleView";
+import EditableColorSingleView from "../editableText/single/EditableColorSingleView";
+import EditableTextSingleView from "../editableText/single/EditableTextSingleView";
 import "./NxtwatchDetailsModals.css";
 
 interface NxtwatchDetailsModalProps {

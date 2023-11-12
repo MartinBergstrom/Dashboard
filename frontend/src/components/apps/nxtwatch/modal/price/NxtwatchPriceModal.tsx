@@ -1,5 +1,6 @@
+import { StyledAttachMoneyIcon } from "../../customStyles/customIconStyles";
 import { Price } from "../../model/WatchInfoModel";
-import EditableTextGridView from "../editableText/EditableTextGridView";
+import EditableTextGridView from "../editableText/grid/EditableTextGridView";
 import "./NxtwatchPriceModal.css";
 
 interface NxtwatchPriceModalProps {
@@ -12,8 +13,11 @@ const NxtwatchPriceModal = (props: NxtwatchPriceModalProps) => {
     return;
   }
   return (
-    <div style={{ margin: "10px 5px 10px 5px" }}>
-      <legend>Price</legend>
+    <div className="modal-price-main-div">
+      <legend>
+        Price
+        <StyledAttachMoneyIcon />
+      </legend>
       <div
         style={{
           display: "flex",
