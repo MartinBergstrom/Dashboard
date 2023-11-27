@@ -8,7 +8,7 @@ import {
   Snackbar,
 } from "@mui/material";
 import "./Nxwatch.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Filter, { ViewModeType } from "./filter/Filter";
 import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
@@ -33,13 +33,24 @@ const Nxtwatch = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState("");
   const [alertSeverity, setAlertSeverity] = useState<AlertColor>("success");
+  const [sortedList, setSortedList] = useState<WatchInfo[]>();
   const navigate = useNavigate();
-
   const {
     data: fetchedData,
     isLoading,
     isError,
   } = useQuery<WatchInfo[]>("watches", getAllWatchInfo);
+
+  // Check https://github.com/clauderic/dnd-kit for drag and drop stuff
+  useEffect(() => {
+    if (!isLoading && !isError && fetchedData) {
+      setSortedList(fetchedData);
+    }
+  }, [isLoading, isError, fetchedData]);
+
+  const reorderList = () => {
+    console.log("re");
+  };
 
   const setColumnWidthLarge = () => {
     switch (viewMode) {

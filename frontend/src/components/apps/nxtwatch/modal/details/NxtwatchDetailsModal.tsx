@@ -3,6 +3,7 @@ import { CrystalValueView } from "../../cards/customTextViews/crystal/CrystalVal
 import { WatchInfo } from "../../model/WatchInfoModel";
 import EditableBooleanToggleSingleView from "../editableText/single/EditableBooleanToggleSingleView";
 import EditableColorSingleView from "../editableText/single/EditableColorSingleView";
+import EditableTextDropdownView from "../editableText/single/EditableTextDropdownView";
 import EditableTextSingleView from "../editableText/single/EditableTextSingleView";
 import "./NxtwatchDetailsModals.css";
 
@@ -69,9 +70,10 @@ const NxtwatchDetailsModal = (props: NxtwatchDetailsModalProps) => {
           />
         </div>
         <div className="modal-details-grey-div">
-          <EditableTextSingleView
+          <EditableTextDropdownView
             title="Style"
             value={props.model.watch_style}
+            valueSelection={["Diver", "Dress", "GADA", "Beater"]}
             setValue={(newValue) =>
               props.setDetailsOnModel("watch_style", newValue)
             }

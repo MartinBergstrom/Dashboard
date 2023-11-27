@@ -3,7 +3,7 @@ FROM node:alpine
 WORKDIR /srv/app
 
 COPY package.json /srv/app
-RUN npm i
+RUN npm install
 
 COPY . /srv/app
 

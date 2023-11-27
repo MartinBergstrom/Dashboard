@@ -1,9 +1,8 @@
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
 import { useState } from "react";
 import "./../EditableTextViews.css";
-import { StyledTextFieldForGrid } from "./CustomGridViewStyledComponents";
 
-interface EditableTextGridDropdownViewProps {
+interface EditableTextDropdownViewProps {
   title: string;
   value: string;
   setValue: (newValue: string) => void;
@@ -11,9 +10,7 @@ interface EditableTextGridDropdownViewProps {
   gridTemplateColumns?: string;
 }
 
-const EditableTextGridDropdownView = (
-  props: EditableTextGridDropdownViewProps
-) => {
+const EditableTextDropdownView = (props: EditableTextDropdownViewProps) => {
   const [isSelecting, seIsSelecting] = useState(false);
   const [isEditingFreeText, setIsEditingFreeText] = useState(false);
   const [freeTextValue, setFreeTextValue] = useState("");
@@ -45,23 +42,26 @@ const EditableTextGridDropdownView = (
 
   return (
     <div onClick={handleClick} style={{ cursor: "pointer" }}>
-      <div
-        className="editable-text-common-rounded"
-        style={{
-          display: "grid",
-          gridTemplateColumns: props.gridTemplateColumns ?? "repeat(2, 1fr)",
-        }}
-      >
-        <div>
-          <strong>{props.title}</strong>:
-        </div>
+      <div className="editable-text-common-rounded">
+        <span style={{ marginRight: "20px" }}>
+          <strong>{props.title}:</strong>
+        </span>
         {isSelecting ? (
           isEditingFreeText ? (
             <>
-              <StyledTextFieldForGrid
+              <TextField
+                sx={{
+                  "& .MuiInputBase-input": {
+                    padding: "1px 5px",
+                    margin: "0px",
+                  },
+                  ".MuiInput-underline": {
+                    width: "100%",
+                  },
+                  margin: "-1px 0px 0px 0px",
+                }}
                 required
                 autoFocus
-                fullWidth
                 size="small"
                 margin="dense"
                 id="watch-anme"
@@ -98,11 +98,11 @@ const EditableTextGridDropdownView = (
             </>
           )
         ) : (
-          <div>{props.value}</div>
+          <span>{props.value}</span>
         )}
       </div>
     </div>
   );
 };
 
-export default EditableTextGridDropdownView;
+export default EditableTextDropdownView;
