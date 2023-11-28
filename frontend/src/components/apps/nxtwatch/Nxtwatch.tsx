@@ -20,6 +20,7 @@ import { getAllWatchInfo } from "./service/NxtwatchService";
 import { useQuery } from "react-query";
 import { WatchInfo } from "./model/WatchInfoModel";
 import NxtwatchModal from "./modal/NxtwatchModal";
+import { withPriority } from "./cards/WithPriority";
 
 export enum ServiceOperationStatus {
   SUCCESS,
@@ -114,11 +115,35 @@ const Nxtwatch = () => {
   const renderCard = (entry: WatchInfo) => {
     switch (viewMode) {
       case ViewModeType.LIST:
-        return <ListNxtWatchCard entry={entry} openModal={setModaltest} />;
+        const ListWithPrio = withPriority(ListNxtWatchCard);
+        return (
+          <ListWithPrio
+            entry={entry}
+            openModal={setModaltest}
+            prio={1}
+            size="30px"
+          />
+        );
       case ViewModeType.LARGE:
-        return <LargeNxtWatchCard entry={entry} openModal={setModaltest} />;
+        const LargeWithPrio = withPriority(LargeNxtWatchCard);
+        return (
+          <LargeWithPrio
+            entry={entry}
+            openModal={setModaltest}
+            prio={1}
+            size="20px"
+          />
+        );
       case ViewModeType.SMALL:
-        return <SmallNxtWatchCard entry={entry} openModal={setModaltest} />;
+        const SmallWithPrio = withPriority(SmallNxtWatchCard);
+        return (
+          <SmallWithPrio
+            entry={entry}
+            openModal={setModaltest}
+            prio={1}
+            size="15px"
+          />
+        );
     }
   };
 
