@@ -67,6 +67,9 @@ def get_priority():
     collection = db_nxtwatch.get_collection('priority')
     priority_doc = collection.find_one({})
     if priority_doc:
+        priority_doc['_id'] = str(priority_doc['_id']) # Convert the Objectid to simple string id
+        if priority_doc['priorities']:
+            priority_doc['priorities'] = [str(p) for p in priority_doc['priorities']]
         return parse_json(priority_doc)
     else:
         return "Priority list not found", 404
