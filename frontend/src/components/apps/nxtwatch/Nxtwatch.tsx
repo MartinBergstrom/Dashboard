@@ -16,11 +16,12 @@ import AddNewWatchButton from "./add/AddNewWatchButton";
 import LargeNxtWatchCard from "./cards/LargeNxtWatchCard";
 import ListNxtWatchCard from "./cards/ListNxtWatchCard";
 import SmallNxtWatchCard from "./cards/SmallNxtWatchCard";
-import { getAllWatchInfo } from "./service/NxtwatchService";
+import { getAllWatchInfo, getPriority } from "./service/NxtwatchService";
 import { useQuery } from "react-query";
 import { WatchInfo } from "./model/WatchInfoModel";
 import NxtwatchModal from "./modal/NxtwatchModal";
 import { withPriority } from "./cards/WithPriority";
+import { WatchPriority } from "./model/WatchPriority";
 
 export enum ServiceOperationStatus {
   SUCCESS,
@@ -42,16 +43,25 @@ const Nxtwatch = () => {
     isError,
   } = useQuery<WatchInfo[]>("watches", getAllWatchInfo);
 
+  const { data: fetchedPrioData } = useQuery<WatchPriority>(
+    "watchesprio",
+    getPriority
+  );
+
   // Check https://github.com/clauderic/dnd-kit for drag and drop stuff
   useEffect(() => {
-    if (!isLoading && !isError && fetchedData) {
-      setSortedList(fetchedData);
+    if (!isLoading && !isError && fetchedData && fetchedPrioData) {
+      const sortedList: WatchInfo[] = [];
+      fetchedPrioData.priorities.forEach((prio) => {
+        const matchingItem = fetchedData.find((data) => data._id === prio);
+        if (matchingItem) {
+          sortedList.push(matchingItem);
+        }
+      });
+
+      setSortedList(sortedList);
     }
   }, [isLoading, isError, fetchedData]);
-
-  const reorderList = () => {
-    console.log("re");
-  };
 
   const setColumnWidthLarge = () => {
     switch (viewMode) {
@@ -112,7 +122,7 @@ const Nxtwatch = () => {
     setOpenModalId(id);
   };
 
-  const renderCard = (entry: WatchInfo) => {
+  const renderCard = (entry: WatchInfo, index: number) => {
     switch (viewMode) {
       case ViewModeType.LIST:
         const ListWithPrio = withPriority(ListNxtWatchCard);
@@ -120,7 +130,7 @@ const Nxtwatch = () => {
           <ListWithPrio
             entry={entry}
             openModal={setModaltest}
-            prio={1}
+            prio={index}
             size="30px"
           />
         );
@@ -130,7 +140,7 @@ const Nxtwatch = () => {
           <LargeWithPrio
             entry={entry}
             openModal={setModaltest}
-            prio={1}
+            prio={index}
             size="20px"
           />
         );
@@ -140,7 +150,7 @@ const Nxtwatch = () => {
           <SmallWithPrio
             entry={entry}
             openModal={setModaltest}
-            prio={1}
+            prio={index}
             size="15px"
           />
         );
@@ -172,7 +182,7 @@ const Nxtwatch = () => {
       );
     }
 
-    if (!fetchedData) {
+    if (!sortedList) {
       return null;
     }
 
@@ -180,7 +190,7 @@ const Nxtwatch = () => {
       <div className="main">
         <Fade in timeout={1000}>
           <Grid container spacing={1}>
-            {fetchedData.map((entry) => (
+            {sortedList.map((entry, index) => (
               <Grid
                 key={entry._id}
                 item
@@ -188,7 +198,7 @@ const Nxtwatch = () => {
                 md={setColumnWidthMid()}
                 lg={setColumnWidthLarge()}
               >
-                {renderCard(entry)}
+                {renderCard(entry, ++index)}
                 {openModalId == entry._id && (
                   <NxtwatchModal
                     open={true}
