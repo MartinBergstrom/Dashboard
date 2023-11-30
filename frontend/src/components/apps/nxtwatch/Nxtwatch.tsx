@@ -61,7 +61,7 @@ const Nxtwatch = () => {
 
       setSortedList(sortedList);
     }
-  }, [isLoading, isError, fetchedData]);
+  }, [isLoading, isError, fetchedData, fetchedPrioData]);
 
   const setColumnWidthLarge = () => {
     switch (viewMode) {
@@ -125,33 +125,27 @@ const Nxtwatch = () => {
   const renderCard = (entry: WatchInfo, index: number) => {
     switch (viewMode) {
       case ViewModeType.LIST:
-        const ListWithPrio = withPriority(ListNxtWatchCard);
         return (
-          <ListWithPrio
+          <ListNxtWatchCard
             entry={entry}
             openModal={setModaltest}
             prio={index}
-            size="30px"
           />
         );
       case ViewModeType.LARGE:
-        const LargeWithPrio = withPriority(LargeNxtWatchCard);
         return (
-          <LargeWithPrio
+          <LargeNxtWatchCard
             entry={entry}
             openModal={setModaltest}
             prio={index}
-            size="20px"
           />
         );
       case ViewModeType.SMALL:
-        const SmallWithPrio = withPriority(SmallNxtWatchCard);
         return (
-          <SmallWithPrio
+          <SmallNxtWatchCard
             entry={entry}
             openModal={setModaltest}
             prio={index}
-            size="15px"
           />
         );
     }

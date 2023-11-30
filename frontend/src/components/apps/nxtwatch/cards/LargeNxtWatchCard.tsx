@@ -1,19 +1,26 @@
 import { WatchInfo } from "../model/WatchInfoModel";
 import "./LargeNxtWatchCard.css";
+import priorityBadge from "./PriorityBadge";
 import { CrystalValueView } from "./customTextViews/crystal/CrystalValueView";
 import { PriceTextView } from "./customTextViews/price/PriceTextView";
 
 interface LargeNxtWatchCardProps {
   entry: WatchInfo;
   openModal: (id: string) => void;
+  prio: number;
 }
 
-const LargeNxtWatchCard = ({ entry, openModal }: LargeNxtWatchCardProps) => {
+const LargeNxtWatchCard = ({
+  entry,
+  openModal,
+  prio,
+}: LargeNxtWatchCardProps) => {
   return (
     <div
       className={"large-view-mode common-view-mode"}
       onClick={() => openModal(entry._id)}
     >
+      {priorityBadge("20px", prio)}
       <h3 className="card-header-h3">
         {entry.name ? entry.name : "Watch name"}
       </h3>

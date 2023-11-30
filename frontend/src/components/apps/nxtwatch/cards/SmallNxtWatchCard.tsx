@@ -1,18 +1,25 @@
 import { WatchInfo } from "../model/WatchInfoModel";
+import priorityBadge from "./PriorityBadge";
 import "./SmallNxtWatchCard.css";
 import { PriceTextView } from "./customTextViews/price/PriceTextView";
 
 interface SmallNxtWatchCardProps {
   entry: WatchInfo;
   openModal: (id: string) => void;
+  prio: number;
 }
 
-const SmallNxtWatchCard = ({ entry, openModal }: SmallNxtWatchCardProps) => {
+const SmallNxtWatchCard = ({
+  entry,
+  openModal,
+  prio,
+}: SmallNxtWatchCardProps) => {
   return (
     <div
       className={"small-view-mode common-view-mode"}
       onClick={() => openModal(entry._id)}
     >
+      {priorityBadge("16px", prio)}
       <div>
         <h3 className="card-header-h3-small">
           {entry.name ? entry.name : "Watch name"}
