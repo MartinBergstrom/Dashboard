@@ -1,5 +1,5 @@
 import { WatchInfo } from "../model/WatchInfoModel";
-import priorityBadge from "./PriorityBadge";
+import PriorityBadge from "./PriorityBadge";
 import "./SmallNxtWatchCard.css";
 import { PriceTextView } from "./customTextViews/price/PriceTextView";
 
@@ -19,7 +19,7 @@ const SmallNxtWatchCard = ({
       className={"small-view-mode common-view-mode"}
       onClick={() => openModal(entry._id)}
     >
-      {priorityBadge("16px", prio)}
+      <PriorityBadge prio={prio} />
       <div>
         <h3 className="card-header-h3-small">
           {entry.name ? entry.name : "Watch name"}

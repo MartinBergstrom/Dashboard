@@ -1,6 +1,6 @@
 import { WatchInfo } from "../model/WatchInfoModel";
 import "./ListNxtWatchCard.css";
-import priorityBadge from "./PriorityBadge";
+import PriorityBadge from "./PriorityBadge";
 import ColorValueView from "./customTextViews/color/ColorValueView";
 import { CrystalValueView } from "./customTextViews/crystal/CrystalValueView";
 import { PriceTextView } from "./customTextViews/price/PriceTextView";
@@ -21,8 +21,7 @@ const ListNxtWatchCard = ({
       className={"list-view-mode common-view-mode"}
       onClick={() => openModal(entry._id)}
     >
-      {priorityBadge("20px", prio)}
-
+      <PriorityBadge prio={prio} />
       <h3 className="card-header-h3">
         {entry.name ? entry.name : "Watch name"}
       </h3>

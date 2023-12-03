@@ -20,7 +20,6 @@ import { getAllWatchInfo, getPriority } from "./service/NxtwatchService";
 import { useQuery } from "react-query";
 import { WatchInfo } from "./model/WatchInfoModel";
 import NxtwatchModal from "./modal/NxtwatchModal";
-import { withPriority } from "./cards/WithPriority";
 import { WatchPriority } from "./model/WatchPriority";
 
 export enum ServiceOperationStatus {
@@ -36,6 +35,7 @@ const Nxtwatch = () => {
   const [snackBarMessage, setSnackBarMessage] = useState("");
   const [alertSeverity, setAlertSeverity] = useState<AlertColor>("success");
   const [sortedList, setSortedList] = useState<WatchInfo[]>();
+  const [watchPrio, setWatchPrio] = useState<WatchPriority>();
   const navigate = useNavigate();
   const {
     data: fetchedData,
@@ -52,6 +52,7 @@ const Nxtwatch = () => {
   useEffect(() => {
     if (!isLoading && !isError && fetchedData && fetchedPrioData) {
       const sortedList: WatchInfo[] = [];
+      setWatchPrio(fetchedPrioData);
       fetchedPrioData.priorities.forEach((prio) => {
         const matchingItem = fetchedData.find((data) => data._id === prio);
         if (matchingItem) {
@@ -100,6 +101,25 @@ const Nxtwatch = () => {
   const handleSnackbarClose = () => {
     console.log("closing snackbar");
     setSnackbarOpen(false);
+  };
+
+  const moveUpInPriortyList = (id: string) => {
+    if (watchPrio) {
+      const newPriorityList = [...watchPrio.priorities];
+      const index = watchPrio.priorities.findIndex((prio) => prio === id);
+
+      if (index > 0) {
+        const temp = newPriorityList[index - 1];
+        newPriorityList[index - 1] = id;
+        newPriorityList[index] = temp;
+
+        const newWatchprio = {
+          ...watchPrio,
+          priorities: newPriorityList,
+        };
+        setWatchPrio(newWatchprio);
+      }
+    }
   };
 
   const handleSnackBar = (
