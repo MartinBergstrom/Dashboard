@@ -8,19 +8,26 @@ interface LargeNxtWatchCardProps {
   entry: WatchInfo;
   openModal: (id: string) => void;
   prio: number;
+  prioClick: (up: boolean, id: string) => void;
 }
 
 const LargeNxtWatchCard = ({
   entry,
   openModal,
   prio,
+  prioClick
 }: LargeNxtWatchCardProps) => {
+
+  const onBadgePrioClick = (up: boolean) => {
+    prioClick(up, entry._id);
+  }
+  
   return (
     <div
       className={"large-view-mode common-view-mode"}
       onClick={() => openModal(entry._id)}
     >
-      <PriorityBadge prio={prio} />
+      <PriorityBadge prio={prio} prioClick={onBadgePrioClick} />
       <h3 className="card-header-h3">
         {entry.name ? entry.name : "Watch name"}
       </h3>

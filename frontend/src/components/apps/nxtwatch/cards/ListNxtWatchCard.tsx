@@ -9,19 +9,21 @@ interface ListNxtWatchCardProps {
   entry: WatchInfo;
   openModal: (id: string) => void;
   prio: number;
+  prioClick: (up: boolean) => void;
 }
 
 const ListNxtWatchCard = ({
   entry,
   openModal,
   prio,
+  prioClick
 }: ListNxtWatchCardProps) => {
   return (
     <div
       className={"list-view-mode common-view-mode"}
       onClick={() => openModal(entry._id)}
     >
-      <PriorityBadge prio={prio} />
+      <PriorityBadge prio={prio} prioClick={prioClick}/>
       <h3 className="card-header-h3">
         {entry.name ? entry.name : "Watch name"}
       </h3>

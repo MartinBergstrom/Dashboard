@@ -1,6 +1,7 @@
 import axios from "axios";
 //import mockEntries from "./../mockEntries.json";
 import { WatchInfo } from "../model/WatchInfoModel";
+import { WatchPriority } from "../model/WatchPriority";
 
 const BASE_URL = "http://localhost:4000";
 
@@ -21,6 +22,11 @@ export const getAllWatchInfo = async () => {
 
 export const getPriority = async () => {
   const response = await axios.get(BASE_URL + "/watches/priority");
+  return response.data;
+};
+
+export const setPriority = async (data: WatchPriority) => {
+  const response = await axios.put(BASE_URL + "/watches/priority/set", data);
   return response.data;
 };
 

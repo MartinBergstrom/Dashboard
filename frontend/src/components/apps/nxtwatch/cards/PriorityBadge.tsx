@@ -4,17 +4,20 @@ import "./PriorityBadge.css";
 
 interface PriorityBadgeProps {
   prio: number;
+  prioClick: (up: boolean) => void;
 }
 
 const PriorityBadge = (props: PriorityBadgeProps): JSX.Element => {
   const onPrioUpClick = (event: React.MouseEvent<HTMLSpanElement>) => {
     event.stopPropagation();
     console.log("prio up clicked");
+    props.prioClick(true);
   };
 
   const onPrioDownClick = (event: React.MouseEvent<HTMLSpanElement>) => {
     event.stopPropagation();
     console.log("prio down clicked");
+    props.prioClick(false);
   };
 
   return (

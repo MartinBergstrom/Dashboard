@@ -16,8 +16,8 @@ import AddNewWatchButton from "./add/AddNewWatchButton";
 import LargeNxtWatchCard from "./cards/LargeNxtWatchCard";
 import ListNxtWatchCard from "./cards/ListNxtWatchCard";
 import SmallNxtWatchCard from "./cards/SmallNxtWatchCard";
-import { getAllWatchInfo, getPriority } from "./service/NxtwatchService";
-import { useQuery } from "react-query";
+import { getAllWatchInfo, getPriority, setWatchPriority } from "./service/NxtwatchService";
+import { useQuery, useMutation, useQueryClient  } from "react-query";
 import { WatchInfo } from "./model/WatchInfoModel";
 import NxtwatchModal from "./modal/NxtwatchModal";
 import { WatchPriority } from "./model/WatchPriority";
@@ -42,10 +42,27 @@ const Nxtwatch = () => {
     isLoading,
     isError,
   } = useQuery<WatchInfo[]>("watches", getAllWatchInfo);
+  const queryClient = useQueryClient();
 
   const { data: fetchedPrioData } = useQuery<WatchPriority>(
     "watchesprio",
     getPriority
+  );
+
+  const { mutate: mutatePut, isLoading: isLoadingPut } = useMutation(
+    setWatchPriority,
+    {
+      onSuccess: (data) => {
+        console.log("Success on PUT! data: " + data);
+   
+      },
+      onError: () => {
+        alert("there was an error");
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("watchesprio");
+      },
+    }
   );
 
   // Check https://github.com/clauderic/dnd-kit for drag and drop stuff
@@ -103,6 +120,15 @@ const Nxtwatch = () => {
     setSnackbarOpen(false);
   };
 
+  const prioClick = (up: boolean, id: string) => {
+      if (up) {
+        console.log("Moving prio up");
+        moveUpInPriortyList(id);
+      } else {
+        console.log("Moving prio down");
+      }
+  }
+
   const moveUpInPriortyList = (id: string) => {
     if (watchPrio) {
       const newPriorityList = [...watchPrio.priorities];
@@ -118,6 +144,7 @@ const Nxtwatch = () => {
           priorities: newPriorityList,
         };
         setWatchPrio(newWatchprio);
+        mutatePut(newWatchprio);
       }
     }
   };
@@ -150,6 +177,7 @@ const Nxtwatch = () => {
             entry={entry}
             openModal={setModaltest}
             prio={index}
+            prioClick={prioClick}
           />
         );
       case ViewModeType.LARGE:
@@ -158,6 +186,7 @@ const Nxtwatch = () => {
             entry={entry}
             openModal={setModaltest}
             prio={index}
+            prioClick={prioClick}
           />
         );
       case ViewModeType.SMALL:
@@ -166,6 +195,7 @@ const Nxtwatch = () => {
             entry={entry}
             openModal={setModaltest}
             prio={index}
+            prioClick={prioClick}
           />
         );
     }
