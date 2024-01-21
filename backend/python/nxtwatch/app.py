@@ -75,6 +75,27 @@ def get_priority():
         return "Priority list not found", 404
 
 
+@app.route("/watches/priority/set", methods=['PUT'])
+def update_watch_prio():
+    try:
+        data = request.json
+        client = get_db_client()
+        db_nxtwatch = client['nxtwatch']
+        collection = db_nxtwatch.get_collection('priority')
+        priority_doc = collection.find_one({})
+        if priority_doc:
+            print("hello")
+            print(data)
+            if priority_doc['priorities']:
+                priority_doc['priorities'] = data['priorities']
+        else:
+            return "Priority list not found", 404
+        return jsonify({"message": "Watch priority list updated", "id": str(watch_id)}), 201
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/watch/<watch_id>", methods=['PUT'])
 def update_watch(watch_id):
     try:
