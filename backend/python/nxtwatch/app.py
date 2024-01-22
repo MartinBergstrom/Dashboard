@@ -84,13 +84,17 @@ def update_watch_prio():
         collection = db_nxtwatch.get_collection('priority')
         priority_doc = collection.find_one({})
         if priority_doc:
-            print("hello")
-            print(data)
-            if priority_doc['priorities']:
-                priority_doc['priorities'] = data['priorities']
+            priority_list_id = priority_doc['_id']
+            update_filter = {'_id': priority_list_id}
+            collection.update_one(update_filter, {
+                '$set': {
+                    'priorities': data['priorities']
+                }
+            })
+            print("Successfully replaced the priority list")
         else:
             return "Priority list not found", 404
-        return jsonify({"message": "Watch priority list updated", "id": str(watch_id)}), 201
+        return jsonify({"message": "Watch priority list updated"}), 201
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
