@@ -7,7 +7,7 @@ interface SmallNxtWatchCardProps {
   entry: WatchInfo;
   openModal: (id: string) => void;
   prio: number;
-  prioClick: (up: boolean) => void;
+  prioClick: (up: boolean, id: string) => void;
 }
 
 const SmallNxtWatchCard = ({
@@ -16,12 +16,17 @@ const SmallNxtWatchCard = ({
   prio,
   prioClick
 }: SmallNxtWatchCardProps) => {
+
+  const onBadgePrioClick = (up: boolean) => {
+    prioClick(up, entry._id);
+  }
+
   return (
     <div
       className={"small-view-mode common-view-mode"}
       onClick={() => openModal(entry._id)}
     >
-      <PriorityBadge prio={prio} prioClick={prioClick}/>
+      <PriorityBadge prio={prio} prioClick={onBadgePrioClick}/>
       <div>
         <h3 className="card-header-h3-small">
           {entry.name ? entry.name : "Watch name"}

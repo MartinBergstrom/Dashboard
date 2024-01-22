@@ -25,7 +25,7 @@ export const getPriority = async () => {
   return response.data;
 };
 
-export const setPriority = async (data: WatchPriority) => {
+export const setWatchPriority = async (data: WatchPriority) => {
   const response = await axios.put(BASE_URL + "/watches/priority/set", data);
   return response.data;
 };

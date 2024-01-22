@@ -126,6 +126,7 @@ const Nxtwatch = () => {
         moveUpInPriortyList(id);
       } else {
         console.log("Moving prio down");
+        moveDownInPriortyList(id);
       }
   }
 
@@ -138,16 +139,35 @@ const Nxtwatch = () => {
         const temp = newPriorityList[index - 1];
         newPriorityList[index - 1] = id;
         newPriorityList[index] = temp;
-
-        const newWatchprio = {
-          ...watchPrio,
-          priorities: newPriorityList,
-        };
-        setWatchPrio(newWatchprio);
-        mutatePut(newWatchprio);
+        setNewWatchPrioAfterMove(newPriorityList);
       }
     }
   };
+
+  const moveDownInPriortyList = (id: string) => {
+    if (watchPrio) {
+      const newPriorityList = [...watchPrio.priorities];
+      const index = watchPrio.priorities.findIndex((prio) => prio === id);
+
+      if (index < watchPrio.priorities.length - 1) {
+        const temp = newPriorityList[index + 1];
+        newPriorityList[index + 1] = id;
+        newPriorityList[index] = temp;
+        setNewWatchPrioAfterMove(newPriorityList);
+      }
+    }
+  };
+
+  const setNewWatchPrioAfterMove = (newPrio: string[]) => {
+    if (watchPrio) {
+      const newWatchprio = {
+        ...watchPrio,
+        priorities: newPrio,
+      };
+      setWatchPrio(newWatchprio);
+      mutatePut(newWatchprio);
+    }
+  }
 
   const handleSnackBar = (
     message: string,
