@@ -1,10 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const connectToDatabase = require("./db");
+const db = require("./db");
 const urlCardRoutes = require("./routes/api/urlCardsApi");
+const loginRoutes = require("./routes/login/loginApi");
 
-connectToDatabase();
+db.connectDB();
 
 const app = express();
 
@@ -26,6 +27,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/urlCard", urlCardRoutes);
+app.use("/login", loginRoutes);
+
 
 app.listen(PORT, () =>
   console.log(`Server running at http://localhost:${PORT}`)

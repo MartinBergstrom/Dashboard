@@ -9,4 +9,6 @@ COPY . /server
 
 EXPOSE 5000
 
+RUN npm rebuild bcrypt --build-from-source
+
 CMD ["npm", "run", "dev"]

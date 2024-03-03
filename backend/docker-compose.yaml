@@ -4,6 +4,7 @@ services:
     volumes:
       - nodeVolume:/server
       - .:/server:ro
+      - /server/node_modules/bcrypt/
     build:
       context: .
       dockerfile: Dockerfile
