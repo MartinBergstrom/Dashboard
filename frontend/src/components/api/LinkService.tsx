@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NewUrlCardData } from "../links/add/NewUrlCardData";
+import { BASE_URL } from "./ApiUtils";
 
-const BASE_URL = "http://localhost:5000";
 
 export const getAllUrlCards = async () => {
   const response = await axios.get(BASE_URL + "/api/urlCard");

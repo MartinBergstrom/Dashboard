@@ -10,16 +10,30 @@ import LockPersonIcon from '@mui/icons-material/LockPerson';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Fade } from '@mui/material';
+import { postLogin } from '../api/LoginService';
+import { useMutation } from "react-query";
 
 
 export default function LogIn() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+    const { mutate, isLoading } = useMutation(postLogin, {
+        onSuccess: (data: any) => {
+            console.log("Success! data: " + data);
+        },
+        onError: () => {
+            alert("there was an error");
+        },
+    });
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            username: data.get('username'),
-            password: data.get('password'),
-        });
+        const user = data.get('username') as string;
+        const pass = data.get('password') as string;
+        mutate({
+            username: user,
+            password: pass
+        })
     };
 
     return (
