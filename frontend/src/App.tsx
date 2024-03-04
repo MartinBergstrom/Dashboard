@@ -4,6 +4,7 @@ import Nxtwatch from "./components/apps/nxtwatch/Nxtwatch";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import Login from "./components/login/login";
 
 const darkTheme = createTheme({
   palette: {
@@ -14,15 +15,20 @@ const darkTheme = createTheme({
   },
 });
 
+const isLoggedIn = () => {
+  return true;
+}
+
 function App() {
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Dashboard />,
+      element: isLoggedIn() ? <Dashboard /> : <Login />,
     },
     {
       path: "nxtwatch",
-      element: <Nxtwatch />,
+      element: isLoggedIn() ? <Nxtwatch /> : <Login />,
     },
   ]);
 
