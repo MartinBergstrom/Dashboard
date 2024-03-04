@@ -28,17 +28,20 @@ export default function LogIn() {
                 <CssBaseline />
                 <Box
                     sx={{
-                        marginTop: 8,
+                        marginTop: 16,
+                        padding: 6,
+                        borderRadius: 4,
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
+                        backgroundColor: 'black'
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
                         <LockPersonIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in to Dashboard
+                        Log in to Dashboard
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
