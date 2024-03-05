@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require('bcrypt');
 const router = express.Router();
-
+const jwt = require('jsonwebtoken');
 const Credentials = require("../../models/credentials");
 
 
@@ -21,14 +21,15 @@ const isValidLogin = async (userPassword, hashedPassword) => {
 // @access Public
 router.post("/", async (req, res) => {
     const { username, password } = req.body;
-    const hashedPassword = await Credentials.find( { username: username });
+    const hashedPassword = await Credentials.find({ username: username });
     if (!await isValidLogin(password, hashedPassword)) {
-        res.status(401).json({ 
-            error: 'Unauthorized', 
+        res.status(401).json({
+            error: 'Unauthorized',
             message: 'Incorrect username or password'
         });
-    } else {  
-        res.status(200).json({ message: 'Login successful' });
+    } else {
+        const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, {expiresIn: '900s',});
+        res.status(200).json({ message: 'Login successful', token: token });
     }
 });
 
