@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,19 +8,26 @@ import Box from '@mui/material/Box';
 import LockPersonIcon from '@mui/icons-material/LockPerson';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { Fade } from '@mui/material';
+import { CircularProgress, Fade } from '@mui/material';
 import { postLogin } from '../api/LoginService';
 import { useMutation } from "react-query";
+import { useState } from 'react';
 
+interface LoginProps {
+    onLoginSuccess: () => void;
+}
 
-export default function LogIn() {
+export default function LogIn(props: LoginProps) {
+    const [isError, setIsError] = useState(false);
 
     const { mutate, isLoading } = useMutation(postLogin, {
         onSuccess: (data: any) => {
-            console.log("Success! data: " + data);
+            console.log("Login successful!");
+            setIsError(false);
+            props.onLoginSuccess();
         },
         onError: () => {
-            alert("there was an error");
+            setIsError(true);
         },
     });
 
@@ -82,13 +88,14 @@ export default function LogIn() {
                             control={<Checkbox defaultChecked disabled color="primary" />}
                             label="Remember me"
                         />
+                        {isError ? <p style={{ color: "red" }}>Incorrenct username or password. Try again</p> : null}
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            Sign In {isLoading ? <CircularProgress size={14} sx={{ color: "black", marginLeft: "5px" }} /> : null}
                         </Button>
                     </Box>
                 </Box>
