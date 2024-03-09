@@ -21,6 +21,11 @@ app.use(express.json({ extended: false }));
 app.use(function (req, res, next) {
   setTimeout(next, 1500);
 });
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Expose-Headers', 'Authorization'); 
+  next();
+});
+
 
 app.get("/", (req, res) => {
   res.send("<h2>Welcome there!! sophie</h2> WOW");

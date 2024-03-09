@@ -11,8 +11,9 @@ import Container from '@mui/material/Container';
 import { CircularProgress, Fade } from '@mui/material';
 import { postLogin } from '../api/LoginService';
 import { useMutation } from "react-query";
-import { useState } from 'react';
+import {  useState } from 'react';
 import { setTokenInHeader } from '../api/axiosConfig';
+import { useAuthContext } from '../../context/globalAuthContext';
 
 interface LoginProps {
     onLoginSuccess: () => void;
@@ -21,12 +22,19 @@ interface LoginProps {
 export default function LogIn(props: LoginProps) {
     const [isError, setIsError] = useState(false);
 
+    const { auth, setAuth } = useAuthContext();
+
     const { mutate, isLoading } = useMutation(postLogin, {
-        onSuccess: (data: any) => {
+        onSuccess: (response: any) => {
             setIsError(false);
-            localStorage.setItem('token', data.token);
+            console.log("Response is: ", response);
+            /*localStorage.setItem('token', data.token);
+            console.log("Auth is: " + {auth})
+            console.log("setting auth");
+            setAuth(data.token);
             setTokenInHeader();
             props.onLoginSuccess();
+            */
         },
         onError: () => {
             setIsError(true);

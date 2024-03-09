@@ -11,5 +11,5 @@ export const postLogin = async (credentials: Credentials) => {
             "Content-Type": "application/json"
         }
     });
-    return response.data;
+    return response;
 };

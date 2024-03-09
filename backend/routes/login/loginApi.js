@@ -19,6 +19,25 @@ const isValidLogin = async (userPassword, hashedPassword) => {
 }
 
 // @access Public
+router.post("/refresh", (req, res) => {
+    const refreshToken = req.cookies['refreshToken'];
+    console.log(refreshToken);
+    if (!refreshToken) {
+        return res.status(401).send('Access Denied. No refresh token provided.');
+    }
+
+    try {
+        const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
+        const newToken = jwt.sign({ userId: decoded.userId }, process.env.JWT_SECRET, { expiresIn: '900s' });
+    
+        res
+          .json( { user: decoded.userId, message: "success",  token: newToken });
+      } catch (error) {
+        return res.status(400).send('Invalid refresh token.');
+      }
+});
+
+// @access Public
 router.post("/", async (req, res) => {
     const { username, password } = req.body;
     const hashedPassword = await Credentials.find({ username: username });
@@ -28,8 +47,11 @@ router.post("/", async (req, res) => {
             message: 'Incorrect username or password'
         });
     } else {
-        const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, {expiresIn: '900s',});
-        res.status(200).json({ message: 'Login successful', token: token });
+        const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '900s', });
+        const refreshToken = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        res.status(200)
+            .cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 86400 })
+            .json({ message: 'Login successful', token: token });
     }
 });
 

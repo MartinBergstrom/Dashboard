@@ -5,9 +5,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Login from "./components/login/login";
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { setTokenInHeader } from "./components/api/axiosConfig";
 import { jwtDecode } from "jwt-decode"
+import { AuthContext } from "./context/globalAuthContext";
 
 const darkTheme = createTheme({
   palette: {
@@ -20,6 +21,7 @@ const darkTheme = createTheme({
 
 
 function App() {
+  const [auth, setAuth] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -56,10 +58,12 @@ function App() {
   ]);
 
   return (
+    <AuthContext.Provider value={{ auth, setAuth }}>
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <RouterProvider router={router} />
     </ThemeProvider>
+    </AuthContext.Provider>
   );
 }
 
