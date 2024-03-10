@@ -12,8 +12,8 @@ import { CircularProgress, Fade } from '@mui/material';
 import { postLogin } from '../api/LoginService';
 import { useMutation } from "react-query";
 import {  useState } from 'react';
-import { setTokenInHeader } from '../api/axiosConfig';
 import { useAuthContext } from '../../context/globalAuthContext';
+import { setTokenInHeader } from '../api/api';
 
 interface LoginProps {
     onLoginSuccess: () => void;
@@ -27,14 +27,9 @@ export default function LogIn(props: LoginProps) {
     const { mutate, isLoading } = useMutation(postLogin, {
         onSuccess: (response: any) => {
             setIsError(false);
-            console.log("Response is: ", response);
-            /*localStorage.setItem('token', data.token);
-            console.log("Auth is: " + {auth})
-            console.log("setting auth");
-            setAuth(data.token);
-            setTokenInHeader();
+            setAuth(response.data.token);
+            setTokenInHeader(response.data.token);
             props.onLoginSuccess();
-            */
         },
         onError: () => {
             setIsError(true);

@@ -1,15 +1,19 @@
-import axios from "axios";
-import { BASE_URL } from "./ApiUtils";
+import api, { BASE_URL, unsetTokenInHeader } from "./api";
 import { Credentials } from "../models/credentials";
-import { unsetTokenInHeader } from "./axiosConfig";
 
 export const postLogin = async (credentials: Credentials) => {
     unsetTokenInHeader();
-    const response = await axios.post(BASE_URL + "/login", credentials,
+    const response = await api.post(BASE_URL + "/login", credentials,
     {
         headers: {
             "Content-Type": "application/json"
         }
     });
+    return response;
+};
+
+
+export const postRefreshToken = async () => {
+    const response = await api.post(BASE_URL + "/login/refresh");
     return response;
 };

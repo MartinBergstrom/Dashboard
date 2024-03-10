@@ -5,10 +5,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Login from "./components/login/login";
-import {  useEffect, useState } from "react";
-import { setTokenInHeader } from "./components/api/axiosConfig";
-import { jwtDecode } from "jwt-decode"
+import { useEffect, useState } from "react";
 import { AuthContext } from "./context/globalAuthContext";
+import { setTokenInHeader } from "./components/api/api";
+import { postRefreshToken } from "./components/api/LoginService";
+import { CircularProgress } from "@mui/material";
 
 const darkTheme = createTheme({
   palette: {
@@ -21,26 +22,27 @@ const darkTheme = createTheme({
 
 
 function App() {
+  const [loading, setIsLoading] = useState(true);
   const [auth, setAuth] = useState<string>("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    console.log("Use effect App()")
-    setTokenInHeader();
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decoded = jwtDecode(token);
-      const expTime = decoded.exp;
-      let currentDate = new Date();
-      if (expTime && expTime * 1000 < currentDate.getTime()) {
-        console.log("Token expired");
-        setIsLoggedIn(false);
-      } else {
-        console.log("Token is still valid");
+    const refreshAccessToken = async () => {
+      try {
+        const resp = await postRefreshToken();
+        const newToken = resp.data.token;
+        setTokenInHeader(newToken);
         setIsLoggedIn(true);
+      } catch (error) {
+        console.log("Error when trying to refresh token", error);
+        setIsLoggedIn(false);
       }
+      setIsLoading(false);
     }
+
+    refreshAccessToken();
   }, [])
+
 
   const onLoginSuccess = () => {
     setIsLoggedIn(true);
@@ -59,10 +61,14 @@ function App() {
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <RouterProvider router={router} />
-    </ThemeProvider>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        {loading ? <>
+          <div style={{ marginTop: "35%"}}>
+          <CircularProgress size={"6rem"} color="primary" />
+          </div>
+        </> : <RouterProvider router={router} />}
+      </ThemeProvider>
     </AuthContext.Provider>
   );
 }
