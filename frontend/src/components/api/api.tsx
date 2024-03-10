@@ -21,7 +21,7 @@ api.interceptors.response.use(
     (response) => response,
     async (error) => {
       const originalRequest = error.config;
-      if (originalRequest.url.contains('/refresh'))
+      if (originalRequest.url && originalRequest.url.includes('/refresh'))
       {
         return Promise.reject(error);
       }
