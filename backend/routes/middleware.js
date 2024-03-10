@@ -7,7 +7,7 @@ function authenticateToken(req, res, next) {
         return res.sendStatus(401);
     }
     const authValueArr = authValue.split(" ");
-    if (authValueArr.lenth !== 1) {
+    if (authValueArr.length !== 2) {
         console.log("Malformed auth Bearer header")
         return res.sendStatus(401);
     }

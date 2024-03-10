@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require('cookie-parser');
 const cors = require("cors");
 require("dotenv").config();
 const db = require("./db");
@@ -11,18 +12,22 @@ const app = express();
 
 if (process.env.DEV) {
   console.log("Allowing reqeusts from all origins");
-  app.use(cors());
+  app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+  }));
 }
 
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json({ extended: false }));
+app.use(cookieParser());
 
 app.use(function (req, res, next) {
   setTimeout(next, 1500);
 });
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Expose-Headers', 'Authorization'); 
+  res.setHeader('Access-Control-Expose-Headers', 'Authorization');
   next();
 });
 

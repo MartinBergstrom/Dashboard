@@ -12,7 +12,7 @@ const isValidLogin = async (userPassword, hashedPassword) => {
             console.log("Password matches")
             return true;
         } else {
-            console.log("Passowrd does not match")
+            console.log("Password does not match")
         }
     }
     return false;
@@ -29,12 +29,11 @@ router.post("/refresh", (req, res) => {
     try {
         const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
         const newToken = jwt.sign({ userId: decoded.userId }, process.env.JWT_SECRET, { expiresIn: '900s' });
-    
-        res
-          .json( { user: decoded.userId, message: "success",  token: newToken });
-      } catch (error) {
+
+        res.json({ user: decoded.userId, message: "success", token: newToken });
+    } catch (error) {
         return res.status(400).send('Invalid refresh token.');
-      }
+    }
 });
 
 // @access Public
@@ -50,7 +49,7 @@ router.post("/", async (req, res) => {
         const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '900s', });
         const refreshToken = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '1d' });
         res.status(200)
-            .cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'strict', maxAge: 86400 })
+            .cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 86400 })
             .json({ message: 'Login successful', token: token });
     }
 });
