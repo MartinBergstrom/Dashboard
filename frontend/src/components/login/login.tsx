@@ -11,8 +11,7 @@ import Container from '@mui/material/Container';
 import { CircularProgress, Fade } from '@mui/material';
 import { postLogin } from '../api/LoginService';
 import { useMutation } from "react-query";
-import {  useState } from 'react';
-import { useAuthContext } from '../../context/globalAuthContext';
+import { useState } from 'react';
 import { setTokenInHeader } from '../api/api';
 
 interface LoginProps {
@@ -22,12 +21,9 @@ interface LoginProps {
 export default function LogIn(props: LoginProps) {
     const [isError, setIsError] = useState(false);
 
-    const { auth, setAuth } = useAuthContext();
-
     const { mutate, isLoading } = useMutation(postLogin, {
         onSuccess: (response: any) => {
             setIsError(false);
-            setAuth(response.data.token);
             setTokenInHeader(response.data.token);
             props.onLoginSuccess();
         },
