@@ -23,9 +23,6 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json({ extended: false }));
 app.use(cookieParser());
 
-app.use(function (req, res, next) {
-  setTimeout(next, 1500);
-});
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Expose-Headers', 'Authorization');
   next();
