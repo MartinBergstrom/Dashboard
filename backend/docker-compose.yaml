@@ -2,7 +2,6 @@ version: "3.8"
 services:
   node:
     volumes:
-      - nodeVolume:/server
       - .:/server:ro
       - /server/node_modules/bcrypt/
     build:
@@ -48,5 +47,4 @@ services:
     image: redis
 
 volumes:
-  nodeVolume:
   mongoDB:
