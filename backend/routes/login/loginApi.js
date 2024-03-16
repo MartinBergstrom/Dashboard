@@ -21,7 +21,6 @@ const isValidLogin = async (userPassword, hashedPassword) => {
 // @access Public
 router.post("/refresh", (req, res) => {
     const refreshToken = req.cookies['refreshToken'];
-    console.log(refreshToken);
     if (!refreshToken) {
         return res.status(401).send('Access Denied. No refresh token provided.');
     }
@@ -49,7 +48,7 @@ router.post("/", async (req, res) => {
         const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '900s', });
         const refreshToken = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '1d' });
         res.status(200)
-            .cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 86400 })
+            .cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 10* 60 * 1000 })
             .json({ message: 'Login successful', token: token });
     }
 });
