@@ -27,11 +27,11 @@ router.post("/refresh", (req, res) => {
 
     try {
         const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
-        const newToken = jwt.sign({ userId: decoded.userId }, process.env.JWT_SECRET, { expiresIn: '900s' });
+        const newToken = jwt.sign({ userId: decoded.userId }, process.env.JWT_SECRET, { expiresIn: '300s' });
 
         res.json({ user: decoded.userId, message: "success", token: newToken });
     } catch (error) {
-        return res.status(400).send('Invalid refresh token.');
+        return res.status(401).send('Invalid refresh token.');
     }
 });
 
@@ -45,10 +45,10 @@ router.post("/", async (req, res) => {
             message: 'Incorrect username or password'
         });
     } else {
-        const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '900s', });
+        const token = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '300s', });
         const refreshToken = jwt.sign({ userId: username }, process.env.JWT_SECRET, { expiresIn: '1d' });
         res.status(200)
-            .cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 10* 60 * 1000 })
+            .cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 60 * 60 * 1000 })
             .json({ message: 'Login successful', token: token });
     }
 });
