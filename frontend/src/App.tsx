@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Login from "./components/login/login";
 import { useEffect, useState } from "react";
-import { setTokenInHeader } from "./components/api/api";
+import api, { setTokenInHeader } from "./components/api/api";
 import { postRefreshToken } from "./components/api/LoginService";
 import { CircularProgress } from "@mui/material";
 
@@ -25,6 +25,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    setUpInterceptor();
     const refreshAccessToken = async () => {
       try {
         const resp = await postRefreshToken();
@@ -40,6 +41,33 @@ function App() {
 
     refreshAccessToken();
   }, [])
+
+  const setUpInterceptor = () => {
+    api.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        const originalRequest = error.config;
+        if (originalRequest.url && originalRequest.url.includes('/refresh')) {
+          return Promise.reject(error);
+        }
+
+        if ((error.response.status === 401 || error.response.status === 403) && !originalRequest._retry) {
+          originalRequest._retry = true;
+
+          try {
+            const response = await postRefreshToken();
+            const { token } = response.data;
+            setTokenInHeader(token);
+            return api(originalRequest);
+          } catch (error) {
+            setIsLoggedIn(false);
+            console.error(error);
+          }
+        }
+        return Promise.reject(error);
+      }
+    );
+  }
 
 
   const onLoginSuccess = () => {
