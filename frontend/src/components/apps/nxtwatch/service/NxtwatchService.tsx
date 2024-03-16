@@ -25,6 +25,21 @@ export const getPriority = async () => {
   return response.data;
 };
 
+export const getComment = async () => {
+  const response = await axios.get(BASE_URL + "/comment");
+  return response.data;
+};
+
+export const updateCommentText = async (newTextData: string) => {
+  const response = await axios.put(BASE_URL + "/comment", newTextData,
+    {
+      headers: {
+        'Content-Type': 'text/plain'
+      }
+    });
+  return response.data;
+};
+
 export const setWatchPriority = async (data: WatchPriority) => {
   const response = await axios.put(BASE_URL + "/watches/priority/set", data);
   return response.data;

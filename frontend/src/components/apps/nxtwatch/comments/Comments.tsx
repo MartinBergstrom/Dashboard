@@ -1,5 +1,8 @@
 import { TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import { getComment, updateCommentText } from "../service/NxtwatchService";
+import { useMutation, useQuery } from "react-query";
+import { CommentModel } from "../model/CommentModel";
 
 
 const CommentsArea = () => {
@@ -9,8 +12,30 @@ const CommentsArea = () => {
     const EXPANDED_WIDTH = "60%";
     const [rows, setRows] = useState(DEFAULT_ROWS);
     const [width, setWidth] = useState(DEFAULT_WIDTH);
+    const [currentText, setCurrentText] = useState<string>("");
     const textareaRef = useRef<HTMLDivElement>(null)
     const targetRef = useRef<HTMLDivElement>(null);
+
+    const { isLoading } = useQuery<CommentModel>(
+        "watchescomment",
+        getComment, {
+            onSuccess: (data) => {
+                setCurrentText(data.text);
+            }
+        }
+    );
+
+    const { mutate: mutatePut } = useMutation(
+        updateCommentText,
+        {
+            onSuccess: (data) => {
+                console.log("Success on update comment text. Data: ", data);
+            },
+            onError: () => {
+                alert("there was an error");
+            }
+        }
+    );
 
     useEffect(() => {
         if (rows === EXPANDED_ROWS && width === EXPANDED_WIDTH) {
@@ -27,6 +52,15 @@ const CommentsArea = () => {
     const onTextFieldBlur = () => {
         setRows(DEFAULT_ROWS);
         setWidth(DEFAULT_WIDTH);
+        mutatePut(currentText);
+    }
+
+    const updateText = (newText: string) => {
+        setCurrentText(newText);
+    }
+
+    if (isLoading) {
+        return (<div>Loading comments..</div>)
     }
 
     return (
@@ -39,6 +73,8 @@ const CommentsArea = () => {
                 placeholder="Add comments..."
                 multiline
                 fullWidth
+                value={currentText}
+                onChange={(e) => updateText(e.target.value)}
                 rows={rows}
             />
             <div ref={targetRef}></div>
