@@ -60,6 +60,43 @@ def get_watches():
     return parse_json(data)
 
 
+@app.route("/comment", methods=['GET'])
+def get_comment():
+    client = get_db_client()
+    db_nxtwatch = client['nxtwatch']
+    collection = db_nxtwatch.get_collection('comment')
+    comment_doc = collection.find_one({})
+    if comment_doc:
+        comment_doc['_id'] = str(comment_doc['_id'])  # Convert the Objectid to simple string id
+        return parse_json(comment_doc)
+    else:
+        return "Comment text not found", 404
+
+
+@app.route("/comment", methods=['PUT'])
+def update_comment():
+    try:
+        new_text = request.data.decode('utf-8')
+        client = get_db_client()
+        db_nxtwatch = client['nxtwatch']
+        collection = db_nxtwatch.get_collection('comment')
+        comment_doc = collection.find_one({})
+        if comment_doc:
+            comment_doc_id = comment_doc['_id']
+            update_filter = {'_id': comment_doc_id}
+            collection.update_one(update_filter, {
+                '$set': {
+                    'text': new_text
+                }
+            })
+            print("Successfully updated the comment text")
+        else:
+            return "Comment not found", 404
+        return jsonify({"message": "Comment text area updated"}), 201
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route("/watches/priority", methods=['GET'])
 def get_priority():
     client = get_db_client()
