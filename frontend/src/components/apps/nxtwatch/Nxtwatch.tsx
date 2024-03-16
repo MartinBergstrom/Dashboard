@@ -17,10 +17,11 @@ import LargeNxtWatchCard from "./cards/LargeNxtWatchCard";
 import ListNxtWatchCard from "./cards/ListNxtWatchCard";
 import SmallNxtWatchCard from "./cards/SmallNxtWatchCard";
 import { getAllWatchInfo, getPriority, setWatchPriority } from "./service/NxtwatchService";
-import { useQuery, useMutation, useQueryClient  } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { WatchInfo } from "./model/WatchInfoModel";
 import NxtwatchModal from "./modal/NxtwatchModal";
 import { WatchPriority } from "./model/WatchPriority";
+import CommentsArea from "./comments/Comments";
 
 export enum ServiceOperationStatus {
   SUCCESS,
@@ -54,7 +55,7 @@ const Nxtwatch = () => {
     {
       onSuccess: (data) => {
         console.log("Success on PUT! data: " + data);
-   
+
       },
       onError: () => {
         alert("there was an error");
@@ -121,13 +122,13 @@ const Nxtwatch = () => {
   };
 
   const prioClick = (up: boolean, id: string) => {
-      if (up) {
-        console.log("Moving prio up");
-        moveUpInPriortyList(id);
-      } else {
-        console.log("Moving prio down");
-        moveDownInPriortyList(id);
-      }
+    if (up) {
+      console.log("Moving prio up");
+      moveUpInPriortyList(id);
+    } else {
+      console.log("Moving prio down");
+      moveDownInPriortyList(id);
+    }
   }
 
   const moveUpInPriortyList = (id: string) => {
@@ -298,6 +299,7 @@ const Nxtwatch = () => {
         onDialogOpen={() => setDialogOpen(true)}
         viewMode={viewMode}
       />
+      <CommentsArea />
       <NxtwatchModal
         open={dialogOpen}
         onClose={handleDialogClose}
