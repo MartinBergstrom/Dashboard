@@ -15,6 +15,7 @@ const CommentsArea = () => {
     const [width, setWidth] = useState(DEFAULT_WIDTH);
     const [opacity, setOpacity] = useState(DEFAULT_OPACITY);
     const [currentText, setCurrentText] = useState<string>("");
+    const [scrollPosition, setScrollPosition] = useState(0);
     const textareaRef = useRef<HTMLDivElement>(null)
     const targetRef = useRef<HTMLDivElement>(null);
 
@@ -41,7 +42,10 @@ const CommentsArea = () => {
 
     useEffect(() => {
         if (rows === EXPANDED_ROWS && width === EXPANDED_WIDTH) {
+            setScrollPosition(window.scrollY);
             targetRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            window.scrollTo(0, scrollPosition);
         }
     }, [rows, width]);
 
