@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import "sportsCalendar.css";
+import "./sportsCalendar.css";
 
 const SportsCalendar = () => {
     const navigate = useNavigate();
@@ -31,12 +31,12 @@ const SportsCalendar = () => {
 
         while (day <= endDate) {
             for (let i = 0; i < 7; i++) {
-                days.push(<div className="sports-calendar-cell" key={day.toDateString()}>
+                days.push(<div className="col cell" key={day.toDateString()}>
                     <span>{day.toDateString()}</span>
                 </div>)
                 day.setDate(day.getDate() + 1);
             }
-            rows.push(<div className="sports-calendar-row" key={day.toDateString()}>
+            rows.push(<div className="row" key={day.toDateString()}>
                 {days}
             </div>)
             days = [];
@@ -58,10 +58,12 @@ const SportsCalendar = () => {
             >
                 <KeyboardBackspaceIcon />
             </IconButton>
-            <div>
+            <div className="calendar-wrapper">
+            <div className="sports-calendar">
                 <div>Header</div>
                 <div>Days</div>
                 {renderCells()}
+            </div>
             </div>
         </>
     );
