@@ -8,6 +8,7 @@ import { useQuery } from "react-query";
 import { UrlCardData } from "../links/UrlCardData";
 import NxtwatchCard from "../apps/nxtwatch/NxtwatchCard";
 import Header from "../header/Header";
+import SportsCalendarCard from "../apps/sportsCalendar/SportsCalendarCard";
 
 interface CardData {
   id: number;
@@ -44,6 +45,11 @@ const Dashboard = () => {
       title: "Klockor",
       component: NxtwatchCard,
     },
+    {
+      id: 2,
+      title: "Sports Calendar",
+      component: SportsCalendarCard
+    }
   ];
 
   const filterCards = (cardArray: CardData[]) => {

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import api, { setTokenInHeader } from "./components/api/api";
 import { postRefreshToken } from "./components/api/LoginService";
 import { CircularProgress } from "@mui/material";
+import SportsCalendar from "./components/apps/sportsCalendar/sportsCalendar";
 
 const darkTheme = createTheme({
   palette: {
@@ -83,6 +84,10 @@ function App() {
       path: "nxtwatch",
       element: isLoggedIn ? <Nxtwatch /> : <Login onLoginSuccess={onLoginSuccess} />,
     },
+    {
+      path: "sportscalendar",
+      element: isLoggedIn ? <SportsCalendar /> : <Login onLoginSuccess={onLoginSuccess} />,
+    }
   ]);
 
   return (
