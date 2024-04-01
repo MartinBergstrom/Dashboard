@@ -76,8 +76,8 @@ const SportsCalendar = () => {
 
         while (day <= endDate) {
             for (let i = 0; i < 7; i++) {
-                days.push(<div className="col cell" key={day.toDateString()}>
-                    <span>{day.toDateString()}</span>
+                days.push(<div className={"col cell " + classNamesCell(day)} key={day.toDateString()}>
+                    <span>{day.getDate()}</span>
                 </div>)
                 day.setDate(day.getDate() + 1);
             }
@@ -88,6 +88,25 @@ const SportsCalendar = () => {
         }
 
         return <div className="body">{rows}</div>
+    }
+
+    const classNamesCell = (date: Date) => {
+        if (date.getMonth() !== currentMonth.getMonth()) {
+            return "greyed";
+        }
+        return "";
+    }
+
+    const renderDays = () => {
+        return (<div className="row">
+            <div className="col">Monday</div>
+            <div className="col">Tuesday</div>
+            <div className="col">Wednesday</div>
+            <div className="col">Thursday</div>
+            <div className="col">Friday</div>
+            <div className="col">Saturday</div>
+            <div className="col">Sunday</div>
+        </div>)
     }
 
     return (
@@ -110,15 +129,15 @@ const SportsCalendar = () => {
                         onClick={() => setPrevMonth()}
                     >
                         <KeyboardArrowLeftIcon />
-                    </IconButton>{monthNames[currentMonth.getMonth()]}
-                    <IconButton
-                        color="primary"
-                        onClick={() => setNextMonth()}
-                    >
-                        <KeyboardArrowRightIcon />
-                    </IconButton>
+                    </IconButton>{monthNames[currentMonth.getMonth()]}  {currentMonth.getFullYear()}
+                        <IconButton
+                            color="primary"
+                            onClick={() => setNextMonth()}
+                        >
+                            <KeyboardArrowRightIcon />
+                        </IconButton>
                     </div>
-                    <div>Days</div>
+                    {renderDays()}
                     {renderCells()}
                 </div>
             </div>

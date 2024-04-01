@@ -5,7 +5,7 @@
 
 .sports-calendar {
     margin-top: 6rem;
-    max-width: 80%;
+    width: 70%;
     display: block;
 }
 
@@ -23,10 +23,19 @@
 }
 
 .sports-calendar .cell{
-    height: 5rem;
+    font-weight: bold;
+    text-align: left;
+    height: 6rem;
+    width: 100%;
     background-color: rgb(42, 45, 46);
     border: 1px solid rgb(99, 99, 99);
 }
+
+.sports-calendar .cell.greyed{
+    font-weight: normal;
+    background-color: rgb(53, 57, 58);
+}
+
 
 .sports-calendar .col {
     flex-grow: 0;
