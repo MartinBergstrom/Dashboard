@@ -66,6 +66,12 @@ const SportsCalendar = () => {
         setCurentMonth(getNextMonth(currentMonth));
     }
 
+    const getWeekNumber = (date: Date) => {
+        var dt: Date = new Date(date.getFullYear(), 0, 1);
+        let diff: number = date.getTime() - dt.getTime();
+        return Math.ceil((((diff) / 86400000) + dt.getDay() + 1) / 7);
+    }
+
     const renderCells = () => {
         const startDate = getStartDate();
         const endDate = getEndDate();
@@ -75,6 +81,10 @@ const SportsCalendar = () => {
         let days = [];
 
         while (day <= endDate) {
+            const weekNbr = getWeekNumber(day);
+            days.push(<div className="col cell week" key={weekNbr}>
+                <span>{weekNbr}</span>
+            </div>)
             for (let i = 0; i < 7; i++) {
                 days.push(<div className={"col cell " + classNamesCell(day)} key={day.toDateString()}>
                     <span>{day.getDate()}</span>
@@ -99,6 +109,7 @@ const SportsCalendar = () => {
 
     const renderDays = () => {
         return (<div className="row">
+            <div className="col">w</div>
             <div className="col">Monday</div>
             <div className="col">Tuesday</div>
             <div className="col">Wednesday</div>
