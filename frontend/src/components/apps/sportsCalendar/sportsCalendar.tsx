@@ -1,24 +1,69 @@
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import "./sportsCalendar.css";
+import { useState } from "react";
+
+
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
 
 const SportsCalendar = () => {
+    const [currentMonth, setCurentMonth] = useState<Date>(new Date());
     const navigate = useNavigate();
 
     const getStartDate = () => {
-        // get the start date by using current date
-        // then get start of month
-        // setDate(1) ?
-        // if that is not on monday, get previous month and get at monday
-        return new Date();
+        let date = new Date(currentMonth);
+        date.setDate(1);
+        let dayNbr = date.getDay()
+        if (dayNbr === 1) {
+            // it's monday
+            return date;
+        } else {
+            date.setDate(0);
+            while (dayNbr !== 1) {
+                const modifiedDate = new Date(date);
+                modifiedDate.setDate(date.getDate() - 1);
+                date = modifiedDate;
+                dayNbr = date.getDay();
+            }
+            return date;
+        }
     }
 
     const getEndDate = () => {
-        // Get end of month, check if sunday
-        const current = new Date();
-        current.setDate(current.getDate() + 10);
-        return current;
+        // Get end of this month
+        let date = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0);
+        let dayNbr = date.getDay();
+        if (dayNbr === 0) {
+            return date;
+        }
+        date = getNextMonth(date);
+        dayNbr = date.getDay();
+        while (dayNbr !== 0) {
+            date.setDate(date.getDate() + 1);
+            dayNbr = date.getDay();
+        }
+        return date;
+    }
+
+    const getNextMonth = (date: Date) => {
+        const nextYear = date.getMonth() === 11 ? date.getFullYear() + 1 : date.getFullYear();
+        const nextMonth = date.getMonth() === 11 ? 0 : date.getMonth() + 1;
+        return new Date(nextYear, nextMonth, 1);
+    }
+
+    const setPrevMonth = () => {
+        const date = new Date(currentMonth);
+        date.setMonth(date.getMonth() - 1);
+        setCurentMonth(date);
+    }
+
+    const setNextMonth = () => {
+        setCurentMonth(getNextMonth(currentMonth));
     }
 
     const renderCells = () => {
@@ -59,11 +104,23 @@ const SportsCalendar = () => {
                 <KeyboardBackspaceIcon />
             </IconButton>
             <div className="calendar-wrapper">
-            <div className="sports-calendar">
-                <div>Header</div>
-                <div>Days</div>
-                {renderCells()}
-            </div>
+                <div className="sports-calendar">
+                    <div> <IconButton
+                        color="primary"
+                        onClick={() => setPrevMonth()}
+                    >
+                        <KeyboardArrowLeftIcon />
+                    </IconButton>{monthNames[currentMonth.getMonth()]}
+                    <IconButton
+                        color="primary"
+                        onClick={() => setNextMonth()}
+                    >
+                        <KeyboardArrowRightIcon />
+                    </IconButton>
+                    </div>
+                    <div>Days</div>
+                    {renderCells()}
+                </div>
             </div>
         </>
     );
