@@ -1,0 +1,25 @@
+[
+    {
+        "_id": "testID_A",
+        "name": "French Open",
+        "pre_start_date": "2024-05-20",
+        "start_date": "2024-05-26",
+        "end_date": "2024-06-09",
+        "category": "tennis",
+        "channels": [
+            "eurosport",
+            "tv4"
+        ]
+    },
+    {
+        "_id": "testID_B",
+        "name": "East vs West 12",
+        "description": "Devon Larrat vs Levan Saginashvili",
+        "start_date": "2024-04-20",
+        "end_date": "2024-04-20",
+        "category": "armwrestling",
+        "channels": [
+            "coresports_ppv"
+        ]
+    }
+]
