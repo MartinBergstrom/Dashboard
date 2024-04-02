@@ -101,10 +101,21 @@ const SportsCalendar = () => {
     }
 
     const classNamesCell = (date: Date) => {
+        if (isCurrentDate(date)) {
+            return "today";
+        }
         if (date.getMonth() !== currentMonth.getMonth()) {
             return "greyed";
         }
         return "";
+    }
+
+    const isCurrentDate = (date: Date) => {
+        const current = new Date();
+        current.setHours(0, 0, 0, 0);
+        const dateCopy = new Date(date);
+        dateCopy.setHours(0,0,0,0);
+        return current.valueOf() === dateCopy.valueOf();
     }
 
     const renderDays = () => {
