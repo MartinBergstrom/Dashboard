@@ -1,0 +1,55 @@
+.sports-calendar .cell {
+  height: 5rem;
+}
+
+.sports-calendar .cell {
+  position: relative;
+  font-weight: bold;
+  text-align: right;
+  height: 6rem;
+  width: 100%;
+  background-color: rgb(42, 46, 42);
+  border: 1px solid rgb(99, 99, 99);
+}
+
+.sports-calendar .cell .date-text {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.sports-calendar .cell .event-bars {
+  font-weight: normal;
+  font-size: 0.7rem;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 8px);
+}
+
+.sports-calendar .cell .event-bar {
+  margin: 4px 4px 2px 4px;
+  height: 1rem;
+}
+
+.sports-calendar .cell .event-bar:first-child {
+  background-color: black;
+}
+
+.sports-calendar .cell .event-bar:nth-child(2) {
+  background-color: rgb(10, 56, 4);
+}
+
+.sports-calendar .cell .event-bar:nth-child(3) {
+  background-color: rgb(122, 71, 5);
+}
+
+.sports-calendar .cell.greyed {
+  font-weight: normal;
+  background-color: rgb(53, 57, 58);
+}
+
+.sports-calendar .cell.today {
+  border: 1px solid white;
+}

@@ -109,7 +109,7 @@ const SportsCalendar = () => {
     while (day <= endDate) {
       const weekNbr = getWeekNumber(day);
       days.push(
-        <div className="col cell week" key={weekNbr}>
+        <div className="col week" key={weekNbr}>
           <span>{weekNbr}</span>
         </div>
       );
@@ -136,7 +136,7 @@ const SportsCalendar = () => {
   };
 
   if (isLoading) {
-    return (<>Loading</>)
+    return <>Loading</>;
   }
 
   const renderDays = () => {

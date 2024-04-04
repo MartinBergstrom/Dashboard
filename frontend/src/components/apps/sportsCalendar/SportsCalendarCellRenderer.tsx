@@ -1,5 +1,6 @@
 import { SportsCalendarEvents } from "./model/SportsCalendarModels";
 import "./SportsCalendar.css";
+import "./SportsCalendarCellRenderer.css";
 
 interface SportsCalendarCellRendererProps {
   day: Date;
@@ -8,7 +9,6 @@ interface SportsCalendarCellRendererProps {
 }
 
 const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
-
   const isCurrentDate = (date: Date) => {
     const current = new Date();
     current.setHours(0, 0, 0, 0);
@@ -33,7 +33,17 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
         className={"col cell " + classNamesCell(props.day)}
         key={props.day.toDateString()}
       >
-        <span>{props.day.getDate()}</span>
+        <div className="date-text">
+          <span>{props.day.getDate()}</span>
+        </div>
+        {/**
+         * TODO: Take color for each matching event and apply that instead of positional coloring
+         */}
+        <div className="event-bars">
+          <div className="event-bar">event1</div>
+          <div className="event-bar">event2</div>
+          <div className="event-bar">event3</div>
+        </div>
       </div>
     </>
   );

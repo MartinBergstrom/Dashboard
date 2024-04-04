@@ -9,10 +9,6 @@
   display: block;
 }
 
-.sports-calendar .cell {
-  height: 5rem;
-}
-
 .row {
   margin: 0;
   padding: 0;
@@ -22,34 +18,18 @@
   width: 100%;
 }
 
-.sports-calendar .cell {
-  font-weight: bold;
-  text-align: right;
-  height: 6rem;
-  width: 100%;
-  background-color: rgb(42, 46, 42);
-  border: 1px solid rgb(99, 99, 99);
-}
-
-.sports-calendar .cell.greyed {
-  font-weight: normal;
-  background-color: rgb(53, 57, 58);
-}
-
-.sports-calendar .cell.today {
-  border: 1px solid white;
-}
-
 .sports-calendar .row .col:first-child {
   background-color: rgb(47, 75, 82);
   font-weight: normal;
 }
 
-.sports-calendar .row .col.cell:first-child {
+.sports-calendar .row .col.week:first-child {
   background-color: rgb(47, 75, 82);
   font-weight: normal;
   text-align: left;
   line-height: 6rem;
+  height: 6rem;
+  border: 1px solid rgb(99, 99, 99);
 }
 
 .sports-calendar .col {
