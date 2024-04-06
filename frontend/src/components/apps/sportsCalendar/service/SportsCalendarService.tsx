@@ -1,21 +1,26 @@
 import axios from "axios";
 import mockEntries from "./../mockData.json";
-import { SportsCalendarEvents } from "../model/SportsCalendarModels";
+import { SportsCalendarEvent } from "../model/SportsCalendarModels";
 
 const BASE_URL = "http://localhost:5000";
 
-const mockEntriesObj = mockEntries as SportsCalendarEvents[];
-
 export const getAllEvents = async () => {
-  return new Promise<SportsCalendarEvents[]>((resolve) => {
+  return new Promise<SportsCalendarEvent[]>((resolve) => {
     // Simulate a 5-second delay
     setTimeout(() => {
-      resolve(mockEntriesObj);
+      const converted = mockEntries.map((event) => ({
+        ...event,
+        pre_start_date: event.pre_start_date
+          ? new Date(event.pre_start_date)
+          : undefined,
+        start_date: new Date(event.start_date),
+        end_date: new Date(event.end_date),
+      }));
+      resolve(converted);
     }, 2000);
   });
-  
-  return mockEntriesObj;
+
+  return mockEntries;
   //const response = await axios.get(BASE_URL + "/sportsCalendar/events");
   //return response.data;
 };
-

@@ -5,10 +5,10 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "./SportsCalendar.css";
 import { useState } from "react";
-import SportsCalendarCellRenderer from "./SportsCalendarCellRenderer";
+import SportsCalendarCellRenderer from "./cell/SportsCalendarCellRenderer";
 import { useQuery, useQueryClient } from "react-query";
 import { getAllEvents } from "./service/SportsCalendarService";
-import { SportsCalendarEvents } from "./model/SportsCalendarModels";
+import { SportsCalendarEvent } from "./model/SportsCalendarModels";
 
 const monthNames = [
   "January",
@@ -31,7 +31,7 @@ const SportsCalendar = () => {
 
   const queryClient = useQueryClient();
 
-  const { data: fetchedEvents, isLoading } = useQuery<SportsCalendarEvents[]>(
+  const { data: fetchedEvents, isLoading } = useQuery<SportsCalendarEvent[]>(
     "allEvents",
     getAllEvents
   );

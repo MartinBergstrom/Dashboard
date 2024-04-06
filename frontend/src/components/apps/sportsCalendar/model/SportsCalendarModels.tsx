@@ -1,9 +1,11 @@
-export interface SportsCalendarEvents {
+export interface SportsCalendarEvent {
     _id: string;
     name: string;
     description: string;
-    start_date: string;
-    end_date: string;
+    pre_start_date?: Date;
+    start_date: Date;
+    end_date: Date;
     category: string;
     channels: string[];
+    banner_color?: string;
 }

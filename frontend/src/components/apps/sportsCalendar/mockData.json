@@ -2,6 +2,7 @@
   {
     "_id": "testID_A",
     "name": "French Open",
+    "description": "French open",
     "pre_start_date": "2024-05-20",
     "start_date": "2024-05-26",
     "end_date": "2024-06-09",
@@ -16,5 +17,25 @@
     "end_date": "2024-04-20",
     "category": "armwrestling",
     "channels": ["coresports_ppv"]
+  },
+  {
+    "_id": "testID_C",
+    "name": "Test event 1",
+    "description": "test1",
+    "pre_start_date": "2024-05-20",
+    "start_date": "2024-04-02",
+    "end_date": "2024-04-13",
+    "category": "tennis",
+    "channels": ["eurosport", "tv4"]
+  },
+  {
+    "_id": "testID_D",
+    "name": "Test event 2",
+    "description": "test2",
+    "pre_start_date": "2024-03-28",
+    "start_date": "2024-04-04",
+    "end_date": "2024-04-07",
+    "category": "tennis",
+    "channels": ["eurosport"]
   }
 ]
