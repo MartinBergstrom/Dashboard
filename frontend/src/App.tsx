@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import api, { setTokenInHeader } from "./components/api/api";
 import { postRefreshToken } from "./components/api/LoginService";
 import { CircularProgress } from "@mui/material";
-import SportsCalendar from "./components/apps/sportsCalendar/sportsCalendar";
+import SportsCalendarMain from "./components/apps/sportsCalendar/SportsCalendarMain";
 
 const darkTheme = createTheme({
   palette: {
@@ -86,7 +86,7 @@ function App() {
     },
     {
       path: "sportscalendar",
-      element: isLoggedIn ? <SportsCalendar /> : <Login onLoginSuccess={onLoginSuccess} />,
+      element: isLoggedIn ? <SportsCalendarMain /> : <Login onLoginSuccess={onLoginSuccess} />,
     }
   ]);
 

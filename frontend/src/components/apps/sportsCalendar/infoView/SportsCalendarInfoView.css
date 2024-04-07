@@ -1,0 +1,31 @@
+.wrapper {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.info-view {
+  color: rgb(255, 255, 255);
+}
+
+.info-view .title-bar {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.title-value {
+  margin-left: 1rem;
+}
+
+.info-view-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.key {
+  color: rgb(119, 119, 119);
+  justify-self: end;
+  margin-right: 1rem;
+}
+.value {
+  justify-self: start;
+}

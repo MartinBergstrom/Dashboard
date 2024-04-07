@@ -29,6 +29,7 @@
 }
 
 .sports-calendar .cell .event-bar {
+  cursor: pointer;
   margin: 4px 4px 2px 4px;
   height: 1rem;
 }

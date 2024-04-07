@@ -5,6 +5,7 @@ interface SportsCalendarCellRendererProps {
   day: Date;
   currentMonth: Date;
   events: SportsCalendarEvent[] | undefined;
+  onClick: (event: SportsCalendarEvent) => void;
 }
 
 const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
@@ -47,11 +48,19 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
     return [];
   };
 
+  const onEventClick = (event: SportsCalendarEvent) => {
+    props.onClick(event);
+  };
+
   const renderEvents = () => {
     return (
       <div className="event-bars">
         {getMatchingEvents().map((item) => (
-          <div className="event-bar" key={item._id}>
+          <div
+            className="event-bar"
+            key={item._id}
+            onClick={() => onEventClick(item)}
+          >
             {item.name}
           </div>
         ))}

@@ -5,10 +5,10 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import "./SportsCalendar.css";
 import { useState } from "react";
-import SportsCalendarCellRenderer from "./cell/SportsCalendarCellRenderer";
+import SportsCalendarCellRenderer from "../cell/SportsCalendarCellRenderer";
 import { useQuery, useQueryClient } from "react-query";
-import { getAllEvents } from "./service/SportsCalendarService";
-import { SportsCalendarEvent } from "./model/SportsCalendarModels";
+import { getAllEvents } from "../service/SportsCalendarService";
+import { SportsCalendarEvent } from "../model/SportsCalendarModels";
 
 const monthNames = [
   "January",
@@ -25,7 +25,11 @@ const monthNames = [
   "December",
 ];
 
-const SportsCalendar = () => {
+interface SportsCalendarProps {
+  onEventClick: (event: SportsCalendarEvent) => void;
+}
+
+const SportsCalendar = (props: SportsCalendarProps) => {
   const [currentMonth, setCurentMonth] = useState<Date>(new Date());
   const navigate = useNavigate();
 
@@ -116,6 +120,7 @@ const SportsCalendar = () => {
       for (let i = 0; i < 7; i++) {
         days.push(
           <SportsCalendarCellRenderer
+            onClick={props.onEventClick}
             currentMonth={currentMonth}
             day={new Date(day)}
             events={fetchedEvents}
