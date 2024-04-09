@@ -1,3 +1,4 @@
+import React from "react";
 import { SportsCalendarEvent } from "../model/SportsCalendarModels";
 import "./SportsCalendarInfoView.css";
 
@@ -6,6 +7,37 @@ interface SportsCalendarInfoViewProps {
 }
 
 const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
+  if (!props.selectedEvent) {
+    return null;
+  }
+
+  const formatText = (text: string) => {
+    const replaced = text.replace(/_/g, " ");
+    return replaced.charAt(0).toUpperCase() + replaced.slice(1);
+  };
+
+  const renderProps = () => {
+    if (props.selectedEvent) {
+      const filteredEntries = Object.entries(props.selectedEvent).filter(
+        ([key, value]) => key !== "_id" && value !== undefined
+      );
+      return (
+        <div className="info-view-main">
+          {filteredEntries.map(([key, value]) => (
+            <React.Fragment key={key}>
+              <div className="key" key={key}>
+                {formatText(key)}
+              </div>
+              <div className="value" key={`${key}-value`}>
+                {value instanceof Date ? value.toDateString() : value}
+              </div>
+            </React.Fragment>
+          ))}
+        </div>
+      );
+    }
+  };
+
   return (
     <>
       <div className="wrapper">
@@ -13,18 +45,7 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
           <div className="key-value title-bar">
             <span className="title-value">{props.selectedEvent?.name}</span>
           </div>
-          <div className="info-view-main">
-            <div className="key">Description</div>
-            <div className="value">{props.selectedEvent?.description}</div>
-            <div className="key">Start day</div>
-            <div className="value">
-              {props.selectedEvent?.start_date.toDateString()}
-            </div>
-            <div className="key">End day</div>
-            <div className="value">
-              {props.selectedEvent?.start_date.toDateString()}
-            </div>
-          </div>
+          {renderProps()}
         </div>
       </div>
     </>
