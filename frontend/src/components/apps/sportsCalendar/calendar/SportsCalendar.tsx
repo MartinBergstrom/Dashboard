@@ -9,6 +9,7 @@ import SportsCalendarCellRenderer from "../cell/SportsCalendarCellRenderer";
 import { useQuery, useQueryClient } from "react-query";
 import { getAllEvents } from "../service/SportsCalendarService";
 import { SportsCalendarEvent } from "../model/SportsCalendarModels";
+import SportsCalendarTimelineOverview from "../timelineOverview/SportsCalendarTimelineOverview";
 
 const monthNames = [
   "January",
@@ -173,6 +174,9 @@ const SportsCalendar = (props: SportsCalendarProps) => {
         <KeyboardBackspaceIcon />
       </IconButton>
       <div className="calendar-wrapper">
+        <div className="event-timeline-overview-wrapper">
+          <SportsCalendarTimelineOverview />
+        </div>
         <div className="sports-calendar">
           <div>
             {" "}
