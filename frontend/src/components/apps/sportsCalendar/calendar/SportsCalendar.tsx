@@ -179,7 +179,6 @@ const SportsCalendar = (props: SportsCalendarProps) => {
         </div>
         <div className="sports-calendar">
           <div>
-            {" "}
             <IconButton color="primary" onClick={() => setPrevMonth()}>
               <KeyboardArrowLeftIcon />
             </IconButton>

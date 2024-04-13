@@ -1,19 +1,20 @@
 .calendar-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
+  margin-right: 3rem;
+  margin-left: 2rem;
 }
 
 .sports-calendar {
   margin-left: 1rem;
-  margin-right: 2rem;
   width: 100%;
   display: block;
 }
 
 .event-timeline-overview-wrapper {
   width: 50%;
-  margin-left: 1rem;
+  margin-top: 2rem;
 }
 
 .row {

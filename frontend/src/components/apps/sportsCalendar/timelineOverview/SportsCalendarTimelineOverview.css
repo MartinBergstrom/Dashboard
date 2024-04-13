@@ -1,5 +1,14 @@
 .event-timeline-overview {
-  background-color: blue;
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-timeline-overview .all-events {
+  height: 100%;
+}
+
+.event-timeline-overview .all-events fieldset {
+  height: 100%;
 }
