@@ -7,5 +7,5 @@ export interface SportsCalendarEvent {
     end_date: Date;
     category: string;
     channels: string[];
-    banner_color?: string;
+    banner_color: string;
 }

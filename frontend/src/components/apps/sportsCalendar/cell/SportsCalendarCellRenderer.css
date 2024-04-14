@@ -25,25 +25,31 @@
   text-align: center;
   bottom: 0;
   left: 0;
-  width: calc(100% - 8px);
+  width: 100%;
+  z-index: 5;
+}
+
+.sports-calendar .cell .event-bars .container{
+  width: 100%;
+  padding: 1% 2%;
 }
 
 .sports-calendar .cell .event-bar {
   cursor: pointer;
-  margin: 4px 4px 2px 4px;
   height: 1rem;
 }
 
-.sports-calendar .cell .event-bar:first-child {
-  background-color: black;
+.sports-calendar .cell .container.startpiece {
+  padding-right: 0%;
 }
 
-.sports-calendar .cell .event-bar:nth-child(2) {
-  background-color: rgb(10, 56, 4);
+.sports-calendar .cell .container.middlepiece {
+  padding-left: 0%;
+  padding-right: 0%;
 }
 
-.sports-calendar .cell .event-bar:nth-child(3) {
-  background-color: rgb(122, 71, 5);
+.sports-calendar .cell .container.endpiece {
+  padding-left: 0%;
 }
 
 .sports-calendar .cell.greyed {

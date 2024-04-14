@@ -7,7 +7,8 @@
     "start_date": "2024-05-26",
     "end_date": "2024-06-09",
     "category": "tennis",
-    "channels": ["eurosport", "tv4"]
+    "channels": ["eurosport", "tv4"],
+    "banner_color": "#82970c"
   },
   {
     "_id": "testID_B",
@@ -17,7 +18,8 @@
     "start_date": "2024-04-20",
     "end_date": "2024-04-20",
     "category": "armwrestling",
-    "channels": ["coresports_ppv"]
+    "channels": ["coresports_ppv"],
+    "banner_color": "#7c3309"
   },
   {
     "_id": "testID_C",
@@ -27,7 +29,8 @@
     "start_date": "2024-04-02",
     "end_date": "2024-04-13",
     "category": "tennis",
-    "channels": ["eurosport", "tv4"]
+    "channels": ["eurosport", "tv4"],
+    "banner_color": "#097c13"
   },
   {
     "_id": "testID_D",
@@ -37,6 +40,7 @@
     "start_date": "2024-04-04",
     "end_date": "2024-04-07",
     "category": "tennis",
-    "channels": ["eurosport"]
+    "channels": ["eurosport"],
+    "banner_color": "#747c09"
   }
 ]

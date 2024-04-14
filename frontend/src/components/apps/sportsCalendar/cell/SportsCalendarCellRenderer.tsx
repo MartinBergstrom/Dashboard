@@ -52,18 +52,54 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
     props.onClick(event);
   };
 
+  const normalizeDate = (indate: Date) => {
+    const date = new Date(indate);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  };
+
+  const styleEventBar = (event: SportsCalendarEvent) => {
+    if (
+      normalizeDate(event.start_date).valueOf() ==
+      normalizeDate(event.end_date).valueOf()
+    ) {
+      return "";
+    }
+    if (
+      normalizeDate(event.start_date).valueOf() ==
+      normalizeDate(props.day).valueOf()
+    ) {
+      return "startpiece";
+    }
+    if (
+      normalizeDate(event.end_date).valueOf() ==
+      normalizeDate(props.day).valueOf()
+    ) {
+      return "endpiece";
+    }
+    return "middlepiece";
+  };
+
   const renderEvents = () => {
     return (
       <div className="event-bars">
-        {getMatchingEvents().map((item) => (
-          <div
-            className="event-bar"
-            key={item._id}
-            onClick={() => onEventClick(item)}
-          >
-            {item.name}
-          </div>
-        ))}
+        {getMatchingEvents()
+          .slice(0)
+          .reverse()
+          .map((item) => (
+            <div className={"container " + styleEventBar(item)}>
+              <div
+                style={{
+                  backgroundColor: item.banner_color,
+                }}
+                className="event-bar"
+                key={item._id}
+                onClick={() => onEventClick(item)}
+              >
+                {item.name}
+              </div>
+            </div>
+          ))}
       </div>
     );
   };
