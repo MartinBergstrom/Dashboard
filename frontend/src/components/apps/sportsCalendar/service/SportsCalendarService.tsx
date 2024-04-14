@@ -4,11 +4,11 @@ import { SportsCalendarEvent } from "../model/SportsCalendarModels";
 
 const BASE_URL = "http://localhost:5000";
 
-export const getAllEvents = async () => {
+export const getAllEvents = async (): Promise<SportsCalendarEvent[]> => {
   return new Promise<SportsCalendarEvent[]>((resolve) => {
     // Simulate a 5-second delay
     setTimeout(() => {
-      const converted = mockEntries.map((event) => ({
+      const converted: SportsCalendarEvent[] = mockEntries.map((event) => ({
         ...event,
         pre_start_date: event.pre_start_date
           ? new Date(event.pre_start_date)
@@ -20,7 +20,7 @@ export const getAllEvents = async () => {
     }, 2000);
   });
 
-  return mockEntries;
+  //return mockEntries;
   //const response = await axios.get(BASE_URL + "/sportsCalendar/events");
   //return response.data;
 };

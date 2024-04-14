@@ -13,6 +13,7 @@
     "_id": "testID_B",
     "name": "East vs West 12",
     "description": "Devon Larrat vs Levan Saginashvili",
+    "pre_start_date": "2024-05-20",
     "start_date": "2024-04-20",
     "end_date": "2024-04-20",
     "category": "armwrestling",
