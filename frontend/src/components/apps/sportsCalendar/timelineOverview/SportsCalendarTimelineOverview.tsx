@@ -3,7 +3,7 @@ import { isDateInRange } from "../utils/DateUtils";
 import "./SportsCalendarTimelineOverview.css";
 
 interface SportsCalendarTimelineOverviewProps {
-  allEvents?: SportsCalendarEvent[];
+  allEvents: SportsCalendarEvent[];
 }
 
 const SportsCalendarTimelineOverview = (

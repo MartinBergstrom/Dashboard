@@ -27,7 +27,7 @@
     "description": "test1",
     "pre_start_date": "2024-05-20",
     "start_date": "2024-04-02",
-    "end_date": "2024-04-13",
+    "end_date": "2024-04-17",
     "category": "tennis",
     "channels": ["eurosport", "tv4"],
     "banner_color": "#097c13"

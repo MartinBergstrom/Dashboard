@@ -160,6 +160,20 @@ const SportsCalendar = (props: SportsCalendarProps) => {
     );
   };
 
+  const renderTimeLineOverview = () => {
+    if (isLoading) {
+      return <div>Loading overview</div>;
+    }
+    if (!fetchedEvents) {
+      return <div>No events found</div>;
+    }
+    return (
+      <div className="event-timeline-overview-wrapper">
+        <SportsCalendarTimelineOverview allEvents={fetchedEvents} />
+      </div>
+    );
+  };
+
   return (
     <>
       <IconButton
@@ -174,9 +188,7 @@ const SportsCalendar = (props: SportsCalendarProps) => {
         <KeyboardBackspaceIcon />
       </IconButton>
       <div className="calendar-wrapper">
-        <div className="event-timeline-overview-wrapper">
-          <SportsCalendarTimelineOverview />
-        </div>
+        {renderTimeLineOverview()}
         <div className="sports-calendar">
           <div>
             <IconButton color="primary" onClick={() => setPrevMonth()}>
