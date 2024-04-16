@@ -1,5 +1,9 @@
 import { SportsCalendarEvent } from "../model/SportsCalendarModels";
-import { normalizeDate, isCurrentDate, isDateInRange } from "../utils/DateUtils";
+import {
+  normalizeDate,
+  isCurrentDate,
+  isDateInRange,
+} from "../utils/DateUtils";
 import "./SportsCalendarCellRenderer.css";
 
 interface SportsCalendarCellRendererProps {
@@ -10,7 +14,6 @@ interface SportsCalendarCellRendererProps {
 }
 
 const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
-
   const classNamesCell = (date: Date) => {
     if (isCurrentDate(date)) {
       return "today";
@@ -20,7 +23,6 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
     }
     return "";
   };
-
 
   const getMatchingEvents = () => {
     if (props.events) {
@@ -58,12 +60,32 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
     return "middlepiece";
   };
 
+  // Sort by event length, i.e. longest event will be last
+  const sortEvents = (events: SportsCalendarEvent[]) => {
+    if (props.events) {
+      const arrCopy = [...events];
+      arrCopy.sort((a, b) => {
+        const oneDay = 24 * 60 * 60 * 1000;
+        const daysA =
+          Math.round(
+            Math.abs((a.end_date.valueOf() - a.start_date.valueOf()) / oneDay)
+          ) + 1;
+        const daysB =
+          Math.round(
+            Math.abs((b.end_date.valueOf() - b.start_date.valueOf()) / oneDay)
+          ) + 1;
+        return daysA - daysB;
+      });
+      return arrCopy;
+    }
+    return [];
+  };
+
   const renderEvents = () => {
     return (
       <div className="event-bars">
-        {getMatchingEvents()
+        {sortEvents(getMatchingEvents())
           .slice(0)
-          .reverse()
           .map((item) => (
             <div className={"container " + styleEventBar(item)} key={item._id}>
               <div
@@ -101,4 +123,3 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
 };
 
 export default SportsCalendarCellRenderer;
-

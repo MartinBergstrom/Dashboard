@@ -5,10 +5,23 @@
   flex-direction: column;
 }
 
+.event-timeline-overview fieldset {
+  color: rgb(204, 204, 204);
+  border-color: rgb(204, 204, 204);
+}
+
+.event-timeline-overview fieldset div {
+  color: white;
+}
+
 .event-timeline-overview .all-events {
   height: 100%;
 }
 
 .event-timeline-overview .all-events fieldset {
   height: 100%;
+}
+
+.event-timeline-overview .todays-events .event-text {
+  cursor: pointer;
 }

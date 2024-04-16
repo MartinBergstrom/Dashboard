@@ -22,10 +22,20 @@
     "banner_color": "#7c3309"
   },
   {
+    "_id": "testID_E",
+    "name": "Rafa plays Barcelona",
+    "description": "Rafael Nadal vs Flavio Cobolli Barcelona R1",
+    "start_date": "2024-04-16",
+    "end_date": "2024-04-16",
+    "category": "tennis",
+    "channels": ["tennistv"],
+    "banner_color": "#86991e"
+  },
+  {
     "_id": "testID_C",
     "name": "Test event 1",
     "description": "test1",
-    "pre_start_date": "2024-05-20",
+    "pre_start_date": "2024-04-01",
     "start_date": "2024-04-02",
     "end_date": "2024-04-17",
     "category": "tennis",

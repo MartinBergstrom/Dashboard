@@ -4,6 +4,7 @@ import "./SportsCalendarTimelineOverview.css";
 
 interface SportsCalendarTimelineOverviewProps {
   allEvents: SportsCalendarEvent[];
+  onClick: (event: SportsCalendarEvent) => void;
 }
 
 const SportsCalendarTimelineOverview = (
@@ -29,7 +30,13 @@ const SportsCalendarTimelineOverview = (
           ) : (
             <>
               {todaysEvents.map((event) => (
-                <div>{event.name}</div>
+                <div
+                  className="event-text"
+                  onClick={() => props.onClick(event)}
+                  key={event._id}
+                >
+                  {event.name}
+                </div>
               ))}
             </>
           )}

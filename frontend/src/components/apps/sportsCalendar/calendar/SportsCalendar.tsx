@@ -169,7 +169,10 @@ const SportsCalendar = (props: SportsCalendarProps) => {
     }
     return (
       <div className="event-timeline-overview-wrapper">
-        <SportsCalendarTimelineOverview allEvents={fetchedEvents} />
+        <SportsCalendarTimelineOverview
+          allEvents={fetchedEvents}
+          onClick={props.onEventClick}
+        />
       </div>
     );
   };
