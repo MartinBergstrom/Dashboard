@@ -1,4 +1,5 @@
 import { SportsCalendarEvent } from "../model/SportsCalendarModels";
+import { isDateInRange } from "../utils/DateUtils";
 import "./SportsCalendarTimelineOverview.css";
 
 interface SportsCalendarTimelineOverviewProps {
@@ -13,13 +14,25 @@ const SportsCalendarTimelineOverview = (
   };
 
   const renderTodaysEvents = () => {
-    // Render seperate section for todays event
+    const todaysEvents: SportsCalendarEvent[] = props.allEvents
+      ? props.allEvents.filter((event) =>
+          isDateInRange(new Date(), event.start_date, event.end_date)
+        )
+      : [];
+
     return (
       <div className="todays-events">
         <fieldset>
           <legend> Todays events</legend>
-          <div>something</div>
-          <div>something2</div>
+          {todaysEvents.length === 0 ? (
+            <div>No events today</div>
+          ) : (
+            <>
+              {todaysEvents.map((event) => (
+                <div>{event.name}</div>
+              ))}
+            </>
+          )}
         </fieldset>
       </div>
     );

@@ -1,4 +1,5 @@
 import { SportsCalendarEvent } from "../model/SportsCalendarModels";
+import { normalizeDate, isCurrentDate, isDateInRange } from "../utils/DateUtils";
 import "./SportsCalendarCellRenderer.css";
 
 interface SportsCalendarCellRendererProps {
@@ -9,13 +10,6 @@ interface SportsCalendarCellRendererProps {
 }
 
 const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
-  const isCurrentDate = (date: Date) => {
-    const current = new Date();
-    current.setHours(0, 0, 0, 0);
-    const dateCopy = new Date(date);
-    dateCopy.setHours(0, 0, 0, 0);
-    return current.valueOf() === dateCopy.valueOf();
-  };
 
   const classNamesCell = (date: Date) => {
     if (isCurrentDate(date)) {
@@ -27,16 +21,6 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
     return "";
   };
 
-  const isDateInRange = (dateToCheck: Date, startDate: Date, endDate: Date) => {
-    const dateToCheckCopy = new Date(dateToCheck);
-    dateToCheckCopy.setHours(0, 0, 0, 0);
-    const startDateCopy = new Date(startDate);
-    startDateCopy.setHours(0, 0, 0, 0);
-    const endDateCopy = new Date(endDate);
-    endDateCopy.setHours(0, 0, 0, 0);
-
-    return dateToCheckCopy >= startDateCopy && dateToCheckCopy <= endDateCopy;
-  };
 
   const getMatchingEvents = () => {
     if (props.events) {
@@ -50,12 +34,6 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
 
   const onEventClick = (event: SportsCalendarEvent) => {
     props.onClick(event);
-  };
-
-  const normalizeDate = (indate: Date) => {
-    const date = new Date(indate);
-    date.setHours(0, 0, 0, 0);
-    return date;
   };
 
   const styleEventBar = (event: SportsCalendarEvent) => {
@@ -87,7 +65,7 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
           .slice(0)
           .reverse()
           .map((item) => (
-            <div className={"container " + styleEventBar(item)}>
+            <div className={"container " + styleEventBar(item)} key={item._id}>
               <div
                 style={{
                   backgroundColor: item.banner_color,
@@ -123,3 +101,4 @@ const SportsCalendarCellRenderer = (props: SportsCalendarCellRendererProps) => {
 };
 
 export default SportsCalendarCellRenderer;
+
