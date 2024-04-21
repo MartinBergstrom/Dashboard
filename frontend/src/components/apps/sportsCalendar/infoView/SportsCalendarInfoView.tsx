@@ -1,6 +1,8 @@
 import React from "react";
 import { SportsCalendarEvent } from "../model/SportsCalendarModels";
 import "./SportsCalendarInfoView.css";
+import { hasMapping, mapToUrl } from "./InfoViewUrlMapper";
+import { Link } from "react-router-dom";
 
 interface SportsCalendarInfoViewProps {
   selectedEvent?: SportsCalendarEvent;
@@ -16,6 +18,20 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
     return replaced.charAt(0).toUpperCase() + replaced.slice(1);
   };
 
+  const handleChannels = (channels: string[]) => {
+    console.log("CHANNELS");
+    console.log(channels);
+    return channels.map((channel) =>
+      hasMapping(channel) ? (
+        <Link to={mapToUrl(channel)} target="_blank">
+          {mapToUrl(channel)}
+        </Link>
+      ) : (
+        <div>{channel}</div>
+      )
+    );
+  };
+
   const renderProps = () => {
     if (props.selectedEvent) {
       const filteredEntries = Object.entries(props.selectedEvent).filter(
@@ -29,7 +45,11 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
                 {formatText(key)}
               </div>
               <div className="value" key={`${key}-value`}>
-                {value instanceof Date ? value.toDateString() : value}
+                {key === "channels"
+                  ? handleChannels(value)
+                  : value instanceof Date
+                  ? value.toDateString()
+                  : value}
               </div>
             </React.Fragment>
           ))}
