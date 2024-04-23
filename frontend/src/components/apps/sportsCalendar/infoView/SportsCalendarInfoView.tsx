@@ -3,6 +3,7 @@ import { SportsCalendarEvent } from "../model/SportsCalendarModels";
 import "./SportsCalendarInfoView.css";
 import { hasMapping, mapToUrl } from "./InfoViewUrlMapper";
 import { Link } from "react-router-dom";
+import { MuiColorInput } from "mui-color-input";
 
 interface SportsCalendarInfoViewProps {
   selectedEvent?: SportsCalendarEvent;
@@ -32,6 +33,37 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
     );
   };
 
+  const handleBannerColor = (value: string) => {
+    return (
+      <MuiColorInput
+        sx={{
+          "& .MuiOutlinedInput-input": {
+            margin: "0px",
+            padding: "0px"
+          },
+          "& .MuiOutlinedInput-notchedOutline": {
+            display: "none",
+          },
+        }}
+        size="small"
+        format="hex"
+        disabled
+        value={value}
+      />
+    );
+  };
+
+  const renderPropsValue = (key: string, value: any) => {
+    switch (key) {
+      case "channels":
+        return handleChannels(value);
+      case "banner_color":
+        return handleBannerColor(value);
+      default:
+        return value instanceof Date ? value.toDateString() : value;
+    }
+  };
+
   const renderProps = () => {
     if (props.selectedEvent) {
       const filteredEntries = Object.entries(props.selectedEvent).filter(
@@ -45,11 +77,7 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
                 {formatText(key)}
               </div>
               <div className="value" key={`${key}-value`}>
-                {key === "channels"
-                  ? handleChannels(value)
-                  : value instanceof Date
-                  ? value.toDateString()
-                  : value}
+                {renderPropsValue(key, value)}
               </div>
             </React.Fragment>
           ))}

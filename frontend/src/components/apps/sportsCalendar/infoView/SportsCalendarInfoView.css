@@ -29,3 +29,7 @@
 .value {
   justify-self: start;
 }
+
+.value a {
+  color: white;
+}

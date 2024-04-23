@@ -32,6 +32,16 @@
     "banner_color": "#86991e"
   },
   {
+    "_id": "testID_F",
+    "name": "Mutua Madrid Open",
+    "description": "Mutua Madrid Open",
+    "start_date": "2024-04-24",
+    "end_date": "2024-05-05",
+    "category": "tennis",
+    "channels": ["tennistv"],
+    "banner_color": "#768812"
+  },
+  {
     "_id": "testID_C",
     "name": "Test event 1",
     "description": "test1",
