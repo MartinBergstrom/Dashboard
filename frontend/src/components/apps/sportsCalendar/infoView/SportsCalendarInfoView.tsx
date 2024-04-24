@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { SportsCalendarEvent } from "../model/SportsCalendarModels";
 import "./SportsCalendarInfoView.css";
 import { hasMapping, mapToUrl } from "./InfoViewUrlMapper";
 import { Link } from "react-router-dom";
 import { MuiColorInput } from "mui-color-input";
+import EditIcon from "@mui/icons-material/Edit";
+import InfoViewHighlights from "./InfoViewHighlights";
 
 interface SportsCalendarInfoViewProps {
   selectedEvent?: SportsCalendarEvent;
 }
 
 const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
   if (!props.selectedEvent) {
     return null;
   }
+
+  const onEditIconClick = () => {
+    setIsEditing(!isEditing);
+  };
 
   const formatText = (text: string) => {
     const replaced = text.replace(/_/g, " ");
@@ -24,7 +32,7 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
     console.log(channels);
     return channels.map((channel) =>
       hasMapping(channel) ? (
-        <Link to={mapToUrl(channel)} target="_blank">
+        <Link to={mapToUrl(channel)} target="_blank" key={channel}>
           {mapToUrl(channel)}
         </Link>
       ) : (
@@ -37,9 +45,13 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
     return (
       <MuiColorInput
         sx={{
+          "& .MuiInputBase-formControl": {
+            margin: "0px",
+            padding: "0px",
+          },
           "& .MuiOutlinedInput-input": {
             margin: "0px",
-            padding: "0px"
+            padding: "0px",
           },
           "& .MuiOutlinedInput-notchedOutline": {
             display: "none",
@@ -47,7 +59,7 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
         }}
         size="small"
         format="hex"
-        disabled
+        disabled={!isEditing}
         value={value}
       />
     );
@@ -64,21 +76,17 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
     }
   };
 
-  const renderProps = () => {
+  const renderInfoViewMain = () => {
     if (props.selectedEvent) {
       const filteredEntries = Object.entries(props.selectedEvent).filter(
         ([key, value]) => key !== "_id" && value !== undefined
       );
       return (
         <div className="info-view-main">
-          {filteredEntries.map(([key, value]) => (
-            <React.Fragment key={key}>
-              <div className="key" key={key}>
-                {formatText(key)}
-              </div>
-              <div className="value" key={`${key}-value`}>
-                {renderPropsValue(key, value)}
-              </div>
+          {filteredEntries.map(([key, value], index) => (
+            <React.Fragment key={index}>
+              <div className="key">{formatText(key)}</div>
+              <div className="value">{renderPropsValue(key, value)}</div>
             </React.Fragment>
           ))}
         </div>
@@ -90,10 +98,14 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
     <>
       <div className="wrapper">
         <div className="info-view">
+          <div className="edit-icon" onClick={onEditIconClick}>
+            <EditIcon fontSize="small" />
+          </div>
           <div className="key-value title-bar">
             <span className="title-value">{props.selectedEvent?.name}</span>
           </div>
-          {renderProps()}
+          {renderInfoViewMain()}
+          <InfoViewHighlights />
         </div>
       </div>
     </>

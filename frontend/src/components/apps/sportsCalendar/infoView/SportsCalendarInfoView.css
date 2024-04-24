@@ -4,7 +4,15 @@
   justify-content: center;
 }
 .info-view {
+  position: relative;
   color: rgb(255, 255, 255);
+}
+
+.info-view .edit-icon {
+  color: rgb(145, 145, 145);
+  position: absolute;
+  right: 0;
+  cursor: pointer;
 }
 
 .info-view .title-bar {
@@ -25,9 +33,13 @@
   color: rgb(119, 119, 119);
   justify-self: end;
   margin-right: 1rem;
+  align-content: center;
 }
 .value {
+  text-align: left;
   justify-self: start;
+  align-content: center;
+  max-width: 14rem;
 }
 
 .value a {
