@@ -79,7 +79,7 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
   const renderInfoViewMain = () => {
     if (props.selectedEvent) {
       const filteredEntries = Object.entries(props.selectedEvent).filter(
-        ([key, value]) => key !== "_id" && value !== undefined
+        ([key, value]) => key !== "_id" && value !== undefined && key !== "highlights"
       );
       return (
         <div className="info-view-main">
@@ -105,7 +105,7 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
             <span className="title-value">{props.selectedEvent?.name}</span>
           </div>
           {renderInfoViewMain()}
-          <InfoViewHighlights />
+          <InfoViewHighlights hightlights={props.selectedEvent.highlights}/>
         </div>
       </div>
     </>

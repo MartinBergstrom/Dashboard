@@ -39,7 +39,13 @@
     "end_date": "2024-05-05",
     "category": "tennis",
     "channels": ["tennistv"],
-    "banner_color": "#768812"
+    "banner_color": "#768812",
+    "highlights": [
+      {
+        "date": "2024-04-25",
+        "description": "Nadal vs Blanch"
+      }
+    ]
   },
   {
     "_id": "testID_C",

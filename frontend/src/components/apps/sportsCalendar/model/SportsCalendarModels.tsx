@@ -8,4 +8,10 @@ export interface SportsCalendarEvent {
     category: string;
     channels: string[];
     banner_color: string;
+    highlights?: EventHighlight[];
+}
+
+export interface EventHighlight {
+    date: Date;
+    description: string;
 }
