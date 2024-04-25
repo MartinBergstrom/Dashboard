@@ -1,0 +1,37 @@
+.hightlights-header {
+  margin: 1rem;
+  color: #dadada;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.hightlights-main {
+  display: flex;
+  white-space: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+  margin-bottom: 2rem;
+}
+
+.hightlights-main .calendar-square {
+  display: flex;
+  overflow-x: auto;
+  flex: 0 0 300px;
+  height: 150px;
+  margin-bottom: 5px;
+  background-color: rgb(42, 46, 42);
+  border: 1px solid rgb(99, 99, 99);
+}
+
+.hightlights-main::-webkit-scrollbar {
+  height: 12px;
+  background-color: rgb(114, 114, 114);
+  border-radius: 5px;
+}
+
+.hightlights-main::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  background-clip: content-box;
+}

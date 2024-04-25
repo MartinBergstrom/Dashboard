@@ -1,4 +1,5 @@
 import { EventHighlight } from "../model/SportsCalendarModels";
+import "./InfoViewHighlights.css";
 
 interface InfoViewHighlightsProps {
   hightlights?: EventHighlight[];
@@ -12,7 +13,14 @@ const InfoViewHighlights = (props: InfoViewHighlightsProps) => {
   }
   return (
     <>
-      <div>Highlights exists</div>
+      <div className="hightlights-header">Highlights</div>
+      <div className="hightlights-main">
+        {props.hightlights.map((highlight, index) => (
+          <div key={index} className="calendar-square">
+            hello
+          </div>
+        ))}
+      </div>
     </>
   );
 };
