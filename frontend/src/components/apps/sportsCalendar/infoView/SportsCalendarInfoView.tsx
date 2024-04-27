@@ -98,9 +98,9 @@ const SportsCalendarInfoView = (props: SportsCalendarInfoViewProps) => {
     <>
       <div className="wrapper">
         <div className="info-view">
-          <div className="edit-icon" onClick={onEditIconClick}>
+          {/**<div className="edit-icon" onClick={onEditIconClick}>
             <EditIcon fontSize="small" />
-          </div>
+          </div>*/}
           <div className="key-value title-bar">
             <span className="title-value">{props.selectedEvent?.name}</span>
           </div>
