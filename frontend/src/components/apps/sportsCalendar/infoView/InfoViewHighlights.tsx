@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { EventHighlight } from "../model/SportsCalendarModels";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import "./InfoViewHighlights.css";
 
 interface InfoViewHighlightsProps {
@@ -67,8 +68,20 @@ const InfoViewHighlights = (props: InfoViewHighlightsProps) => {
         {props.hightlights.map((highlight, index) => (
           <div key={index} className="calendar-square-wrapper">
             <div className="card">
-                {highlight.description}
               <div className="date-text">{highlight.date.toDateString()}</div>
+              <div className="highlight-desc">{highlight.description} </div>
+              {highlight.start_time ? (
+                <div className="info-wrapper">
+                  <div className="start-time">
+                    <AccessTimeIcon fontSize="small" />
+                    <span className="start-time-text-span">
+                      Start time: {highlight.start_time}{" "}
+                    </span>
+                  </div>{" "}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         ))}

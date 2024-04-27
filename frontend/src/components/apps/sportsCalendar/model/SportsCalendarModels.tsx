@@ -14,4 +14,5 @@ export interface SportsCalendarEvent {
 export interface EventHighlight {
     date: Date;
     description: string;
+    start_time?: string;
 }

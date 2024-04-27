@@ -30,10 +30,10 @@ export const getAllEvents = async (): Promise<SportsCalendarEvent[]> => {
 };
 
 const convertHightlight = (
-  highlights: { date: string; description: string }[]
+  highlights: { date: string; description: string, start_time?: string  }[]
 ): EventHighlight[] => {
   return highlights.map((highlight) => ({
-    date: new Date(highlight.date),
-    description: highlight.description,
+    ...highlight,
+    date: new Date(highlight.date)
   }));
 };
