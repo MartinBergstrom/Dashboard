@@ -65,8 +65,11 @@ const InfoViewHighlights = (props: InfoViewHighlightsProps) => {
         onMouseMove={handleDrag}
       >
         {props.hightlights.map((highlight, index) => (
-          <div key={index} className="calendar-square">
-            hello
+          <div key={index} className="calendar-square-wrapper">
+            <div className="card">
+                {highlight.description}
+              <div className="date-text">{highlight.date.toDateString()}</div>
+            </div>
           </div>
         ))}
       </div>

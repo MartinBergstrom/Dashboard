@@ -12,7 +12,7 @@
   margin-bottom: 2rem;
 }
 
-.hightlights-main .calendar-square {
+.hightlights-main .calendar-square-wrapper {
   display: flex;
   overflow-x: auto;
   flex: 0 0 300px;
@@ -20,6 +20,18 @@
   margin-bottom: 5px;
   background-color: rgb(42, 46, 42);
   border: 1px solid rgb(99, 99, 99);
+}
+
+.hightlights-main .calendar-square-wrapper .card {
+  position: relative;
+  width: 100%;
+  align-content: center;
+}
+
+.hightlights-main .calendar-square-wrapper .card .date-text {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.5rem;
 }
 
 .hightlights-main::-webkit-scrollbar {
