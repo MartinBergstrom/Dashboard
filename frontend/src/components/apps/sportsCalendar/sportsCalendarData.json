@@ -66,17 +66,6 @@
     ]
   },
   {
-    "_id": "testID_H",
-    "name": "Roland Garros",
-    "description": "2024 French Open",
-    "pre_start_date": "2024-05-26",
-    "start_date": "2024-05-26",
-    "end_date": "2024-06-09",
-    "category": "tennis",
-    "channels": ["eurosport", "tv4"],
-    "banner_color": "#097c13"
-  },
-  {
     "_id": "testID_G",
     "name": "Wimbledon",
     "description": "2024 Wimbledon Championships",
