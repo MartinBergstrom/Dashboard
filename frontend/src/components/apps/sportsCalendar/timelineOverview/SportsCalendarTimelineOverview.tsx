@@ -1,5 +1,9 @@
 import { SportsCalendarEvent } from "../model/SportsCalendarModels";
-import { isDateInRange } from "../utils/DateUtils";
+import {
+  getMonthName,
+  isAfterCurrentDate,
+  isDateInRange,
+} from "../utils/DateUtils";
 import "./SportsCalendarTimelineOverview.css";
 
 interface SportsCalendarTimelineOverviewProps {
@@ -10,10 +14,6 @@ interface SportsCalendarTimelineOverviewProps {
 const SportsCalendarTimelineOverview = (
   props: SportsCalendarTimelineOverviewProps
 ) => {
-  const sortAllEvents = () => {
-    // Sort all events
-  };
-
   const renderTodaysEvents = () => {
     const todaysEvents: SportsCalendarEvent[] = props.allEvents
       ? props.allEvents.filter((event) =>
@@ -45,28 +45,41 @@ const SportsCalendarTimelineOverview = (
     );
   };
 
+  const renderUpcomingEvents = () => {
+    const monthlyEvents: { [key: number]: SportsCalendarEvent[] } = {};
+    props.allEvents
+      .filter((event) => isAfterCurrentDate(event.start_date))
+      .forEach((event) => {
+        const monthNbr = event.start_date.getMonth();
+        if (!monthlyEvents[monthNbr]) {
+          monthlyEvents[monthNbr] = [];
+        }
+        monthlyEvents[monthNbr].push(event);
+      });
+    console.log(monthlyEvents);
+
+    return (
+      <>
+        <div>
+          {Object.entries(monthlyEvents).map(([monthKey, events]) => (
+            <fieldset key={monthKey}>
+              <legend> {getMonthName(parseInt(monthKey))}</legend>
+              {events.map((event, index) => (
+                <div key={index}>{event.name}</div>
+              ))}
+            </fieldset>
+          ))}
+        </div>
+      </>
+    );
+  };
+
   const renderEvents = () => {
-    const sorted = sortAllEvents();
-    // use sorted and create List view first
-    //
     return (
       <div className="all-events">
         <fieldset>
           <legend> Upcoming events</legend>
-          <div>
-            <fieldset>
-              <legend> April</legend>
-              <div>something</div>
-              <div>something2</div>
-            </fieldset>
-          </div>
-          <div>
-            <fieldset>
-              <legend> April</legend>
-              <div>something</div>
-              <div>something2</div>
-            </fieldset>
-          </div>
+          {renderUpcomingEvents()}
         </fieldset>
       </div>
     );

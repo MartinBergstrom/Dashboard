@@ -10,21 +10,8 @@ import { useQuery, useQueryClient } from "react-query";
 import { getAllEvents } from "../service/SportsCalendarService";
 import { SportsCalendarEvent } from "../model/SportsCalendarModels";
 import SportsCalendarTimelineOverview from "../timelineOverview/SportsCalendarTimelineOverview";
+import { getMonthName } from "../utils/DateUtils";
 
-const monthNames = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
 
 interface SportsCalendarProps {
   onEventClick: (event: SportsCalendarEvent) => void;
@@ -197,7 +184,7 @@ const SportsCalendar = (props: SportsCalendarProps) => {
             <IconButton color="primary" onClick={() => setPrevMonth()}>
               <KeyboardArrowLeftIcon />
             </IconButton>
-            {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+            {getMonthName(currentMonth.getMonth())} {currentMonth.getFullYear()}
             <IconButton color="primary" onClick={() => setNextMonth()}>
               <KeyboardArrowRightIcon />
             </IconButton>
