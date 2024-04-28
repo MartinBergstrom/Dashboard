@@ -100,8 +100,7 @@ const UrlCard = (props: UrlProps) => {
               <CircularProgress size={"4rem"} color="error" thickness={6} />
             </div>
           ) : null}
-
-          <CardActionArea onClick={() => (window.location.href = props.url)}>
+          <CardActionArea onClick={() => window.open(props.url, '_blank')}>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <div style={{ paddingTop: "5px" }}>
                 {props.imageUrl ? (
