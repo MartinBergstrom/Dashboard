@@ -58,13 +58,20 @@
       },
       {
         "date": "2024-04-30",
-        "description": "Nadal vs J. Lehečka"
-      },
-      {
-        "date": "2024-05-01",
-        "description": "Nadal vs TBA4"
+        "description": "Nadal vs J. Lehečka",
+        "start_time": "21.15"
       }
     ]
+  },
+  {
+    "_id": "testID_23415312",
+    "name": "Rome ATP 1000",
+    "description": "Internazionali BNL d'Italia",
+    "start_date": "2024-05-08",
+    "end_date": "2024-05-19",
+    "category": "tennis",
+    "channels": ["tennistv"],
+    "banner_color": "#762810"
   },
   {
     "_id": "testID_G",
